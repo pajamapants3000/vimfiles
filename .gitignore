@@ -1,0 +1,4 @@
+#
+# File: .gitignore
+.git
+*.swp

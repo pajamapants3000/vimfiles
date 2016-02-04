@@ -1,4 +1,5 @@
 #
 # File: .gitignore
 .git
+.directory
 *.swp

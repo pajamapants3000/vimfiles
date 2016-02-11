@@ -641,33 +641,33 @@ map <c-h> <c-w>h
 if has('win32')
     " Set quick access to most common folders - update as needed
     map <leader>dv :cd $USERPROFILE\vimfiles<CR>
-    map <leader>dc :cd $SYNCPATH\Copy\Code<CR>
-    map <leader>dC :cd $SYNCPATH\Copy\Code\C<CR>
-    map <leader>dcxx :cd $SYNCPATH\Copy\Code\C++<CR>
-"   map <leader>dP :cd $SYNCPATH\Copy\Code\Python<CR>
-    map <leader>dL :cd $SYNCPATH\Copy\Code\Lua<CR>
-    map <leader>dJ :cd $SYNCPATH\Copy\Code\Java<CR>
-    map <leader>db :cd $SYNCPATH\Copy\LFS\BLFS<CR>
-    map <leader>dl :cd $SYNCPATH\Copy\LFS\LFS<CR>
+    map <leader>dc :cd $CODEPATH<CR>
+    map <leader>dC :cd $CODEPATH\C<CR>
+    map <leader>dcxx :cd $CODEPATH\C++<CR>
+"   map <leader>dP :cd $CODEPATH\Python<CR>
+    map <leader>dL :cd $CODEPATH\Lua<CR>
+    map <leader>dJ :cd $CODEPATH\Java<CR>
+    map <leader>db :cd $DRIVEPATH\LFS\BLFS<CR>
+    map <leader>dl :cd $DRIVEPATH\LFS\LFS<CR>
     map <leader>dr :cd $USERPROFILE\repo<CR>
     " For Lua
-    map <leader>dP :cd $SYNCPATH\Copy\Code\Lua\PIL3<CR>
+    map <leader>dP :cd $CODEPATH\Lua\PIL3<CR>
     " Execute current script
     map <leader>e :!%:p<CR>
 else
     " Set quick access to most common folders - update as needed
     map <leader>dv :cd $HOME/.vim<CR>
-    map <leader>dc :cd $SYNCPATH/Copy/Code<CR>
-    map <leader>dC :cd $SYNCPATH/Copy/Code/C<CR>
-    map <leader>dcxx :cd $SYNCPATH/Copy/Code/C++<CR>
-"   map <leader>dP :cd $SYNCPATH/Copy/Code/Python<CR>
-    map <leader>dL :cd ~/Copy/Code/Lua<CR>
-    map <leader>dJ :cd $SYNCPATH/Copy/Code/Java<CR>
-    map <leader>db :cd $SYNCPATH/Copy/LFS/BLFS<CR>
-    map <leader>dl :cd $SYNCPATH/Copy/LFS/LFS<CR>
+    map <leader>dc :cd $CODEPATH<CR>
+    map <leader>dC :cd $CODEPATH/C<CR>
+    map <leader>dcxx :cd $CODEPATH/C++<CR>
+"   map <leader>dP :cd $CODEPATH/Python<CR>
+    map <leader>dL :cd $CODEPATH/Lua<CR>
+    map <leader>dJ :cd $CODEPATH/Java<CR>
+    map <leader>db :cd $DRIVEPATH/LFS/BLFS<CR>
+    map <leader>dl :cd $DRIVEPATH/LFS/LFS<CR>
     map <leader>dr :cd $HOME/repo<CR>
     " For Lua
-    map <leader>dP :cd ~/Copy/Code/Lua/PIL3<CR>
+    map <leader>dP :cd $CODEPATH/Lua/PIL3<CR>
     " Execute current script
     map <leader>e :!%:p<CR>
     " Execute current script, pipe output to less

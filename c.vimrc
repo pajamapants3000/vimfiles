@@ -646,12 +646,12 @@ if has('win32')
     map <leader>dr :cd $USERPROFILE\repo<CR>
     map <leader>dow :cd $USERPROFILE\Downloads<CR>
     map <leader>doc :cd $USERPROFILE\Documents<CR>
-    map <leader>dc :cd $SYNCPATH\Copy\Code<CR>
-    map <leader>dC :cd $SYNCPATH\Copy\Code\C<CR>
-    map <leader>dcxx :cd $SYNCPATH\Copy\Code\C++<CR>
-    map <leader>dP :cd $SYNCPATH\Copy\Code\Python<CR>
-    map <leader>dL :cd $SYNCPATH\Copy\Code\Lua<CR>
-    map <leader>dJ :cd $SYNCPATH\Copy\Code\Java<CR>
+    map <leader>dc :cd $CODEPATH<CR>
+    map <leader>dC :cd $CODEPATH\C<CR>
+    map <leader>dcxx :cd $CODEPATH\C++<CR>
+    map <leader>dP :cd $CODEPATH\Python<CR>
+    map <leader>dL :cd $CODEPATH\Lua<CR>
+    map <leader>dJ :cd $CODEPATH\Java<CR>
     " Execute current script
     map <leader>e :!%:p<CR>
 else
@@ -660,12 +660,12 @@ else
     map <leader>dr :cd $HOME/repo<CR>
     map <leader>dow :cd $HOME/downloads<CR>
     map <leader>doc :cd $HOME/documents<CR>
-    map <leader>dc :cd $SYNCPATH/Copy/Code<CR>
-    map <leader>dC :cd $SYNCPATH/Copy/Code/C<CR>
-    map <leader>dcxx :cd $SYNCPATH/Copy/Code/C++<CR>
-    map <leader>dP :cd $SYNCPATH/Copy/Code/Python<CR>
-    map <leader>dL :cd $SYNCPATH/Copy/Code/Lua<CR>
-    map <leader>dJ :cd $SYNCPATH/Copy/Code/Java<CR>
+    map <leader>dc :cd $CODEPATH<CR>
+    map <leader>dC :cd $CODEPATH/C<CR>
+    map <leader>dcxx :cd $CODEPATH/C++<CR>
+    map <leader>dP :cd $CODEPATH/Python<CR>
+    map <leader>dL :cd $CODEPATH/Lua<CR>
+    map <leader>dJ :cd $CODEPATH/Java<CR>
     " Execute current script
     map <leader>e :!%:p<CR>
     " Execute current script, pipe output to less

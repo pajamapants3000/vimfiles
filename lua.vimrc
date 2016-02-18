@@ -38,151 +38,260 @@ endif
 
 " let Vundle manage Vundle
 " required!
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/vundle'
 
 " The bundles you install will be listed here
 " Usage:
 "   Some sources use Plugin, not Bundle; Plugin deprecated as of v0.10.2
-"     Bundle 'klen/python-mode' - plugin hosted on GitHub
-"     Bundle 'L9' - plugin from http://viim-scripts.org/vim/scripts.html (?)
-"     Bundle 'git://git.wincent.com/commant-t.git' - Git plugin not on GitHub
-"     Bundle 'file:///home/gmarik/path/to/plugin' - Bundle stored locally
+"   UPDATE: NO! I got it backwards!!! :(
+"     Plugin 'klen/python-mode' - plugin hosted on GitHub
+"     Plugin 'L9' - plugin from http://viim-scripts.org/vim/scripts.html (?)
+"     Plugin 'git://git.wincent.com/commant-t.git' - Git plugin not on GitHub
+"     Plugin 'file:///home/gmarik/path/to/plugin' - Plugin stored locally
 "   Can add extra options to any plugin, e.g.
-"     Bundle 'rstacruz/sparkup', {'rtp': 'vim/'} - sets runtime path (subdir
+"     Plugin 'rstacruz/sparkup', {'rtp': 'vim/'} - sets runtime path (subdir
 "     of plugin repo)
-"     Bundle 'user/L9', {'name': 'newL9'} - Set plugin name
+"     Plugin 'user/L9', {'name': 'newL9'} - Set plugin name
 "    ****    ****    ****    ****    ****    ****    ****    ****    ****
 " Begin list of plugins to add
 "    ****    ****    ****
-" Web Browser
-" ???
 " Airline - info bar at bottom, works better than powerline!
-Bundle 'vim-airline/vim-airline'
-Bundle 'vim-airline/vim-airline-themes'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 " NerdTree - file explorer
-Bundle 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdtree'
 " MiniBufExplorer - like tab bar but for buffers
 "+unite kinda renders this unnecessary, unless I want to SEE the buffers
 "+at all times, but they can never be removed (I think?). So, disabling for now.
-"Bundle 'fholgado/minibufexpl.vim'
+"Plugin 'fholgado/minibufexpl.vim'
 " gee-undo - visualize undo tree
-Bundle 'sjl/gundo.vim'
+Plugin 'sjl/gundo.vim'
 " TaskList - ... task list
-Bundle 'vim-scripts/TaskList.vim'
+Plugin 'vim-scripts/TaskList.vim'
 " ConqueTerm - Run a (os native) terminal from within vim.
-Bundle 'pthrasher/conqueterm-vim'
-" Unite - an awesome plugin that does many things!
-Bundle 'Shougo/unite.vim'
+Plugin 'pthrasher/conqueterm-vim'
 " 'mksession on steroids'; will use when I feel like trying it out, seems cool
-"Bundle 'xolox/vim-session'
+"Plugin 'xolox/vim-session'
 " General vim plugin function library; used by xolox e.g. vim-session
 " xolox has a lot of good stuff, keep trying some of his stuff!
-Bundle 'xolox/vim-misc'
+Plugin 'xolox/vim-misc'
 " AutoComplPop - automatically pops open completion list
-"Bundle 'vim-scripts/AutoComplPop'
+"Plugin 'vim-scripts/AutoComplPop'
 " Supertab - allows tabbing through completions like YCM; also, gets rid
 "+of <Space> conflict with double-underscore mapping?
-"Bundle 'ervandew/supertab'
+"Plugin 'ervandew/supertab'
 " Matchit - extends % command to not only jump parens and brackets, but more!
-Bundle 'tmhedberg/matchit'
+Plugin 'tmhedberg/matchit'
 " EasyMotion - As the name says, makes it easy to get from point a to b.
-Bundle 'easymotion/vim-easymotion'
+Plugin 'easymotion/vim-easymotion'
 " IncSearch - adds great functionality to incremental search
-Bundle 'haya14busa/incsearch.vim'
+Plugin 'haya14busa/incsearch.vim'
 " IncSearch-EasyMotion - itegration of two plugins
-Bundle 'haya14busa/incsearch-easymotion.vim'
+Plugin 'haya14busa/incsearch-easymotion.vim'
 " IncSearch-fuzzy - fuzzy search extension to incsearch
-Bundle 'haya14busa/incsearch-fuzzy.vim'
+Plugin 'haya14busa/incsearch-fuzzy.vim'
 " EasyOperator Plugins screw up color somehow! TODO: Fix this!
 " EasyOperator-Line - makes it easy to perform operations on specific lines
-"Bundle 'haya14busa/vim-easyoperator-line'
+"Plugin 'haya14busa/vim-easyoperator-line'
 " EasyOperator-Phrase - makes it easy to perform operations on specific phrases
-"Bundle 'haya14busa/vim-easyoperator-phrase'
+"Plugin 'haya14busa/vim-easyoperator-phrase'
+" linediff - make two selections and diff them!
+Plugin 'AndrewRadev/linediff.vim'
+" vim-surround - easily add/change/remove enclosing chars e.g. "", [], <> etc.
+Plugin 'tpope/vim-surround'
+" sudo.vim - allows you to use sudo to open privileged file from within vim
+Plugin 'vim-scripts/sudo.vim'
+" vim-ref - Seems like a useful plugin for viewing documentation
+Plugin 'thinca/vim-ref'
+" caw.vim - sophisticated comment plugin (not sure I need this)
+Plugin 'tyru/caw.vim'
+" vim-bookmarks - vim bookmark plugin
+Plugin 'MattesGroeger/vim-bookmarks'
+"*******"
+" UNITE "
+"^^^^^^^"
+" Unite - an awesome plugin that does many things!
+Plugin 'Shougo/unite.vim'
+" neoyank - yank list functionality for Unite
+Plugin 'Shougo/neoyank.vim'
+" neomru - Most Recently Used files functionality for Unite
+Plugin 'Shougo/neomru.vim'
+" unite-history - adds command/search history to Unite sources
+Plugin 'thinca/vim-unite-history'
+" unite-colorscheme - add colorschemes to Unite sources; can select from here?
+Plugin 'ujihisa/unite-colorscheme'
+" neoinclude - dependency for unite-tag; says it requires neocomplete but it
+"+seems like it should be the other way around.... we'll see.
+Plugin 'Shougo/neoinclude.vim'
+" unite-tag - another added funcitonality to Unite
+Plugin 'tsukkee/unite-tag'
+" unite-quickfix - yet another added funcitonality to Unite
+Plugin 'osyo-manga/unite-quickfix'
+" unite-outline - a cool sounding outline generator: parses buffer for
+"+headings and creates a sort of table of contents that you can use to jump
+"+to specific sections
+Plugin 'Shougo/unite-outline'
+" unite-help - not quite sure, but I would image this lists help available
+Plugin 'Shougo/unite-help'
+" unite-mark - no documentation, but I think this lists all marks
+Plugin 'tacroe/unite-mark'
+" unite-giti - git integration with Unite
+Plugin 'kmnk/vim-unite-giti'
 "***************************
 " Wrappers and integrations
 "^^^^^^^^^^^^^^^^^^^^^^^^^^^
 " NOTE: Ability to diff is dependent on external binary, such as GNUWin32
 "+diff.exe available on PATH
 " Fugitive - Git wrapper
-Bundle 'tpope/vim-fugitive'
+Plugin 'tpope/vim-fugitive'
 " GitGutter - Shows git diff in the gutter (sign column)
-Bundle 'airblade/vim-gitgutter'
+Plugin 'airblade/vim-gitgutter'
+" vim-gita - Looks like a VERY cool git handling plugin (says it's in alpha)
+Plugin 'lambdalisue/vim-gita'
+" agit.vim - A powerful Git log viewer
+Plugin 'cohama/agit.vim'
+" gist-vim - the more traditional, it seems, gist plugin
+"Plugin 'mattn/gist-vim'
+" vim-gista - a plugin for handling gists
+"Plugin 'lambdalisue/vim-gista'
+" vim-gista-unite - use unite with gista
+"Plugin 'lambdalisue/vim-gista-unite'
+" vital-VCS-Git - vital library add-on, needed for gita
+Plugin 'lambdalisue/vital-VCS-Git'
+" vital - comprehensive library of VimL utility functions (also gita dep.)
+Plugin 'vim-jp/vital.vim'
+" vital-ArgumentParser - another library needed by gita
+Plugin 'lambdalisue/vital-ArgumentParser'
 " Mercenary - Mercurial wrapper
-Bundle 'phleet/vim-mercenary'
+Plugin 'phleet/vim-mercenary'
 " Lawrencium - Another Mercurial wrapper - seems to offer a different subset
 "+of commands than Mercenary
-Bundle 'ludovicchabant/vim-lawrencium'
+" WREAKS HAVOC! With MZSCHEME support and those annoying output lines, this
+"+plugin goes nuts!
+"Plugin 'ludovicchabant/vim-lawrencium'
 " TmuxLine - Statusline integration with tmux
-"Bundle 'edkolev/tmuxline.vim'
+"Plugin 'edkolev/tmuxline.vim'
+" OpenBrowser - Open URIs in browser; execute searches.
+Plugin 'tyru/open-browser.vim'
 "************
 " vim as IDE
 "^^^^^^^^^^^^
 " YouCompleteMe - Supposedly combines the best autocompletions for all
 "+major programming languages, including Jedi for Python.
-Bundle 'valloric/youcompleteme'
+" Pops a single mzsc-output on the top line on startup.
+Plugin 'valloric/youcompleteme'
 " Ultisnips - Provides (supposedly) awesome snippet support; fast, simple
-Bundle 'SirVer/ultisnips'
+Plugin 'SirVer/ultisnips'
 " vim-addon-mw-utils - library for vim; SnipMate dependency
 "Plugin 'MarcWeber/vim-addon-mw-utils'
 " tlib_vim - library for vim; SnipMate dependency
 "Plugin 'tomtom/tlib_vim'
 "SnipMate - Another popular snippet plugin
-"Bundle 'garbas/vim-snipmate'
+"Plugin 'garbas/vim-snipmate'
 " Vim-Snippets - a collection of snippets for both Ultisnips and SnipMate
-Bundle 'honza/vim-snippets'
+Plugin 'honza/vim-snippets'
 " Syntastic - Syntax checking hacks for vim
-Bundle 'scrooloose/syntastic'
+Plugin 'scrooloose/syntastic'
 " vim-easytags - Automated tag file generation and syntax highlighting of tags
-Bundle 'xolox/vim-easytags'
+Plugin 'xolox/vim-easytags'
 " TagBar - A class outline viewer for Vim
-Bundle 'majutsushi/tagbar'
+" pops a single mzsc-output line on bottom line on startup
+Plugin 'majutsushi/tagbar'
+" splitjoin - switches between multiline code and single-line
+Plugin 'AndrewRadev/splitjoin.vim'
 "*********
 " C / C++
 "^^^^^^^^^
 " Alternate - switch between header and source files easily
-Bundle 'vim-scripts/a.vim'
+Plugin 'vim-scripts/a.vim'
+" Syntax Highlighting - seems to use builtin syntax with minor improvements
+"+and additions;
+Plugin 'vim-jp/vim-cpp'
 "********
 " Lua
 "^^^^^^^^
 " Lua-ftplugin - Lua plugin by xolox
 " Includes an optional omnicomplete I may try later
 " My own modified version
-Bundle 'pajamapants3000/vim-lua-ftplugin'
+Plugin 'pajamapants3000/vim-lua-ftplugin'
 " Lua-omnicomplete - My own mod of one on vim.org; will be used by YCM
 " This doesn't work very well, needs some work; gonna try xolox' omnicompl
-" Bundle 'pajamapants3000/lua_omni'
+" Plugin 'pajamapants3000/lua_omni'
 " Lua52 Manual - reference for version 5.2
-Bundle 'whoisusingmyname/vim-lua-manual'
+Plugin 'whoisusingmyname/vim-lua-manual'
 "********
 " Python
 "^^^^^^^^
 " Jedi - awesome python autocompletion. Replace with YouCompleteMe?
-"Bundle 'davidhalter/jedi-vim'
+"Plugin 'davidhalter/jedi-vim'
 " Python_PyDoc.vim - Integrates PyDoc. Needs work in Windows, functionality
 "+already exists anyway with....Jedi?
-"Bundle 'fs111/pydoc.vim'
+"Plugin 'fs111/pydoc.vim'
 " VirtualEnv - Allows you to use vim inside a virtualenv for python
-"Bundle 'jmcantrell/vim-virtualenv'
+"Plugin 'jmcantrell/vim-virtualenv'
 "******************************
 " Colorscheme and theme related
 "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 " CSApprox - Helps colorschemes fit any terminal's available colors
-Bundle 'godlygeek/csapprox'
+Plugin 'godlygeek/csapprox'
 " Colorstepper - Quick, easy cycling through colorschemes;
 " My own modified version
-Bundle 'pajamapants3000/vim-colorstepper'
+Plugin 'pajamapants3000/vim-colorstepper'
 " Thematic - Awesome control over visual elements!
-"Bundle 'reedes/vim-thematic'
+"Plugin 'reedes/vim-thematic'
+" fontzoom - resize font (GUI only)
+Plugin 'thinca/vim-fontzoom'
+" TabpageColorscheme - different colorscheme on each tab!
+Plugin 'ujihisa/tabpagecolorscheme'
 " Colorschemes
 " for vim-colorschemes: such a long list that I keep my own shortened versions
-"Bundle 'flazz/vim-colorschemes'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'chriskempson/base16-vim'
-Bundle 'tomasr/molokai'
+"+Many of these seem to do undesirable things; try instead Colour-Sampler-Pk
+"Plugin 'flazz/vim-colorschemes'
+" Colour-Sampler-Pack - promises not to have "evil' colorschemes (undesirable)
+"+side effects); also comes with GUI-browser!
+Plugin 'vim-scripts/Colour-Sampler-Pack'
+" ScrollColors - a color browser/chooser that works in Console as well as GUI
+Plugin 'vim-scripts/ScrollColors'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'chriskempson/base16-vim'
+Plugin 'tomasr/molokai'
+Plugin 'shiracha/shiracha-vim'
+Plugin 'notpratheek/vim-luna'
+Plugin 'vim-scripts/zenesque.vim'
+Plugin 'trapd00r/neverland-vim-theme'
+Plugin 'veloce/vim-aldmeris'
+Plugin 'w0ng/vim-hybrid'
+Plugin 'kristijanhusak/vim-hybrid-material'
+Plugin 'sk1418/last256'
 "********************************
 " Additional Syntax Highlighting
 "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Bundle 'peterhoeg/vim-qml'
+Plugin 'peterhoeg/vim-qml'
+" ft-cmake - This is actually a dict/ entry for cmake
+Plugin 'ujihisa/ft-cmake'
+"**********************"
+" Doing more with vim! "
+"^^^^^^^^^^^^^^^^^^^^^^"
+" Calendar.vim - VERY cool! A calendar that syncs with google.
+Plugin 'itchyny/calendar.vim'
+" vim-pager - use vim as a pager
+Plugin 'lambdalisue/vim-pager'
+" vim-manpager - use vim to display manpages, both in vim and from shell
+"+add-to/change shell environment: MANPAGER="vim -c MANPAGER -"
+Plugin 'lambdalisue/vim-manpager'
+" vimshell - a shell completely written in vimscript
+Plugin 'Shougo/vimshell.vim'
+" vimfiler - file explorer
+Plugin 'Shougo/vimfiler.vim'
+" *** Web Browser Plugins (experiment and pick one - ideally) ***
+" browser.vim by Moshe Kamensky - requires synmark.vim and perl/perl modules
+"Plugin 'vim-scripts/browser.vim'
+" synmark - provides commands for highlighting text at fixed position
+"Plugin 'vim-scripts/synmark.vim'
+" browser.vim by Michael Browne - requires lynx
+"Plugin 'mjbrownie/browser.vim'
+" WebBrowser - requires lynx; seems aimed specifically at MS-Windows
+"Plugin 'vim-scripts/webBrowser'
 "    ****    ****    ****
 " End list of plugins to add
 "    ****    ****    ****
@@ -592,7 +701,7 @@ let g:lua_check_syntax = 0
 " (manually check with :CheckGlobals)
 "let g:lua_check_globals = 0
 " Uncomment to force use of external interpreter over vim's Lua interface
-"let g:lua_internal = 0
+let g:lua_internal = 0
 " Uncomment to use ill-advised omnicompletion
 let g:lua_complete_omni = 1
 " Blacklist certain modules from omnicompletion autoloading them

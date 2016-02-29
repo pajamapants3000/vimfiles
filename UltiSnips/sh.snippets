@@ -1,0 +1,28 @@
+#
+# Begin sh.snippets
+#
+
+#
+# Snippets for writing shell scripts
+#
+
+snippet hdr "simple heading" b
+#!/usr/bin/env bash
+# `!p snip.rv = fn`
+# ${1:description of program}
+$0
+endsnippet
+#
+snippet hdrr "full heading" b
+#!/usr/bin/env bash
+#
+# File   : `!p snip.rv = snip.fn`
+# Purpose: ${2:What is this?}
+# Author : Tommy Lincoln <pajamapants3000@gmail.com>
+# License: ${3:None!}
+# Notes  : ${4:How and why is this script used?}
+#
+$0
+endsnippet
+#
+

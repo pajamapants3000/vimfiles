@@ -1,0 +1,211 @@
+#
+# Begin make.snippets
+#
+
+#
+# Snippets for writing makefiles
+#
+snippet hdr "simple heading" b
+#
+# `!p snip.rv = fn`
+# Makefile for `!p snip.rv = snip.basename`
+#
+$0
+endsnippet
+#
+snippet hdrr "full heading" b
+#+\
+# File   : `!p snip.rv = snip.fn`
+# Program: ${1:`!p snip.rv = snip.basename`}
+# Purpose: ${2:What is this?}
+# Author : Tommy Lincoln <pajamapants3000@gmail.com>
+# License: ${3:None!}
+#+/
+$0
+endsnippet
+#
+snippet flg "c/c++ flags" b
+# Compiler Flags
+CC = gcc
+CFLAGS = -march -O2 -Wall -std=gnu11
+CXX = g++
+CXXFLAGS = -march -O2 -Wall -std=gnu++11
+CPPFLAGS = -I.
+LDFLAGS =
+# Make variables
+VPATH =
+
+endsnippet
+#
+snippet flenv "c/c++ flags pulled from the environment" b
+# Compiler Flags
+CC=${CC}
+CFLAGS=${CFLAGS}
+CXX=${CXX}
+CXXFLAGS=${CXXFLAGS}
+CPPFLAGS=${CPPFLAGS}
+LDFLAGS=${LDFLAGS}
+
+endsnippet
+#
+snippet shcmd "Shell Commands" b
+# Shell Commands
+RM_FILE = rm -vf
+RM_DIR = rm -rvf
+CP_FILE = cp -v
+CP_DIR = cp -Rv
+INST_FILE = install -Dm644 -o root -g root -v
+INST_BIN = install -Dm755 -o root -g root -v
+INST_DIR = install -dm755 -o root -g root -v
+INST_USRFILE = install -Dm644 -o $$USER -g $$USER -v
+INST_USRBIN = install -Dm755 -o $$USER -g $$USER -v
+INST_USRDIR = install -dm755 -o $$USER -g $$USER -v
+MKDIR = mkdir -v
+
+endsnippet
+#
+snippet src "C Program Sources" b
+# Program Sources and Dependencies
+SOURCES =
+OBJ = $(SOURCES:.cxx=.o)
+HDRS =
+BINFILE =
+
+endsnippet
+#
+snippet srcxx "C++ Program Sources" b
+# Program Sources and Dependencies
+SOURCES =
+OBJ = $(SOURCES:.c=.o)
+HDRS =
+BINFILE =
+
+endsnippet
+#
+snippet tc01 "Standard C Makefile Template 1" b
+# Set consistent SHELL value
+SHELL = /bin/sh
+
+# Make explicit the relevant suffixes
+.SUFFIXES:
+.SUFFIXES: .c .o
+
+# Compiler Flags
+CC = gcc
+CFLAGS = -march=native -O2 -Wall -std=gnu11
+CPPFLAGS = -I. -I./include
+LDFLAGS =
+
+# Make variables
+VPATH =
+BINDIR = bin
+LIBDIR = lib
+INCDIR = include
+OBJDIR = .obj
+
+# Shell Commands
+RM_FILE = rm -vf
+RM_DIR = rm -rvf
+CP_FILE = cp -v
+CP_DIR = cp -Rv
+INST_FILE = install -Dm644 -o root -g root -v
+INST_BIN = install -Dm755 -o root -g root -v
+INST_DIR = install -dm755 -o root -g root -v
+INST_USRFILE = install -Dm644 -o $$USER -g $$USER -v
+INST_USRBIN = install -Dm755 -o $$USER -g $$USER -v
+INST_USRDIR = install -dm755 -o $$USER -g $$USER -v
+MKDIR = mkdir -pv
+
+# Program Sources and Dependencies
+SRC =
+_OBJ = $(SRC:.c=.o)
+OBJ = $(patsubst %,$(OBJDIR)/%,$(_OBJ))
+_HDRS =
+HDRS = $(patsubst %,$(INCDIR)/%,$(_HDRS))
+_BIN =
+BIN = $(patsubst %,$(BINDIR)/%,$(_BIN))
+
+
+$(BIN): $(OBJ) $(HDRS)
+	@echo
+	$(MKDIR) $(BINDIR)
+	$(CC) $(CFLAGS) $(CPPFLAGS) -o $@ $(OBJ) $(LDFLAGS)
+
+$(OBJDIR)/%.o: %.c $(HDRS)
+	@echo
+	$(MKDIR) $(OBJDIR)
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c -o $@ $<
+
+.PHONY: clean
+
+clean:
+	$(RM_FILE) $(OBJ) $(BIN)
+
+endsnippet
+#
+#
+snippet tcxx01 "Standard C++ Makefile Template 1" b
+# Set consistent SHELL value
+SHELL = /bin/sh
+
+# Make explicit the relevant suffixes
+.SUFFIXES:
+.SUFFIXES: .cxx .cc .cpp .C .o
+
+# Compiler Flags
+CC = gcc
+CFLAGS = -march=native -O2 -Wall -std=gnu11
+CXX = g++
+CXXFLAGS = -march=native -O2 -Wall -std=gnu++11
+CPPFLAGS = -I. -I./include
+LDFLAGS =
+
+# Make variables
+VPATH =
+BINDIR = bin
+LIBDIR = lib
+INCDIR = include
+OBJDIR = .obj
+
+# Environment
+SHELL = /bin/sh
+
+# Shell Commands
+RM_FILE = rm -vf
+RM_DIR = rm -rvf
+CP_FILE = cp -v
+CP_DIR = cp -Rv
+INST_FILE = install -Dm644 -o root -g root -v
+INST_BIN = install -Dm755 -o root -g root -v
+INST_DIR = install -dm755 -o root -g root -v
+INST_USRFILE = install -Dm644 -o $$USER -g $$USER -v
+INST_USRBIN = install -Dm755 -o $$USER -g $$USER -v
+INST_USRDIR = install -dm755 -o $$USER -g $$USER -v
+MKDIR = mkdir -pv
+
+# Program Sources and Dependencies
+SRC =
+_OBJ = $(SRC:.c=.o)
+OBJ = $(patsubst %,$(OBJDIR)/%,$(_OBJ))
+_HDRS =
+HDRS = $(patsubst %,$(INCDIR)/%,$(_HDRS))
+_BIN =
+BIN = $(patsubst %,$(BINDIR)/%,$(_BIN))
+
+$(BIN): $(OBJ) $(HDRS)
+	@echo
+	$(MKDIR) $(BINDIR)
+	$(CC) $(CFLAGS) $(CPPFLAGS) -o $@ $(OBJ) $(LDFLAGS)
+
+$(OBJDIR)/%.o: %.c $(HDRS)
+	@echo
+	$(MKDIR) $(OBJDIR)
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c -o $@ $<
+
+.PHONY: clean
+
+clean:
+	$(RM_FILE) $(OBJ) $(BIN)
+
+endsnippet
+#

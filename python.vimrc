@@ -568,11 +568,11 @@ let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 inoremap <silent> <S-F12> <C-R>=(pumvisible()? "\<LT>C-E>":"")<CR><C-R>=UltiSnipsCallUnite()<CR>
 nnoremap <silent> <S-F12> a<C-R>=(pumvisible()? "\<LT>C-E>":"")<CR><C-R>=UltiSnipsCallUnite()<CR>
 " Use ONLY snippets in a single folder (ignore builtins, etc)
-let g:UltiSnipsSnippetDirectories=[$CODEPATH."/vim/UltiSnips"]
+let g:UltiSnipsSnippetDirectories=[this_script_path . "/UltiSnips"]
 " Set the private snippet storage folder; US will detect if it is an
 "+absolute or relative path and act accordingly! So be careful with
 "+expanding variables, append dot as needed to be explicit.
-let g:UltiSnipsSnippetsDir=$CODEPATH."/vim/UltiSnips"
+let g:UltiSnipsSnippetsDir=this_script_path . "/UltiSnips"
 
 " YouCompleteMe
 "^^^^^^^^^^^^^^^

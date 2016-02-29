@@ -1,0 +1,180 @@
+#
+# Begin html.snippets
+#
+
+#
+# Snippets for coding in HTML
+#
+
+snippet hdr "Typical html header" b
+<!doctype html />
+<html lang="en-US">
+<head>
+<meta charset="UTF-8" />
+
+<title>${1:Webpage Title}</title>
+$0
+endsnippet
+#
+snippet xdr "Typical xhtml header" b
+<!doctype xhtml />
+<html lang="en-US">
+<head>
+<meta charset="UTF-8" />
+
+<title>${1:Webpage Title}</title>
+$0
+endsnippet
+#
+snippet skel "Basic html outline" b
+<!doctype html />
+<html lang="en-US">
+<head>
+<meta charset="UTF-8" />
+
+<title>${1:Webpage Title}</title>
+
+</head>
+
+<body>
+  $0
+
+</body>
+</html>
+endsnippet
+#
+snippet xkel "Basic xhtml outline" b
+<!doctype xhtml />
+<html lang="en-US">
+<head>
+<meta charset="UTF-8" />
+
+<title>${1:Webpage Title}</title>
+
+</head>
+
+<body>
+  $0
+
+</body>
+</html>
+endsnippet
+#
+snippet cs "CSS Stylesheet Inclusion"
+<link rel="stylesheet" type="text/css" href="${1:stylesheet}">
+$0
+endsnippet
+#
+#
+snippet cm "Comment - inline"
+  <!-- ${1:Insert Comment} -->$0
+endsnippet
+#
+snippet cmm "Comment - multiline" b
+<!-->
+  ${1:Insert Comment}
+<!-->
+$0
+endsnippet
+#
+snippet lt9 "HTML5 Support for IE9 and earlier" b
+<!--[if lt IE 9]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js">
+</script>
+<![endif]-->
+endsnippet
+#
+snippet st "style block"
+<style>
+  ${1:Enter Stylings}
+</style>
+endsnippet
+#
+snippet bo "body block"
+<body>
+  ${1:Enter Body}
+</body>
+endsnippet
+#
+snippet he "header block"
+<header>
+  ${1:Enter Header}
+</header>
+endsnippet
+#
+snippet ar "article block"
+<article>
+  ${1:Enter Article}
+</article>
+endsnippet
+#
+snippet se "section block"
+<section>
+  ${1:Enter Section}
+</section>
+endsnippet
+#
+snippet fo "footer block"
+<footer>
+  ${1:Enter Footer}
+</footer>
+endsnippet
+#
+snippet fo "footer block"
+<footer>
+  ${1:Enter Footer}
+</footer>
+endsnippet
+#
+snippet ti "title inline"
+<title>${1:Enter Title}</title>
+$0
+endsnippet
+#
+snippet pa "paragraph inline"
+<p>${1:Enter Paragraph}</p>$0
+endsnippet
+#
+snippet h1 "heading1 inline"
+<h1>${1:Enter Heading}</h1>$0
+endsnippet
+#
+snippet h2 "heading2 inline"
+<h2>${1:Enter Heading}</h2>$0
+endsnippet
+#
+snippet h3 "heading3 inline"
+<h3>${1:Enter Heading}</h3>$0
+endsnippet
+#
+snippet h4 "heading4 inline"
+<h4>${1:Enter Heading}</h4>$0
+endsnippet
+#
+snippet h5 "heading5 inline"
+<h5>${1:Enter Heading}</h5>$0
+endsnippet
+#
+snippet h6 "heading6 inline"
+<h6>${1:Enter Heading}</h6>$0
+endsnippet
+#
+snippet ul "unordered list"
+<ul>
+  <li>${1:Enter list item}</li>$2
+</ul>
+$0
+endsnippet
+#
+snippet ol "ordered list"
+<ol>
+  <li>${1:Enter list item}</li>$2
+</ol>
+$0
+endsnippet
+#
+snippet li "list item" b
+<li>${1:Enter list item}</li>$0
+endsnippet
+#
+

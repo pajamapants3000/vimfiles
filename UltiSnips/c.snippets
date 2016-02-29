@@ -1,0 +1,263 @@
+#
+# Begin c.snippets
+#
+
+#
+# Snippets for coding in C
+#
+
+snippet in "#include from std headers" b
+#include <${1:header}>
+$0
+endsnippet
+#
+snippet inn "#include from local headers" b
+#include "${1:header}"
+$0
+endsnippet
+#
+snippet if "if statement" b
+if (${1:condition})
+{
+    ${2:block}
+}
+$0
+endsnippet
+#
+snippet fo "simple for loop counter" b
+for (int ${1:i} = 0; $1 < ${2:range}; ++$1)
+{
+    $0
+}
+endsnippet
+#
+snippet for "general for setup" b
+for (${1:initialize}; ${2:test}; ${3:alter})
+{
+    $0
+}
+endsnippet
+#
+snippet do "do-while loop" b
+do
+{
+    $0
+} while (${1:test});
+endsnippet
+#
+snippet pf "printf" b
+printf("${1:output}", ${2:variables});
+$0
+endsnippet
+#
+snippet pff "printf, add newline" b
+printf("${1:output}\n", ${2:variables});
+$0
+endsnippet
+#
+snippet pfs "printf string literal" b
+printf("${1:output}");
+$0
+endsnippet
+#
+snippet pfss "printf string literal, newline" b
+printf("${1:output}\n");
+$0
+endsnippet
+#
+snippet si "scanf, single integer" b
+scanf("%d", &${1:storage var});
+$0
+endsnippet
+#
+snippet ma "create main function, no args" b
+int main(void)
+{
+    $0
+    return 0;
+}
+
+endsnippet
+#
+snippet maa "create main function, with args" b
+int main(int argc, char *argv[])
+{
+    $0
+    return 0;
+}
+
+endsnippet
+#
+snippet // "single line comment"
+// ${1:Enter_comment_here}
+
+endsnippet
+#
+snippet /* "basic comment"
+/* ${1:Enter_comment_here} */$0
+endsnippet
+#
+snippet /** "multi-line comment"
+/*
+ * ${1:Enter_comment_here}
+ */$0
+endsnippet
+#
+snippet hdr "simple heading" b
+// `!p snip.rv = fn`
+// ${1:description of program}
+$0
+endsnippet
+#
+snippet hdrr "full heading" b
+/*
+ * File   : `!p snip.rv = snip.fn`
+ * Program: ${1:`!p snip.rv = snip.basename`}
+ * Purpose: ${2:What is this?}
+ * Author : Tommy Lincoln <pajamapants3000@gmail.com>
+ * License: ${3:None!}
+ * Notes  : ${4:Notes on successful compilation}
+ * Created: `date +%m/%d/%Y`
+ * Updated: `date +%m/%d/%Y`
+ */
+$0
+endsnippet
+#
+snippet bl "blank line" b
+printf("\n");
+
+endsnippet
+#
+snippet ii "include stdio" b
+#include <stdio.h>
+
+endsnippet
+#
+snippet ist "include string" b
+#include <string.h>
+
+endsnippet
+#
+snippet ili "include stdlib" b
+#include <stdlib.h>
+
+endsnippet
+#
+snippet im "include math" b
+#include <math.h>
+
+endsnippet
+#
+snippet it "include time" b
+#include <time.h>
+
+endsnippet
+#
+snippet ib "include stdbool" b
+#include <stdbool.h>
+
+endsnippet
+#
+snippet ic "include ctype" b
+#include <ctype.h>
+
+endsnippet
+#
+snippet isdd "#include stddef" b
+#include <stddef.h>
+
+endsnippet
+#
+snippet isyt "#include sys/time" b
+#include <sys/time.h>
+
+endsnippet
+#
+snippet igo "#include getopt" b
+#include <getopt.h>
+
+endsnippet
+#
+snippet iu "#include unistd" b
+#include <unistd.h>
+
+endsnippet
+#
+snippet icur "#include ncurses" b
+#include <ncurses.h>
+
+endsnippet
+#
+snippet ipan "#include panel" b
+#include <ncurses.h>
+#include <panel.h>
+
+endsnippet
+#
+snippet imen "#include menu" b
+#include <ncurses.h>
+#include <menu.h>
+
+endsnippet
+#
+snippet ifor "#include form" b
+#include <ncurses.h>
+#include <form.h>
+
+endsnippet
+#
+snippet db "debug line; simple message with filename and line number" b
+printf("testing - file: %s - line: %d\n", __FILE__, __LINE__);
+
+endsnippet
+#
+snippet db1 "debug line; var value with filename and line number" b
+printf("file %s - line %d: ${1:variable} = %${2:formspec}\n", \
+        __FILE__, __LINE__, $1);
+$0
+endsnippet
+#
+snippet idb "ifdef DEBUG" b
+#ifdef DEBUG
+    $0
+#endif // (DEBUG)
+endsnippet
+#
+snippet fdf "function definition description" b
+/*********************************************************************
+ * ${1:function name}: $2
+ *********************************************************************/
+$0
+endsnippet
+#
+snippet grd "create header guard to wrap code"
+#ifndef `!p snip.rv = snip.fn.replace('.', '_').upper()`
+#define `!p snip.rv = snip.fn.replace('.', '_').upper()`
+
+$0
+
+#endif  // def `!p snip.rv = snip.fn.replace('.', '_').upper()`
+endsnippet
+#
+# Macros
+snippet dmx "macro to determine maximum of two values" b
+#define max(x, y) ((x) > (y) ? (x) : (y))
+
+endsnippet
+#
+snippet dmn "macro to determine maximum of two values" b
+#define min(x, y) ((x) < (y) ? (x) : (y))
+
+endsnippet
+#
+snippet dcu "macro to determine if character is an uppercase letter" b
+#define cupper(x) (65 <= (x) && (x) <= 90 ? 1 : 0)
+
+endsnippet
+#
+snippet dcl "macro to determine if character is an lowercase letter" b
+#define clower(x) (97 <= (x) && (x) <= 122 ? 1 : 0)
+
+endsnippet
+#
+# End c.snippets

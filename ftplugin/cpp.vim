@@ -24,3 +24,6 @@ else
     set tags+=$HOME/.config/ctags/cxx.tags
 endif
 
+set path+=$CXXPATH/include
+set path+=$CPATH/include
+

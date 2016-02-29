@@ -1,0 +1,70 @@
+#
+# Begin python.snippets
+#
+# Snippets for coding in Python
+#
+snippet hdr "simple heading" b
+#!/usr/bin/python3
+# `!p snip.rv = fn`
+# ${1:description of program}
+$0
+endsnippet
+#
+snippet hdrr "full heading" b
+#!/usr/bin/python3
+#
+#*-File   : `!p snip.rv = snip.fn`
+#*-Program: ${1:`!p snip.rv = snip.basename`}
+#*-Purpose: ${2:What is this?}
+#*-Author : Tommy Lincoln <pajamapants3000@gmail.com>
+#*-License: ${3:None!}
+#
+$0
+endsnippet
+#
+snippet m* "from module import *" b
+from $1 import *
+$0
+endsnippet
+#
+snippet mtk "import tkinter module as tk" b
+import tkinter as tk
+
+endsnippet
+#
+snippet mtkk "import tkinter module *" b
+from tkinter import *
+
+endsnippet
+#
+snippet mpg "import pyglet module" b
+import pyglet
+
+endsnippet
+#
+snippet mpw "import peewee module" b
+import peewee
+
+endsnippet
+#
+snippet ms "import sys module" b
+import sys
+
+endsnippet
+#
+snippet mo "import os module" b
+import os
+
+endsnippet
+#
+snippet mm "import common modules" b
+import os, sys
+
+endsnippet
+#
+snippet nm "run from main" b
+if __name__ == '__main__':
+    $0
+endsnippet
+#
+

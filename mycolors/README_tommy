@@ -1,0 +1,10 @@
+These colorschemes are meant to override the standard ones that typically
+are meant for gvim. They are obtained from CSApprox Snapshot, the outputs of
+which can be found in the CSApprox subfolder. These color schemes are the
+concatenation of the originals and the ones obtained by CSApprox.
+An if statement is used to determine which to execute. I tried doing
+this with separate files for the two versions, but the colorschemes
+could not seem to launch another colorscheme file successfully.
+This approach seems to work very well. It may be worth figuring out later,
+though, how to keep the csa and originals in separate files and still
+launch the desired version automatically.

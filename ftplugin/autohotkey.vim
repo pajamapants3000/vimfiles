@@ -3,3 +3,4 @@
 if has('win32')
     nnoremap    <leader>[   :!%:p<CR>
 endif
+set commentstring=;%s

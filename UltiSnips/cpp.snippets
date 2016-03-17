@@ -177,6 +177,22 @@ snippet umn "using min"
 using std::min;$0
 endsnippet
 #
+snippet fn "function" b
+${1:type} ${2:name}(${3:parameters})/*{{{*/
+{
+    $0
+}
+/*}}}*/
+endsnippet
+#
+snippet mfn "member function" b
+${1:type} ${2:Class}::${3:name}(${4:parameters})/*{{{*/
+{
+    $0
+}
+/*}}}*/
+endsnippet
+#
 #************************************
 #
 # Qt-specific snippets
@@ -408,6 +424,31 @@ endsnippet
 #
 snippet iqrev "include QRegExpValidator" b
 #include <QRegExpValidator>
+
+endsnippet
+#
+snippet iqfl "include QFormLayout" b
+#include <QFormLayout>
+
+endsnippet
+#
+snippet iqli "include QList" b
+#include <QList>
+
+endsnippet
+#
+snippet iqtb "include QToolBar" b
+#include <QToolBar>
+
+endsnippet
+#
+snippet iqce "include QCloseEvent" b
+#include <QCloseEvent>
+
+endsnippet
+#
+snippet iqpt "include QPoint" b
+#include <QPoint>
 
 endsnippet
 #

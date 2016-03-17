@@ -4,7 +4,11 @@
 " mappings
 "**********
 " Run current script;
-map <leader>p :!lua %:p<CR>
+if has('win32')
+  map <leader>p :!lua %:p<CR>
+else
+  map <leader>p :!/usr/bin/lua %:p<CR>
+endif
 " Omnicompletion - inserts first result;
 imap <C-.> <C-X><C-O>
 " Alternate that works in terminal

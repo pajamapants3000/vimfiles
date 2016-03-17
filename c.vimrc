@@ -273,6 +273,10 @@ Plugin 'sk1418/last256'
 Plugin 'peterhoeg/vim-qml'
 " ft-cmake - This is actually a dict/ entry for cmake
 Plugin 'ujihisa/ft-cmake'
+" moonscript
+Plugin 'leafo/moonscript-vim'
+" coffeescript
+Plugin 'kchmck/vim-coffee-script'
 "**********************"
 " Doing more with vim! "
 "^^^^^^^^^^^^^^^^^^^^^^"

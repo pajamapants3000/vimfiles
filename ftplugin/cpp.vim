@@ -24,6 +24,15 @@ else
     set tags+=$HOME/.config/ctags/cxx.tags
 endif
 
+" path additions
 set path+=$CXXPATH/include
 set path+=$CPATH/include
+if has('win32')
+  set path+=$LOCAL/include
+else
+  set path+=/usr/include
+  set path+=/usr/local/include
+endif
+
+set cms=//\ %s
 

@@ -1194,6 +1194,12 @@ inoremap <C-S-]> <C-t>
 autocmd InsertEnter * :call NumberToggleRel()
 autocmd InsertLeave * :call NumberToggleRel()
 
+" Pick up desired filetypes
+" VB.NET
+au BufNewFile,BufRead *.aspx.vb     setf vbnet
+" ASP.NET
+au BufNewFile,BufRead *.aspx        setf aspnet
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Final startup config - set config and theme
 "*********************************************

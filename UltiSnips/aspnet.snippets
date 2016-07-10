@@ -1,0 +1,26 @@
+#
+# Begin aspvbs.snippets
+#
+
+# Snippets for .asp and .aspx files
+extends html
+
+snippet hdB       "header for aspx page with VB" b
+<%@ Page Title="${1:`!p snip.rv = snip.basename`}" Language="VB" MasterPageFile="${2:~/Site.Master}" AutoEventWireup="true" CodeFile="`!p snip.rv = snip.fn`.vb" Inherits="_`!p snip.rv = snip.basename`" %>
+endsnippet
+snippet aspc      "asp:Content block"
+<asp:Content ${1:Block attributes}>
+  $0
+</asp:Content>
+endsnippet
+snippet aspcf     "asp:Content Featured block"
+<asp:Content runat="server" ID="FeaturedContent" ContentPlaceHolderID="FeaturedContent">
+  $0
+</asp:Content>
+endsnippet
+snippet aspcb     "asp:Content Body block"
+<asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
+  $0
+</asp:Content>
+endsnippet
+

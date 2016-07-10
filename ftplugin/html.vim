@@ -16,6 +16,14 @@ endif
 " Open file in web browser
 map <leader>p :exe '!'.g:webBrowser.' file://%:p'<CR>
 inoremap <Space><Enter> <Enter><br /><Enter>
+" Special characters
+inoremap <Space><Space> <Space>&nbsp;
+inoremap <Tab><Tab> <Space>&nbsp;&nbsp;&nbsp;
+inoremap '' &#39;
+inoremap "" &quot;
+inoremap && &amp;
+inoremap >> &gt;
+inoremap << &lt;
 
 "***********************
 " Formatting and syntax

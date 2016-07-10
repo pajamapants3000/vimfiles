@@ -1,0 +1,300 @@
+#
+# rust.snippets
+# Snippets for coding in Rust
+#
+
+snippet hdr     "simple heading" b
+// `!p snip.rv = fn`
+// ${1:description of program}
+$0
+endsnippet
+snippet hdrr    "full heading" b
+/*
+ * File   : `!p snip.rv = snip.fn`
+ * Purpose: ${1:What is this file for?}
+ * Program: ${2:`!p snip.rv = snip.basename`}
+ * About  : ${3:What does this program do?}
+ * Authors: Tommy Lincoln <pajamapants3000@gmail.com>
+ * License: ${4:MIT; See LICENSE!}
+ * Notes  : ${5:Notes on successful compilation}
+ * Created: `date +%m/%d/%Y`
+ * Updated: `date +%m/%d/%Y`
+ */
+
+// Bring in to namespace {{{
+
+// }}}
+$0
+endsnippet
+snippet ma      "main function" b
+fn main() {
+    $0
+}
+endsnippet
+snippet pma     "public main function" b
+pub fn main() {
+    $0
+}
+endsnippet
+snippet l       "create type-inferred binding"
+let ${1:Variable Name} = ${2:Value};$0
+endsnippet
+snippet lm      "create mutable type-inferred binding"
+let mut ${1:Variable Name} = ${2:Value};$0
+endsnippet
+snippet ll      "create type-explicit binding"
+let ${1:Variable Name}: ${2:Variable Type} = ${3:Value};$0
+endsnippet
+snippet llm     "create mutable type-explicit binding"
+let mut ${1:Variable Name}: ${2:Variable Type} = ${3:Value};$0
+endsnippet
+snippet li      "create integer binding"
+let ${1:Variable Name}: i32 = ${2:Value};$0
+endsnippet
+snippet lu      "create unsigned integer binding"
+let ${1:Variable Name}: u32 = ${2:Value};$0
+endsnippet
+snippet lf      "create float binding"
+let ${1:Variable Name}: f64 = ${2:Value};$0
+endsnippet
+snippet li3     "create 32-bit integer binding"
+let ${1:Variable Name}: i32 = ${2:Value};$0
+endsnippet
+snippet lu3     "create 32-bit unsigned integer binding"
+let ${1:Variable Name}: u32 = ${2:Value};$0
+endsnippet
+snippet li6     "create 64-bit integer binding"
+let ${1:Variable Name}: i64 = ${2:Value};$0
+endsnippet
+snippet lu6     "create 64-bit unsigned integer binding"
+let ${1:Variable Name}: u64 = ${2:Value};$0
+endsnippet
+snippet lf3     "create 32-bit float binding"
+let ${1:Variable Name}: f32 = ${2:Value};$0
+endsnippet
+snippet lf6     "create 64-bit float binding"
+let ${1:Variable Name}: f64 = ${2:Value};$0
+endsnippet
+snippet li1     "create 16-bit integer binding"
+let ${1:Variable Name}: i16 = ${2:Value};$0
+endsnippet
+snippet lu1     "create 16-bit unsigned integer binding"
+let ${1:Variable Name}: u16 = ${2:Value};$0
+endsnippet
+snippet li8     "create 8-bit integer binding"
+let ${1:Variable Name}: i8 = ${2:Value};$0
+endsnippet
+snippet lu8     "create 8-bit unsigned integer binding"
+let ${1:Variable Name}: u8 = ${2:Value};$0
+endsnippet
+snippet lim     "create mutable integer binding"
+letm ${1:Variable Name}: i64 = ${2:Value};$0
+endsnippet
+snippet lum     "create mutable unsigned integer binding"
+letm ${1:Variable Name}: u64 = ${2:Value};$0
+endsnippet
+snippet lfm     "create mutable float binding"
+letm ${1:Variable Name}: f64 = ${2:Value};$0
+endsnippet
+snippet li3m    "create mutable 32-bit integer binding"
+letm ${1:Variable Name}: i32 = ${2:Value};$0
+endsnippet
+snippet lu3m    "create mutable 32-bit unsigned integer binding"
+letm ${1:Variable Name}: u32 = ${2:Value};$0
+endsnippet
+snippet lf3m    "create mutable 32-bit float binding"
+letm ${1:Variable Name}: f32 = ${2:Value};$0
+endsnippet
+snippet li1m    "create mutable 16-bit integer binding"
+letm ${1:Variable Name}: i16 = ${2:Value};$0
+endsnippet
+snippet lu1m    "create mutable 16-bit unsigned integer binding"
+letm ${1:Variable Name}: u16 = ${2:Value};$0
+endsnippet
+snippet li8m    "create mutable 8-bit integer binding"
+letm ${1:Variable Name}: i8 = ${2:Value};$0
+endsnippet
+snippet lu8m    "create mutable 8-bit unsigned integer binding"
+let ${1:Variable Name}: u8 = ${2:Value};$0
+endsnippet
+snippet ls      "create &mut str binding"
+let ${1:Variable Name}: &${2:'lifetime} mut str = ${3:Value};$0
+endsnippet
+snippet lS      "create String binding"
+let ${1:Variable Name}: String = ${3:Value};$0
+endsnippet
+snippet l"      "create string literal binding"
+let ${1:Variable Name}: &'static str = "${2:String Literal}";$0
+endsnippet
+# loops
+snippet fr_     "loop a number of times"
+for _ in &[0..${1:N}] {
+    $0
+}
+endsnippet
+snippet fri     "loop with index"
+for i in &[0..${1:N}] {
+    ${0: Block that needs an index i}
+}
+endsnippet
+# comments
+snippet //      "line comment"
+// ${1:Line Comment}
+$0
+endsnippet
+snippet /*      "wrap comment"
+/* ${1:Wrap Comment} */$0
+endsnippet
+snippet /**     "block comment"
+/*
+ * ${1:Block Comment}
+ */
+$0
+endsnippet
+snippet fm      "fixme"
+// FIXME: $1
+endsnippet
+snippet xxx    "XXX:"
+// XXX: $1
+endsnippet
+snippet td      "todo"
+// TODO: $1
+endsnippet
+# macros
+snippet !pl     "println! macro"
+println!("${1:format string}")$0
+endsnippet
+snippet !pl,    "println! macro with args"
+println!("${1:format string}",${2:args})$0
+endsnippet
+snippet !p      "print! macro"
+print!("${1:format string}")$0
+endsnippet
+snippet !p,     "print! macro with args"
+print!("${1:format string}",${2:args})$0
+endsnippet
+snippet !f      "format! macro"
+format!("${1:format string}")$0
+endsnippet
+snippet !f,     "format! macro with args"
+format!("${1:format string}",${2:args})$0
+endsnippet
+snippet !v      "vec! macro"
+vec![${1:items}]$0
+endsnippet
+snippet !as     "assert! macro"
+assert!(${1:assertion})$0
+endsnippet
+snippet !ass    "assert! macro with custom message"
+assert!(${1:assertion}, "${2:message}")$0
+endsnippet
+snippet !as,    "assert! macro with custom message with args"
+assert!(${1:assertion}, "${2:message}", ${3:message args})$0
+endsnippet
+snippet !ae     "assert_eq! macro"
+assert_eq!(${1:val1}, ${1:val2})$0
+endsnippet
+snippet !aee    "assert_eq! macro with custom message"
+assert_eq!(${1:val1}, ${2:val2}, "${3:message}")$0
+endsnippet
+snippet !ae,    "assert! macro with custom message with args"
+assert_eq!(${1:val1}, ${2:val2}, "${3:message}", ${4:message args})$0
+endsnippet
+# attributes
+snippet #dd     "derive on following item Debug" b
+#[derive(Debug)]
+$0
+endsnippet
+snippet #!dd    "derive on enclosing item Debug" b
+#[derive(Debug)]
+$0
+endsnippet
+snippet #d      "derive on following item" b
+#[derive($1)]
+$0
+endsnippet
+snippet #!d     "derive on enclosing item" b
+#![derive($1)]
+$0
+endsnippet
+snippet #a      "allow on following item" b
+#[allow($1)]
+$0
+endsnippet
+snippet #!a     "allow on enclosing item" b
+#![allow($1)]
+$0
+endsnippet
+snippet #dy     "deny on following item" b
+#[deny($1)]
+$0
+endsnippet
+snippet #!dy    "deny on enclosing item" b
+#![deny($1)]
+$0
+endsnippet
+snippet #fb     "forbid on following item" b
+#[forbid($1)]
+$0
+endsnippet
+snippet #!fb    "forbid on enclosing item" b
+#![forbid($1)]
+$0
+endsnippet
+snippet #w      "warn on following item" b
+#[warn($1)]
+$0
+endsnippet
+snippet #!w     "warn on enclosing item" b
+#![warn($1)]
+$0
+endsnippet
+snippet #f      "activate compiler feature in crate" b
+#![feature($1)]
+$0
+endsnippet
+snippet #i      "inline following item" b
+#[inline]
+$0
+endsnippet
+snippet #ia     "inline following item always" b
+#[inline(always)]
+$0
+endsnippet
+snippet #in     "inline following item never" b
+#[inline(never)]
+$0
+endsnippet
+snippet #c      "set compile condition on following item" b
+#[cfg($1)]
+$0
+endsnippet
+snippet #!c     "set compile condition on enclosing item" b
+#![cfg($1)]
+$0
+endsnippet
+snippet #can    "set any compile condition on following item" b
+#[cfg(any($1))]
+$0
+endsnippet
+snippet #!can   "set any compile condition on enclosing item" b
+#![cfg(any($1))]
+$0
+endsnippet
+snippet #cal    "set all compile condition on following item" b
+#[cfg(all($1))]
+$0
+endsnippet
+snippet #!cal   "set all compile condition on enclosing item" b
+#![cfg(all($1))]
+$0
+endsnippet
+snippet #cn     "set not compile condition on following item" b
+#[cfg(not($1))]
+$0
+endsnippet
+snippet #!cn    "set not compile condition on enclosing item" b
+#![cfg(not($1))]
+$0
+endsnippet
+

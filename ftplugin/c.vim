@@ -7,12 +7,12 @@ map <leader>o :!make -f %:h/Makefile
 map <leader>[ :!%:p:r<CR>
 map <leader>] :!%:p:r
 if has('win32')
-    map <leader>C :cd $SYNCPATH\Copy\Code\C<CR>
-    map <leader>K :cd $SYNCPATH\Copy\Code\C\King<CR>
+    map <leader>C :cd $DRIVEPATH\Code\C<CR>
+    map <leader>K :cd $DRIVEPATH\Code\C\King<CR>
     map <leader>p :!gcc -Wall -std=gnu99 -o %:r.exe %<CR>
 else
-    map <leader>C :cd $SYNCPATH/Copy/Code/C<CR>
-    map <leader>K :cd $SYNCPATH/Copy/Code/C/King<CR>
+    map <leader>C :cd $DRIVEPATH/Copy/Code/C<CR>
+    map <leader>K :cd $DRIVEPATH/Copy/Code/C/King<CR>
     map <leader>p :!gcc -Wall -std=gnu99 -o %:r %<CR>
 endif
 "

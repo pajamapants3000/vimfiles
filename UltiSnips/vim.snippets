@@ -1,0 +1,47 @@
+#
+# VimL (aka vimscript) snippets
+#
+
+snippet hdr     "simple heading" b
+" `!p snip.rv = fn`
+" ${1:description of file/program}
+$0
+endsnippet
+snippet hdrr    "full heading" b
+" File   : `!p snip.rv = snip.fn`
+" Purpose: ${1:What is the purpose of this particular file?}
+" Program: ${2:`!p snip.rv = snip.basename`}
+" Goal   : ${3:What is the goal of this program?}
+" Author : Tommy Lincoln <pajamapants3000@gmail.com>
+" License: ${4:None!}
+" Notes  : ${5:Notes on proper setup/usage}
+" Created: `date +%m/%d/%Y`
+" Updated: `date +%m/%d/%Y`
+$0
+endsnippet
+snippet VVV     "default lines for all vim plugins"
+" give us a format everyone can use
+set fileformat=unix
+
+" deal with 'compatible' respectfully
+let s:save_cpo = &cpo
+set cpo&vim
+
+" only run once, if at all
+if exists("g:loaded_normline")
+    finish
+endif
+let g:loaded_normline = 1
+
+$0
+
+" put 'cpo' back where we found it
+let &cpo = s:save_cpo
+unlet s:save_cpo
+endsnippet
+snippet pmp     "plugin-safe mapping"
+if !hasmapto('<Plug>${1:Command name}')
+    map <unique> <leader>${2:key combo} <Plug>$1
+endif
+endsnippet
+

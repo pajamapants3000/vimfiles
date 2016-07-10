@@ -1,6 +1,4 @@
-#
 # C++ snippets
-#
 
 # Include all C snippets, remove conflicts
 priority 1
@@ -9,7 +7,7 @@ clearsnippets bl ist ii ma
 
 priority 2
 
-snippet ma "int main()" b
+snippet ma      "int main()" b
 int main()
 {
 	$0
@@ -17,39 +15,32 @@ int main()
 }
 
 endsnippet
-#
-snippet usi "common 'using' abbreviations" b
+snippet usi     "common 'using' abbreviations" b
 using std::cin;     using std::cout;
 using std::string;  using std::endl;
 
 endsnippet
-#
 # 'using' statement
-snippet us "using std::..."
+snippet us      "using std::..."
 using std::${1:stdlib_attr};$0
 endsnippet
-#
-snippet so "print to stdout" b
+snippet so      "print to stdout" b
 std::cout << ${1:string_var};
 
 endsnippet
-#
-snippet si "read from sdtin" b
+snippet si      "read from sdtin" b
 std::cin >> ${1:string_var}
 
 endsnippet
-#
-snippet soo "print string literal to stdout" b
+snippet soo     "print string literal to stdout" b
 std::cout << "${1:string}";
 
 endsnippet
-#
-snippet bl "blank line" b
+snippet bl      "blank line" b
 std::cout << std::endl;
 
 endsnippet
-#
-snippet inc "include all typical headers" b
+snippet inc     "include all typical headers" b
 #include <iostream>
 #include <ios>
 #include <iomanip>
@@ -58,146 +49,115 @@ snippet inc "include all typical headers" b
 #include <algorithm>
 
 endsnippet
-#
-snippet ii "include iostream" b
+snippet ii      "include iostream" b
 #include <iostream>
 
 endsnippet
-#
-snippet ist "include string" b
+snippet ist     "include string" b
 #include <string>
 
 endsnippet
-#
-snippet ial "include algorithm" b
+snippet ial     "include algorithm" b
 #include <algorithm>
 
 endsnippet
-#
-snippet iv "include vector" b
+snippet iv      "include vector" b
 #include <vector>
 
 endsnippet
-#
-snippet il "include list" b
+snippet il      "include list" b
 #include <list>
 
 endsnippet
-#
-snippet im "include map" b
+snippet im      "include map" b
 #include <map>
 
 endsnippet
-#
-snippet ios "include ios" b
+snippet ios     "include ios" b
 #include <ios>
 
 endsnippet
-#
-snippet iom "include iomanip" b
+snippet iom     "include iomanip" b
 #include <iomanip>
 
 endsnippet
-#
-snippet iex "include stdexcept" b
+snippet iex     "include stdexcept" b
 #include <stdexcept>
 
 endsnippet
-#
-snippet icd "include cstddef" b
+snippet icd     "include cstddef" b
 #include <cstddef>
 
 endsnippet
-#
-snippet icm "include cmath" b
+snippet icm     "include cmath" b
 #include <cmath>
 
 endsnippet
-#
-snippet icc "include cctype" b
+snippet icc     "include cctype" b
 #include <cctype>
 
 endsnippet
-#
-snippet ica "include cassert" b
+snippet ica     "include cassert" b
 #include <cassert>
 
 endsnippet
-#
-snippet iit "include iterator" b
+snippet iit     "include iterator" b
 #include <iterator>
 
 endsnippet
-#
-snippet uv "using vector"
+snippet uv      "using vector"
 using std::vector;$0
 endsnippet
-#
-snippet ul "using list"
+snippet ul      "using list"
 using std::list;$0
 endsnippet
-#
-snippet ust "using string"
+snippet ust     "using string"
 using std::string;$0
 endsnippet
-#
-snippet um "using map"
+snippet um      "using map"
 using std::map;$0
 endsnippet
-#
-snippet uco "using cout"
+snippet uco     "using cout"
 using std::cout;$0
 endsnippet
-#
-snippet uci "using cin"
+snippet uci     "using cin"
 using std::cin;$0
 endsnippet
-#
-snippet uel "using endl"
+snippet uel     "using endl"
 using std::endl;$0
 endsnippet
-#
-snippet uso "using sort"
+snippet uso     "using sort"
 using std::sort;$0
 endsnippet
-#
-snippet uss "using streamsize"
+snippet uss     "using streamsize"
 using std::streamsize;$0
 endsnippet
-#
-snippet usp "using setprecision"
+snippet usp     "using setprecision"
 using std::setprecision;$0
 endsnippet
-#
-snippet umx "using max"
+snippet umx     "using max"
 using std::max;$0
 endsnippet
-#
-snippet umn "using min"
+snippet umn     "using min"
 using std::min;$0
 endsnippet
-#
-snippet fn "function" b
+snippet fn      "function" b
 ${1:type} ${2:name}(${3:parameters})/*{{{*/
 {
     $0
 }
 /*}}}*/
 endsnippet
-#
-snippet mfn "member function" b
+snippet mfn     "member function" b
 ${1:type} ${2:Class}::${3:name}(${4:parameters})/*{{{*/
 {
     $0
 }
 /*}}}*/
 endsnippet
-#
 #************************************
-#
 # Qt-specific snippets
-#
-snippet qma "main fn for Qt" b
+snippet qma     "main fn for Qt" b
 int main(int argc, char* argv[])
 {
     QApplication app(argc, argv);
@@ -206,255 +166,204 @@ int main(int argc, char* argv[])
 }
 
 endsnippet
-#
-snippet qcon "connect signal/slot" b
+snippet qcon    "connect signal/slot" b
 connect(${1:sender}, SIGNAL(${2:clicked}()),${3:receiver}, SLOT(${4:slot}()));
 $0
 endsnippet
-#
-snippet iqa "include QApplication" b
+snippet iqa     "include QApplication" b
 #include <QApplication>
 
 endsnippet
-#
-snippet iqg "include QtGui" b
+snippet iqg     "include QtGui" b
 #include <QtGui>
 
 endsnippet
-#
-snippet iqd "include QDialog" b
+snippet iqd     "include QDialog" b
 #include <QDialog>
 
 endsnippet
-#
-snippet iqhbl "include QHBoxLayout" b
+snippet iqhbl   "include QHBoxLayout" b
 #include <QHBoxLayout>
 
 endsnippet
-#
-snippet iqvbl "include QVBoxLayout" b
+snippet iqvbl   "include QVBoxLayout" b
 #include <QVBoxLayout>
 
 endsnippet
-#
-snippet iqgl "include QGridLayout" b
+snippet iqgl    "include QGridLayout" b
 #include <QVBoxLayout>
 
 endsnippet
-#
-snippet iqsl "include QSlider" b
+snippet iqsl    "include QSlider" b
 #include <QSlider>
 
 endsnippet
-#
-snippet iqsb "include QSpinBox" b
+snippet iqsb    "include QSpinBox" b
 #include <QSpinBox>
 
 endsnippet
-#
-snippet iqpb "include QPushButton" b
+snippet iqpb    "include QPushButton" b
 #include <QPushButton>
 
 endsnippet
-#
-snippet iql "include QLabel" b
+snippet iql     "include QLabel" b
 #include <QLabel>
 
 endsnippet
-#
-snippet iqmw "include QMainWindow" b
+snippet iqmw    "include QMainWindow" b
 #include <QMainWindow>
 
 endsnippet
-#
-snippet iqatm "include QAbstractTableModel" b
+snippet iqatm   "include QAbstractTableModel" b
 #include <QAbstractTableModel>
 
 endsnippet
-#
-snippet iqati "include QAccessibleTableInterface" b
+snippet iqati   "include QAccessibleTableInterface" b
 #include < QAccessibleTableInterface>
 
 endsnippet
-#
-snippet iqat2i "include QAccessibleTable2Interface" b
+snippet iqat2i  "include QAccessibleTable2Interface" b
 #include <QAccessibleTable2Interface>
 
 endsnippet
-#
 snippet iqat2ci "include QAccessibleTable2CellInterface" b
 #include <QAccessibleTable2CellInterface>
 
 endsnippet
-#
-snippet iqtt "include QTextTable" b
+snippet iqtt    "include QTextTable" b
 #include <QTextTable>
 
 endsnippet
-#
-snippet iqttc "include QTextTableCell" b
+snippet iqttc   "include QTextTableCell" b
 #include <QTextTableCell>
 
 endsnippet
-#
-snippet iqttf "include QTextTableFormat" b
+snippet iqttf   "include QTextTableFormat" b
 #include <QTextTableFormat>
 
 endsnippet
-#
-snippet iqttcf "include QTextTableCellFormat" b
+snippet iqttcf  "include QTextTableCellFormat" b
 #include <QTextTableCellFormat>
 
 endsnippet
-#
-snippet iqstm "include QSqlTableModel" b
+snippet iqstm   "include QSqlTableModel" b
 #include <QSqlTableModel>
 
 endsnippet
-#
-snippet iqsrtm "include QSqlRelationalTableModel" b
+snippet iqsrtm  "include QSqlRelationalTableModel" b
 #include <QSqlRelationalTableModel>
 
 endsnippet
-#
-snippet iqt "include QTable" b
+snippet iqt     "include QTable" b
 #include <QTable>
 
 endsnippet
-#
-snippet iqte "include QTableEvent" b
+snippet iqte    "include QTableEvent" b
 #include <QTableEvent>
 
 endsnippet
-#
-snippet iqtv "include QTableView" b
+snippet iqtv    "include QTableView" b
 #include <QTableView>
 
 endsnippet
-#
-snippet iqtw "include QTableWidget" b
+snippet iqtw    "include QTableWidget" b
 #include <QTableWidget>
 
 endsnippet
-#
-snippet iqtwsr "include QTableWidgetSelectionRange" b
+snippet iqtwsr  "include QTableWidgetSelectionRange" b
 #include <QTableWidgetSelectionRange>
 
 endsnippet
-#
-snippet iqtwi "include QTableWidgetItem" b
+snippet iqtwi   "include QTableWidgetItem" b
 #include <QTableWidgetItem>
 
 endsnippet
-#
-snippet iqc "include QColor" b
+snippet iqc     "include QColor" b
 #include <QColor>
 
 endsnippet
-#
-snippet iqi "include QImage" b
+snippet iqi     "include QImage" b
 #include <QImage>
 
 endsnippet
-#
-snippet iqw "include QWidget" b
+snippet iqw     "include QWidget" b
 #include <QWidget>
 
 endsnippet
-#
-snippet iqf "include QFile" b
+snippet iqf     "include QFile" b
 #include <QFile>
 
 endsnippet
-#
-snippet iqiod "include QIODevice" b
+snippet iqiod   "include QIODevice" b
 #include <QIODevice>
 
 endsnippet
-#
-snippet iqmb "include QMessageBox" b
+snippet iqmb    "include QMessageBox" b
 #include <QMessageBox>
 
 endsnippet
-#
-snippet iqfd "include QFileDialog" b
+snippet iqfd    "include QFileDialog" b
 #include <QFileDialog>
 
 endsnippet
-#
-snippet iqdb "include QDebug" b
+snippet iqdb    "include QDebug" b
 #include <QDebug>
 
 endsnippet
-#
-snippet iqds "include QDataStream" b
+snippet iqds    "include QDataStream" b
 #include <QDataStream>
 
 endsnippet
-#
-snippet iqo "include QObject" b
+snippet iqo     "include QObject" b
 #include <QObject>
 
 endsnippet
-#
-snippet iqke "include QKeyEvent" b
+snippet iqke    "include QKeyEvent" b
 #include <QKeyEvent>
 
 endsnippet
-#
-snippet iqe "include QTextEdit" b
+snippet iqe     "include QTextEdit" b
 #include <QTextEdit>
 
 endsnippet
-#
-snippet iqle "include QLineEdit" b
+snippet iqle    "include QLineEdit" b
 #include <QLineEdit>
 
 endsnippet
-#
-snippet iqiv "include QIntValidator" b
+snippet iqiv    "include QIntValidator" b
 #include <QIntValidator>
 
 endsnippet
-#
-snippet iqv "include QValidator" b
+snippet iqv     "include QValidator" b
 #include <QValidator>
 
 endsnippet
-#
-snippet iqrev "include QRegExpValidator" b
+snippet iqrev   "include QRegExpValidator" b
 #include <QRegExpValidator>
 
 endsnippet
-#
-snippet iqfl "include QFormLayout" b
+snippet iqfl    "include QFormLayout" b
 #include <QFormLayout>
 
 endsnippet
-#
-snippet iqli "include QList" b
+snippet iqli    "include QList" b
 #include <QList>
 
 endsnippet
-#
-snippet iqtb "include QToolBar" b
+snippet iqtb    "include QToolBar" b
 #include <QToolBar>
 
 endsnippet
-#
-snippet iqce "include QCloseEvent" b
+snippet iqce    "include QCloseEvent" b
 #include <QCloseEvent>
 
 endsnippet
-#
-snippet iqpt "include QPoint" b
+snippet iqpt    "include QPoint" b
 #include <QPoint>
 
 endsnippet
-#
-snippet qdb "put debug message to console" b
+snippet qdb     "put debug message to console" b
 qDebug("${1:formatted text}"${2:[, optional parameters[, ...]]});
 $0
 endsnippet
-#
 # End cpp.snippets

@@ -1,12 +1,8 @@
-#
 # Begin html.snippets
-#
 
-#
 # Snippets for coding in HTML
-#
 
-snippet hdr "Typical html header" b
+snippet hdr     "Typical html header" b
 <!doctype html />
 <html lang="en-US">
 <head>
@@ -15,8 +11,7 @@ snippet hdr "Typical html header" b
 <title>${1:Webpage Title}</title>
 $0
 endsnippet
-#
-snippet xdr "Typical xhtml header" b
+snippet xdr     "Typical xhtml header" b
 <!doctype xhtml />
 <html lang="en-US">
 <head>
@@ -25,8 +20,7 @@ snippet xdr "Typical xhtml header" b
 <title>${1:Webpage Title}</title>
 $0
 endsnippet
-#
-snippet skel "Basic html outline" b
+snippet skel    "Basic html outline" b
 <!doctype html />
 <html lang="en-US">
 <head>
@@ -42,8 +36,7 @@ snippet skel "Basic html outline" b
 </body>
 </html>
 endsnippet
-#
-snippet xkel "Basic xhtml outline" b
+snippet xkel    "Basic xhtml outline" b
 <!doctype xhtml />
 <html lang="en-US">
 <head>
@@ -59,122 +52,210 @@ snippet xkel "Basic xhtml outline" b
 </body>
 </html>
 endsnippet
-#
-snippet cs "CSS Stylesheet Inclusion"
+snippet cs      "CSS Stylesheet Inclusion"
 <link rel="stylesheet" type="text/css" href="${1:stylesheet}">
 $0
 endsnippet
-#
-#
-snippet cm "Comment - inline"
+snippet cm      "Comment - inline"
   <!-- ${1:Insert Comment} -->$0
 endsnippet
-#
-snippet cmm "Comment - multiline" b
+snippet cmm     "Comment - multiline" b
 <!-->
   ${1:Insert Comment}
 <!-->
 $0
 endsnippet
-#
-snippet lt9 "HTML5 Support for IE9 and earlier" b
+snippet lt9     "HTML5 Support for IE9 and earlier" b
 <!--[if lt IE 9]>
 <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js">
 </script>
 <![endif]-->
 endsnippet
-#
-snippet st "style block"
+snippet st      "style block"
 <style>
   ${1:Enter Stylings}
 </style>
 endsnippet
-#
-snippet bo "body block"
+snippet bo      "body block"
 <body>
   ${1:Enter Body}
 </body>
 endsnippet
-#
-snippet he "header block"
+snippet he      "header block"
 <header>
   ${1:Enter Header}
 </header>
 endsnippet
-#
-snippet ar "article block"
+snippet ar      "article block"
 <article>
   ${1:Enter Article}
 </article>
 endsnippet
-#
-snippet se "section block"
+snippet se      "section block"
 <section>
   ${1:Enter Section}
 </section>
 endsnippet
-#
-snippet fo "footer block"
+snippet fo      "footer block"
 <footer>
   ${1:Enter Footer}
 </footer>
 endsnippet
-#
-snippet fo "footer block"
+snippet fo      "footer block"
 <footer>
   ${1:Enter Footer}
 </footer>
 endsnippet
-#
-snippet ti "title inline"
+snippet ti      "title inline"
 <title>${1:Enter Title}</title>
 $0
 endsnippet
-#
-snippet pa "paragraph inline"
+snippet pa      "paragraph inline"
 <p>${1:Enter Paragraph}</p>$0
 endsnippet
-#
-snippet h1 "heading1 inline"
+snippet h1      "heading1 inline"
 <h1>${1:Enter Heading}</h1>$0
 endsnippet
-#
-snippet h2 "heading2 inline"
+snippet h2      "heading2 inline"
 <h2>${1:Enter Heading}</h2>$0
 endsnippet
-#
-snippet h3 "heading3 inline"
+snippet h3      "heading3 inline"
 <h3>${1:Enter Heading}</h3>$0
 endsnippet
-#
-snippet h4 "heading4 inline"
+snippet h4      "heading4 inline"
 <h4>${1:Enter Heading}</h4>$0
 endsnippet
-#
-snippet h5 "heading5 inline"
+snippet h5      "heading5 inline"
 <h5>${1:Enter Heading}</h5>$0
 endsnippet
-#
-snippet h6 "heading6 inline"
+snippet h6      "heading6 inline"
 <h6>${1:Enter Heading}</h6>$0
 endsnippet
-#
-snippet ul "unordered list"
+snippet ul      "unordered list"
 <ul>
   <li>${1:Enter list item}</li>$2
 </ul>
 $0
 endsnippet
-#
-snippet ol "ordered list"
+snippet ol      "ordered list"
 <ol>
   <li>${1:Enter list item}</li>$2
 </ol>
 $0
 endsnippet
-#
-snippet li "list item" b
+snippet li      "list item" b
 <li>${1:Enter list item}</li>$0
+endsnippet
+snippet ita     "italic text"
+<i>${1:Text to put in italics}</i>$0
+endsnippet
+snippet em      "emphasized text"
+<em>${1:Text to emphasize}</em>$0
+endsnippet
+snippet bld     "bold text"
+<b>${1:Text to put in bold}</b>$0
+endsnippet
+snippet str     "strong text"
+<strong>${1:Text to make strong}</strong>$0
+endsnippet
+snippet sm      "small text"
+<small>${1:Text to make small}</small>$0
+endsnippet
+snippet hi      "highlighted text"
+<marked>${1:Text to highlight}</marked>$0
+endsnippet
+snippet del     "strikethrough text"
+<del>${1:Text to strike through}</del>$0
+endsnippet
+snippet und     "underlined text"
+<ins>${1:Text to underline}</ins>$0
+endsnippet
+snippet sup     "superscript text"
+<sup>${1:Text to put in superscript}</sup>$0
+endsnippet
+snippet sub     "subscript text"
+<sub>${1:Text to put in subscript}</sub>$0
+endsnippet
+snippet q       "quoted text"
+<q>${1:Text to put in quotes}</q>$0
+endsnippet
+snippet bq      "blockquoted text"
+<blockquote>${1:Text to put in blockquotes}</blockquote>$0
+endsnippet
+snippet abbr    "abbreviation"
+<abbr title="${1:Full meaning}">${2:Abbreviation}</abbr>$0
+endsnippet
+snippet addr1   "Address 1"
+<address>
+${1:Name}<br />
+${2:Street1}<br />
+${3:Street2}<br />
+${4:City}, ${5:State}<br />
+${6:Country}<br />
+</address>
+$0
+endsnippet
+snippet cntct1  "Contact info 1"
+<address>
+${1:Name}<br />
+${2:email}<br />
+${3:Website}<br />
+Office: ${4:Office Number}<br />
+Mobile: ${5:Mobile Number}<br />
+</address>
+$0
+endsnippet
+snippet ci      "Cited work title"
+<cite>${1:Title of cited work}</cite>$0
+endsnippet
+snippet bdo     "Bi-directional override"
+<bdo dir="rtl">${1:Text to type backwards!}</bdo>$0
+endsnippet
+snippet code    "Computer code"
+<code>
+${1:Computer code}
+</code>
+$0
+endsnippet
+snippet stdin   "Computer input"
+<kbd>
+${1:Title of cited work}
+</kbd>
+$0
+endsnippet
+snippet stdout  "Computer output"
+<samp>
+${1:Computer output}
+</samp>
+$0
+endsnippet
+snippet var     "Variable"
+<var>${1:Variable}</var>$0
+endsnippet
+snippet pre     "Preformatted text"
+<pre>
+${1:Preformatted text}
+</pre>
+$0
+endsnippet
+# Special characters
+snippet ' "single-quote"
+&#39;
+endsnippet
+snippet & "ampers-and"
+&amp;
+endsnippet
+snippet " "double-quote"
+&quot;
+endsnippet
+snippet >> "greater-than"
+&gt;
+endsnippet
+snippet << "less-than"
+&lt;
+endsnippet
+snippet <Space><Space> "extra whitespace"
+&nbsp;
 endsnippet
 #
 

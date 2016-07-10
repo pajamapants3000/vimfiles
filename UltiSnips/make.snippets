@@ -1,19 +1,12 @@
-#
 # Begin make.snippets
-#
 
-#
 # Snippets for writing makefiles
-#
-snippet hdr "simple heading" b
-#
+snippet hdr     "simple heading" b
 # `!p snip.rv = fn`
 # Makefile for `!p snip.rv = snip.basename`
-#
 $0
 endsnippet
-#
-snippet hdrr "full heading" b
+snippet hdrr    "full heading" b
 #+\
 # File   : `!p snip.rv = snip.fn`
 # Program: ${1:`!p snip.rv = snip.basename`}
@@ -23,8 +16,7 @@ snippet hdrr "full heading" b
 #+/
 $0
 endsnippet
-#
-snippet flg "c/c++ flags" b
+snippet flg     "c/c++ flags" b
 # Compiler Flags
 CC = gcc
 CFLAGS = -march -O2 -Wall -std=gnu11
@@ -36,8 +28,7 @@ LDFLAGS =
 VPATH =
 
 endsnippet
-#
-snippet flenv "c/c++ flags pulled from the environment" b
+snippet flenv   "c/c++ flags pulled from the environment" b
 # Compiler Flags
 CC=${CC}
 CFLAGS=${CFLAGS}
@@ -47,8 +38,7 @@ CPPFLAGS=${CPPFLAGS}
 LDFLAGS=${LDFLAGS}
 
 endsnippet
-#
-snippet shcmd "Shell Commands" b
+snippet shcmd   "Shell Commands" b
 # Shell Commands
 RM_FILE = rm -vf
 RM_DIR = rm -rvf
@@ -63,8 +53,7 @@ INST_USRDIR = install -dm755 -o $$USER -g $$USER -v
 MKDIR = mkdir -v
 
 endsnippet
-#
-snippet src "C Program Sources" b
+snippet src     "C Program Sources" b
 # Program Sources and Dependencies
 SOURCES =
 OBJ = $(SOURCES:.cxx=.o)
@@ -72,8 +61,7 @@ HDRS =
 BINFILE =
 
 endsnippet
-#
-snippet srcxx "C++ Program Sources" b
+snippet srcxx   "C++ Program Sources" b
 # Program Sources and Dependencies
 SOURCES =
 OBJ = $(SOURCES:.c=.o)
@@ -81,8 +69,7 @@ HDRS =
 BINFILE =
 
 endsnippet
-#
-snippet tc01 "Standard C Makefile Template 1" b
+snippet tc01    "Standard C Makefile Template 1" b
 # Set consistent SHELL value
 SHELL = /bin/sh
 
@@ -142,9 +129,7 @@ clean:
 	$(RM_FILE) $(OBJ) $(BIN)
 
 endsnippet
-#
-#
-snippet tcxx01 "Standard C++ Makefile Template 1" b
+snippet tcxx01  "Standard C++ Makefile Template 1" b
 # Set consistent SHELL value
 SHELL = /bin/sh
 
@@ -208,4 +193,4 @@ clean:
 	$(RM_FILE) $(OBJ) $(BIN)
 
 endsnippet
-#
+

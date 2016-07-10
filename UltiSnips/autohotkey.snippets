@@ -1,18 +1,13 @@
-#
 # Begin ahk.snippets
-#
 
-#
 # Snippets for scripting in AutoHotKey
-#
 
-snippet hdr "simple heading" b
+snippet hdr     "simple heading" b
 ; `!p snip.rv = fn`
 ; ${1:description of program}
 $0
 endsnippet
-#
-snippet hdrr "full heading" b
+snippet hdrr    "full heading" b
 ; File   : `!p snip.rv = snip.fn`
 ; Program: ${1:`!p snip.rv = snip.basename`}
 ; Purpose: ${2:What is this?}
@@ -22,5 +17,4 @@ snippet hdrr "full heading" b
 ; Updated: `date /T`
 $0
 endsnippet
-#
 

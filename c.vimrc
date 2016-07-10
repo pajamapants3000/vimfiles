@@ -13,15 +13,19 @@ set runtimepath=$VIMRUNTIME
 let this_script_path = resolve(expand('<sfile>:p:h'))
 let &runtimepath .= ',' . this_script_path
 " Now add the usual user configuration
-if has('win32')
-    set rtp+=$USERPROFILE\vimfiles
+if has('win64')
+    set rtp+=$USERPROFILE\OneDrive\vimfiles
+elseif has('win32')
+    set rtp+=$USERPROFILE\OneDrive\x86\vimfiles
 else
     set rtp+=$HOME/.vim
 endif
 " Now add the "/after" paths
 let &runtimepath .= ',' . this_script_path . '/after'
-if has('win32')
-    set rtp+=$USERPROFILE\vimfiles\after
+if has('win64')
+    set rtp+=$USERPROFILE\OneDrive\vimfiles\after
+elseif has('win32')
+    set rtp+=$USERPROFILE\OneDrive\x86\vimfiles\after
 else
     set rtp+=$HOME/.vim/after
 endif
@@ -33,8 +37,13 @@ set nocompatible
 filetype off
 " Add vundle to runtime path so vim can find installed plugins
 if has('win32')
-    set rtp+=$HOMEPATH\vimfiles\bundle\vundle
-    call vundle#begin('$HOMEPATH\vimfiles\bundle')
+	if has('win64')
+    	set rtp+=$USERPROFILE\OneDrive\vimfiles\bundle\vundle
+        call vundle#begin('$USERPROFILE\OneDrive\vimfiles\bundle')
+    else
+    	set rtp+=$USERPROFILE\OneDrive\x86\vimfiles\bundle\vundle
+        call vundle#begin('$USERPROFILE\OneDrive\x86\vimfiles\bundle')
+    endif
 else
     set rtp+=~/.vim/bundle/vundle
     call vundle#begin('~/.vim/bundle')
@@ -79,6 +88,9 @@ Plugin 'pthrasher/conqueterm-vim'
 " General vim plugin function library; used by xolox e.g. vim-session
 " xolox has a lot of good stuff, keep trying some of his stuff!
 Plugin 'xolox/vim-misc'
+" vim-shell - improved integration with shell; required for Windows to be
+"+able to utilize asynchronous processing in easytags
+Plugin 'xolox/vim-shell'
 " AutoComplPop - automatically pops open completion list
 "Plugin 'vim-scripts/AutoComplPop'
 " Supertab - allows tabbing through completions like YCM; also, gets rid
@@ -141,6 +153,8 @@ Plugin 'Shougo/unite-help'
 Plugin 'tacroe/unite-mark'
 " unite-giti - git integration with Unite
 Plugin 'kmnk/vim-unite-giti'
+" vimproc - library to enable asynchronous processing in unite and others
+Plugin 'Shougo/vimproc.vim'
 "***************************
 " Wrappers and integrations
 "^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -277,20 +291,26 @@ Plugin 'ujihisa/ft-cmake'
 Plugin 'leafo/moonscript-vim'
 " coffeescript
 Plugin 'kchmck/vim-coffee-script'
+" rc shell
+Plugin 'weakish/rcshell.vim'
+" rust
+Plugin 'rust-lang/rust.vim'
+" toml
+Plugin 'cespare/vim-toml'
 "**********************"
 " Doing more with vim! "
 "^^^^^^^^^^^^^^^^^^^^^^"
 " Calendar.vim - VERY cool! A calendar that syncs with google.
-Plugin 'itchyny/calendar.vim'
+"Plugin 'itchyny/calendar.vim'
 " vim-pager - use vim as a pager
 Plugin 'lambdalisue/vim-pager'
 " vim-manpager - use vim to display manpages, both in vim and from shell
 "+add-to/change shell environment: MANPAGER="vim -c MANPAGER -"
 Plugin 'lambdalisue/vim-manpager'
 " vimshell - a shell completely written in vimscript
-Plugin 'Shougo/vimshell.vim'
+"Plugin 'Shougo/vimshell.vim'
 " vimfiler - file explorer
-Plugin 'Shougo/vimfiler.vim'
+"Plugin 'Shougo/vimfiler.vim'
 " *** Web Browser Plugins (experiment and pick one - ideally) ***
 " browser.vim by Moshe Kamensky - requires synmark.vim and perl/perl modules
 "Plugin 'vim-scripts/browser.vim'
@@ -347,7 +367,7 @@ syntax on                       " syntax highlighing
 filetype on                     " try to detect filetypes
 filetype plugin indent on       " enable loading indent file for filetype
 " Set tags to include ctags
-set tags+=./tags;/
+set tags+=./tags
 " Session options to save on request
 set ssop-=options               " Don't mess with options/plugins loaded!
 " GUI Options
@@ -448,7 +468,7 @@ nnoremap <F5> :GundoToggle<CR>
 "**Options**
 "let g:tlWindowPosition = 1 "0 is default, window on top. 1 -> window on bottom
 ""tlTokenList: List of tokens that tasklist searches for
-"+default = ["FIXME", "TODO", "XXX"]
+"+default = ['FIXME', 'TODO', 'XXX']
 "let g:tlTokenList = ['FIXME', 'TODO', 'XXX']
 "**Mappings**
 "map <leader>t :TaskList<CR> "mapped by default
@@ -461,7 +481,7 @@ nnoremap <F5> :GundoToggle<CR>
 "+filetype-specific settings. The two configurable options are the filename
 "+for the configurations, and the format for filetype-specific settings.
 "let g:localrc_filename=".local.vimrc"
-"let g:localrc_filetype='/^\.local\..*\<%s\>.*\.vimrc$'
+"let g:localrc_filetype='/^\.local\..*\<%s\>.*\.vimrc$' "e.g. .local.cpp.vimrc
 
 " Jedi
 "^^^^^^
@@ -522,9 +542,9 @@ let g:airline#extensions#hunks#hunk_symbols = ['+', '~', '-']
 "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 "**Mappings**
 " Commented defaults, here in case I decide to change them
-"nmap <F6> <Plug>ColorstepPrev
-"nmap <F7> <Plug>ColorstepNext
-"nmap <S-F7> <Plug>ColorstepReload
+nmap <F6> <Plug>ColorstepPrev
+nmap <F7> <Plug>ColorstepNext
+nmap <S-F7> <Plug>ColorstepReload
 
 " Molokai Theme - from readme
 "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -541,7 +561,7 @@ let g:airline#extensions#hunks#hunk_symbols = ['+', '~', '-']
 "**Options**
 let g:ConqueTerm_FastMode = 0
 let g:ConqueTerm_PyVersion = 3
-let g:ConqueTerm_PyExe = 'C:\Python34\python.exe'
+let g:ConqueTerm_PyExe = 'C:\Python35\python.exe'
 let g:ConqueTerm_Syntax = 'python'
 let g:ConqueTerm_Color = 1
 "**Mappings**
@@ -569,7 +589,7 @@ nmap <leader>C :call Pycon()<CR>
 "+I tried setting both to Python 3 and YCM crashes! But like this they work
 "+GREAT together!
 "For Python/Jedi work (not YCM) Py3 is fine.
-let g:UltiSnipsUsePythonVersion = 2
+let g:UltiSnipsUsePythonVersion = 3
 "**Mappings**
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 "+I finally decided on putting these with mappings because they are
@@ -605,14 +625,25 @@ let g:ycm_complete_in_strings=1
 let g:ycm_collect_identifiers_from_comments_and_strings=1
 let g:ycm_collect_identifiers_from_tags_files=1
 let g:ycm_seed_identifiers_with_syntax=1
+if has('win32')
+    let g:ycm_rust_src_path = $USERPROFILE.'/repo/rust/src'
+else
+    let g:ycm_rust_src_path = $HOME.'/repo/rust/src'
+endif
+
 "let g:ycm_key_invoke_completion = '<C-.>' "Default=<C-Space>; changed for term
 "                                         "except this doesn't work in Konsole!
 "                                         "<C-Space> works in Konsole
 nnoremap yd :<c-u>YcmCompleter GoTo<CR>
 nnoremap yt :<c-u>YcmCompleter GetType<CR>
 if has('win32')
-    let g:ycm_path_to_python_interpreter="C:/Python27/python.exe"
-    let g:ycm_global_ycm_extra_conf=$USERPROFILE."/vimfiles/.ycm_extra_conf.py"
+    let g:ycm_path_to_python_interpreter="C:/Python35/python.exe"
+    let g:ycm_server_python_interpreter="C:/Python35/python.exe"
+	if has('win64')
+    	let g:ycm_global_ycm_extra_conf=$USERPROFILE."/OneDrive/vimfiles/.ycm_extra_conf.py"
+    else
+    	let g:ycm_global_ycm_extra_conf=$USERPROFILE."/OneDrive/x86/vimfiles/.ycm_extra_conf.py"
+    endif
     " white/blacklist for .ycm_extra_conf.py files. precede with ! if blacklist
     "+accepts wildcards *, ?, and [seq]
     let g:ycm_extra_conf_globlist=[$CXXPATH."/.ycm_extra_conf.py", $CPATH."/.ycm_extra_conf.py"]
@@ -620,6 +651,24 @@ else
     let g:ycm_path_to_python_interpreter="/usr/bin/python2"
     let g:ycm_global_ycm_extra_conf=$HOME."/.vim/.ycm_extra_conf.py"
     let g:ycm_extra_conf_globlist=[$CXXPATH."/.ycm_extra_conf.py", $CPATH."/.ycm_extra_conf.py"]
+endif
+
+" vim-racer
+"^^^^^^^^^^^
+" rust omni-complete
+" Part of YCM, or alone
+"
+" suggested in vim-racer README; not sure though
+"set hidden
+if has('win32')
+    " uncomment if using standalone
+"    let g:racer_cmd = $USERPROFILE.'/OneDrive/vimfiles/bundle/vim-racer/racerd.exe'
+    let $RUST_SRC_PATH = $USERPROFILE.'/repo/rust/src'
+    let $CARGO_HOME = $USERPROFILE.'/.cargo'
+else
+"    let g:racer_cmd = $HOME.'/.vin/bundle/vim-racer/racerd.exe'
+    let $RUST_SRC_PATH = $HOME.'/repo/rust/src'
+    let $CARGO_HOME = $HOME.'/.cargo'
 endif
 
 " Python_Pydoc.vim
@@ -721,9 +770,9 @@ let g:lua_define_completion_mappings = 0
 
 " IncSearch
 "^^^^^^^^^^^
-map /  <Plug>(incsearch-forward)
-map ?  <Plug>(incsearch-backward)
-map g/ <Plug>(incsearch-stay)
+map [unite]/  <Plug>(incsearch-forward)
+map [unite]?  <Plug>(incsearch-backward)
+map [unite]g/ <Plug>(incsearch-stay)
 
 " SnipMate
 "^^^^^^^^^^
@@ -743,6 +792,22 @@ map g/ <Plug>(incsearch-stay)
 "let g:acp_completeoptPreview = 0
 "let g:acp_completeOption = '.,w,b,k'
 "let g:acp_ignorecaseOption = 1
+
+" Easytags
+"^^^^^^^^^^
+let g:easytags_async = 1
+let g:easytags_syntax_keyword = 'always'
+let g:easytags_file = $HOME."/.vim/tags"
+let g:easytags_dynamic_files = 1
+let g:easytags_by_filetype = $HOME."/.vim/tags"
+
+" xolox/vim-shell
+"^^^^^^^^^^
+let g:shell_mappings_enabled = 0
+inoremap <Leader>fs <C-o>:Fullscreen<CR>
+nnoremap <Leader>fs :Fullscreen<CR>
+inoremap <Leader>op <C-o>:Open<CR>
+nnoremap <Leader>op :Open<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Mappings

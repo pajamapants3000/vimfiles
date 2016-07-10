@@ -1,19 +1,14 @@
-#
 # Begin lua.snippets
-#
 
-#
 # Snippets for coding in Lua
-#
 
-snippet hdr "simple heading" b
+snippet hdr     "simple heading" b
 #!/usr/bin/env lua
 --  `!p snip.rv = fn`
 --  ${1:description of program}
 $0
 endsnippet
-#
-snippet hdrr "full heading" b
+snippet hdrr    "full heading" b
 #!/usr/bin/env lua
 --  File   : `!p snip.rv = snip.fn`
 --  Program: ${1:`!p snip.rv = snip.basename`}
@@ -23,15 +18,13 @@ snippet hdrr "full heading" b
 --  Notes  : ${4:Notes on successful compilation}
 $0
 endsnippet
-#
-snippet -- "simple comment"
+snippet --      "simple comment"
 -- $1
 $0
 endsnippet
-#
-snippet --[ "multiline comment"
+snippet --[     "multiline comment"
 --[${1:=}[
   $0
 --]$1]
 endsnippet
-#
+

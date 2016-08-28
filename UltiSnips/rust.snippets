@@ -126,6 +126,21 @@ endsnippet
 snippet l"      "create string literal binding"
 let ${1:Variable Name}: &'static str = "${2:String Literal}";$0
 endsnippet
+snippet pmod    "pub mod"
+pub mod ${1:`substitute(vim_snippets#Filename(), '\(_\|^\)\(.\)', '\u\2', 'g')`} {
+    $0
+} /* $1 */
+endsnippet
+snippet st      "struct"
+struct ${1: StructNamee} {
+    $0,
+} /* $1 */
+endsnippet
+snippet pst     "pub struct"
+pub struct ${1: PubStructNamee} {
+    $0,
+} /* $1 */
+endsnippet
 # loops
 snippet fr_     "loop a number of times"
 for _ in &[0..${1:N}] {
@@ -223,6 +238,14 @@ $0
 endsnippet
 snippet #!a     "allow on enclosing item" b
 #![allow($1)]
+$0
+endsnippet
+snippet #adc    "allow dead code on following item" b
+#[allow(dead_code)]
+$0
+endsnippet
+snippet #!adc   "allow dead code on enclosing item" b
+#![allow(dead_code)]
 $0
 endsnippet
 snippet #dy     "deny on following item" b

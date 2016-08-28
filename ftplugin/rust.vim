@@ -6,7 +6,7 @@
 map <leader>p :!rustc %<CR>
 map <leader>[ :!"%:p:r"<CR>
 map <leader>] :!"%:p:r"
-map <leader>R :cd $DRIVEPATH/Code/Rust<CR>
+map <leader>R :cd $RUSTPATH<CR>
 "
 " Additional configuration
 "*************************
@@ -17,4 +17,5 @@ else
 endif
 
 set cms=//\ %s
+set iskeyword="a-z,A-Z,0-9,-,_"
 

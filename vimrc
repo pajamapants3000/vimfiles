@@ -23,18 +23,20 @@ let &runtimepath .= ',' . this_script_path
 execute 'source ' . this_script_path . '/config_' . config_type . '.vimrc'
 " Now add the usual system-specific user configuration
 if has('win64')
-    set rtp+=$USERPROFILE\OneDrive\vimfiles
+    set rtp+=substitute($USERPROFILE, "\\", "/", "g") . '/OneDrive/vimfiles'
 elseif has('win32')
-    set rtp+=$USERPROFILE\OneDrive\x86\vimfiles
+    set rtp+=substitute($USERPROFILE, "\\", "/", "g") . '/OneDrive/x86/vimfiles'
 else
     set rtp+=$HOME/.vim
 endif
 " Now add the "/after" paths
 let &runtimepath .= ',' . this_script_path . '/after'
 if has('win64')
-    set rtp+=$USERPROFILE\OneDrive\vimfiles\after
+    set rtp+=substitute($USERPROFILE, "\\", "/", "g") .
+\           '/OneDrive/vimfiles/after'
 elseif has('win32')
-    set rtp+=$USERPROFILE\OneDrive\x86\vimfiles\after
+    set rtp+=substitute($USERPROFILE, "\\", "/", "g") .
+\           '/OneDrive/x86/vimfiles/after'
 else
     set rtp+=$HOME/.vim/after
 endif

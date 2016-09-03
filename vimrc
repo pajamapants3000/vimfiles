@@ -783,6 +783,12 @@ let g:SuperTabContextDefaultCompletionType = "<c-p>"
 "  \ endif
     endif   " PLUGIN_SUPERTAB
 
+" gitgutter
+"^^^^^^^^^^^
+    if PLUGIN_VIM_GITGUTTER
+" gitgutter settings
+    endif   " PLUGIN_VIM_GITGUTTER
+
 " airline
 "^^^^^^^^^
     if PLUGIN_VIM_AIRLINE
@@ -1114,7 +1120,6 @@ inoremap <Leader>op <C-o>:Open<CR>
 nnoremap <Leader>op :Open<CR>
     endif   " PLUGIN_VIM_SHELL
 
-<<<<<<< HEAD
 " vimwiki
 "^^^^^^^^^
     if PLUGIN_VIMWIKI
@@ -1139,7 +1144,6 @@ nnoremap <Leader>op :Open<CR>
 " vimtaskwarrior settings
     endif " PLUGIN_VIM_TASKWARRIOR
     
-=======
 " vim-snippets
 "^^^^^^^^^^^^^^
 if PLUGIN_VIM_SNIPPETS
@@ -1156,8 +1160,6 @@ if PLUGIN_VIM_SNIPPETS
     endif
 endif
 
-
->>>>>>> c6234e985516e5282dab179b225bc792ba5385df
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Mappings
 "**************

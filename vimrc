@@ -556,6 +556,24 @@ endif
 if PLUGIN_VS_WEBBROWSER
     Plugin 'vim-scripts/webBrowser'
 endif
+" vimwiki - create personal wiki in vim
+"   can also be used as notebook...?
+if PLUGIN_VIMWIKI
+    Plugin 'vimwiki/vimwiki'
+endif
+" vim-notes - note taking plugin from xolox
+if PLUGIN_VIM_NOTES
+    Plugin 'xolox/vim-notes'
+endif
+" vim-orgmode - ripoff of popular emacs plugin
+"   used for organization and such
+if PLUGIN_VIM_ORGMODE
+    Plugin 'jceb/vim-orgmode'    
+endif
+" vim-taskwarrior - vim interface to taskwarrior utility
+if PLUGIN_VIM_TASKWARRIOR
+    Plugin 'blindFS/vim-taskwarrior'
+endif
 "    ****    ****    ****
 " End list of plugins to add
 "    ****    ****    ****
@@ -1083,7 +1101,7 @@ let g:easytags_by_filetype = $HOME."/.vim/tags"
     endif   " PLUGIN_VIM_EASYTAGS
 
 " xolox/vim-shell
-"^^^^^^^^^^
+"^^^^^^^^^^^^^^^^^
     if PLUGIN_VIM_SHELL
 let g:shell_mappings_enabled = 0
 inoremap <Leader>fs <C-o>:Fullscreen<CR>
@@ -1092,6 +1110,30 @@ inoremap <Leader>op <C-o>:Open<CR>
 nnoremap <Leader>op :Open<CR>
     endif   " PLUGIN_VIM_SHELL
 
+" vimwiki
+"^^^^^^^^^
+    if PLUGIN_VIMWIKI
+" vimwiki settings
+    endif   " PLUGIN_VIMWIKI
+
+" vim-notes
+"^^^^^^^^^^^
+    if PLUGIN_VIM_NOTES
+" vim-notes settings
+    endif   " PLUGIN_VIM_NOTES
+
+" vim-orgmode
+"^^^^^^^^^^^^^
+    if PLUGIN_VIM_ORGMODE
+" vim-orgmode settings
+    endif " PLUGIN_VIM_ORGMODE
+
+" vim-taskwarrior
+"^^^^^^^^^^^^^^^^^
+    if PLUGIN_VIM_TASKWARRIOR
+" vimtaskwarrior settings
+    endif " PLUGIN_VIM_TASKWARRIOR
+    
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Mappings
 "**************

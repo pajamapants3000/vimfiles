@@ -907,8 +907,12 @@ let g:ycm_collect_identifiers_from_tags_files=1
 let g:ycm_seed_identifiers_with_syntax=1
 if has('win32')
     let g:ycm_rust_src_path = $USERPROFILE.'/repo/rust/src'
+    let RUST_SRC_PATH = $USERPROFILE.'/repo/rust/src'
+    let CARGO_HOME = $USERPROFILE.'/.cargo'
 else
     let g:ycm_rust_src_path = $HOME.'/repo/rust/src'
+    let RUST_SRC_PATH = $HOME.'/repo/rust/src'
+    let CARGO_HOME = $HOME.'/.cargo'
 endif
 
 "let g:ycm_key_invoke_completion = '<C-.>' "Default=<C-Space>; changed for term
@@ -944,13 +948,13 @@ endif
 "set hidden
 if has('win32')
     " uncomment if using standalone
-"    let g:racer_cmd = $USERPROFILE.'/OneDrive/vimfiles/bundle/vim-racer/racerd.exe'
-    let $RUST_SRC_PATH = $USERPROFILE.'/repo/rust/src'
-    let $CARGO_HOME = $USERPROFILE.'/.cargo'
+    let g:racer_cmd = $USERPROFILE.'/OneDrive/vimfiles/bundle/vim-racer/racerd.exe'
+    let RUST_SRC_PATH = $USERPROFILE.'/repo/rust/src'
+    let CARGO_HOME = $USERPROFILE.'/.cargo'
 else
-"    let g:racer_cmd = $HOME.'/.vin/bundle/vim-racer/racerd.exe'
-    let $RUST_SRC_PATH = $HOME.'/repo/rust/src'
-    let $CARGO_HOME = $HOME.'/.cargo'
+    let g:racer_cmd = $HOME.'/.vin/bundle/vim-racer/racerd.exe'
+    let RUST_SRC_PATH = $HOME.'/repo/rust/src'
+    let CARGO_HOME = $HOME.'/.cargo'
 endif
     endif   " PLUGIN_VIM_RACER
 
@@ -1110,6 +1114,7 @@ inoremap <Leader>op <C-o>:Open<CR>
 nnoremap <Leader>op :Open<CR>
     endif   " PLUGIN_VIM_SHELL
 
+<<<<<<< HEAD
 " vimwiki
 "^^^^^^^^^
     if PLUGIN_VIMWIKI
@@ -1134,6 +1139,25 @@ nnoremap <Leader>op :Open<CR>
 " vimtaskwarrior settings
     endif " PLUGIN_VIM_TASKWARRIOR
     
+=======
+" vim-snippets
+"^^^^^^^^^^^^^^
+if PLUGIN_VIM_SNIPPETS
+    if !exists("g:snips_author")
+        let g:snips_author = "Tommy Lincoln"
+    endif
+
+    if !exists("g:snips_email")
+        let g:snips_email = "pajamapants3000@gmail.com"
+    endif
+
+    if !exists("g:snips_github")
+        let g:snips_github = "https://github.com/pajamapants3000"
+    endif
+endif
+
+
+>>>>>>> c6234e985516e5282dab179b225bc792ba5385df
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Mappings
 "**************

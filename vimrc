@@ -259,6 +259,10 @@ endif
 if PLUGIN_VIM_GITGUTTER
     Plugin 'airblade/vim-gitgutter'
 endif
+" vim-signify - more generalized diff-sign in gutter
+if PLUGIN_VIM_SIGNIFY
+    Plugin 'mhinz/vim-signify'
+endif
 " vim-gita - Looks like a VERY cool git handling plugin (says it's in alpha)
 if PLUGIN_VIM_GITA
     Plugin 'lambdalisue/vim-gita'
@@ -788,6 +792,12 @@ let g:SuperTabContextDefaultCompletionType = "<c-p>"
     if PLUGIN_VIM_GITGUTTER
 " gitgutter settings
     endif   " PLUGIN_VIM_GITGUTTER
+
+" vim-signify
+"^^^^^^^^^^^
+    if PLUGIN_VIM_SIGNIFY
+" vim-signify settings
+    endif   " PLUGIN_VIM_SIGNIFY
 
 " airline
 "^^^^^^^^^

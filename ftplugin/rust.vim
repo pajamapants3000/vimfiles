@@ -17,5 +17,5 @@ else
 endif
 
 set cms=//\ %s
-set iskeyword="a-z,A-Z,0-9,-,_"
+set isk=a-z,A-Z,48-57,-,_,!,#
 

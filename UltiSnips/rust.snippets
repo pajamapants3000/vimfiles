@@ -36,107 +36,107 @@ pub fn main() {
     $0
 }
 endsnippet
-snippet l       "create type-inferred binding"
+snippet l       "create type-inferred binding" b
 let ${1:Variable Name} = ${2:Value};$0
 endsnippet
-snippet lm      "create mutable type-inferred binding"
+snippet lm      "create mutable type-inferred binding" b
 let mut ${1:Variable Name} = ${2:Value};$0
 endsnippet
-snippet ll      "create type-explicit binding"
+snippet ll      "create type-explicit binding" b
 let ${1:Variable Name}: ${2:Variable Type} = ${3:Value};$0
 endsnippet
-snippet llm     "create mutable type-explicit binding"
+snippet llm     "create mutable type-explicit binding" b
 let mut ${1:Variable Name}: ${2:Variable Type} = ${3:Value};$0
 endsnippet
-snippet li      "create integer binding"
+snippet li      "create integer binding" b
 let ${1:Variable Name}: i32 = ${2:Value};$0
 endsnippet
-snippet lu      "create unsigned integer binding"
+snippet lu      "create unsigned integer binding" b
 let ${1:Variable Name}: u32 = ${2:Value};$0
 endsnippet
-snippet lf      "create float binding"
+snippet lf      "create float binding" b
 let ${1:Variable Name}: f64 = ${2:Value};$0
 endsnippet
-snippet li3     "create 32-bit integer binding"
+snippet li3     "create 32-bit integer binding" b
 let ${1:Variable Name}: i32 = ${2:Value};$0
 endsnippet
-snippet lu3     "create 32-bit unsigned integer binding"
+snippet lu3     "create 32-bit unsigned integer binding" b
 let ${1:Variable Name}: u32 = ${2:Value};$0
 endsnippet
-snippet li6     "create 64-bit integer binding"
+snippet li6     "create 64-bit integer binding" b
 let ${1:Variable Name}: i64 = ${2:Value};$0
 endsnippet
-snippet lu6     "create 64-bit unsigned integer binding"
+snippet lu6     "create 64-bit unsigned integer binding" b
 let ${1:Variable Name}: u64 = ${2:Value};$0
 endsnippet
-snippet lf3     "create 32-bit float binding"
+snippet lf3     "create 32-bit float binding" b
 let ${1:Variable Name}: f32 = ${2:Value};$0
 endsnippet
-snippet lf6     "create 64-bit float binding"
+snippet lf6     "create 64-bit float binding" b
 let ${1:Variable Name}: f64 = ${2:Value};$0
 endsnippet
-snippet li1     "create 16-bit integer binding"
+snippet li1     "create 16-bit integer binding" b
 let ${1:Variable Name}: i16 = ${2:Value};$0
 endsnippet
-snippet lu1     "create 16-bit unsigned integer binding"
+snippet lu1     "create 16-bit unsigned integer binding" b
 let ${1:Variable Name}: u16 = ${2:Value};$0
 endsnippet
-snippet li8     "create 8-bit integer binding"
+snippet li8     "create 8-bit integer binding" b
 let ${1:Variable Name}: i8 = ${2:Value};$0
 endsnippet
-snippet lu8     "create 8-bit unsigned integer binding"
+snippet lu8     "create 8-bit unsigned integer binding" b
 let ${1:Variable Name}: u8 = ${2:Value};$0
 endsnippet
-snippet lim     "create mutable integer binding"
+snippet lim     "create mutable integer binding" b
 letm ${1:Variable Name}: i64 = ${2:Value};$0
 endsnippet
-snippet lum     "create mutable unsigned integer binding"
+snippet lum     "create mutable unsigned integer binding" b
 letm ${1:Variable Name}: u64 = ${2:Value};$0
 endsnippet
-snippet lfm     "create mutable float binding"
+snippet lfm     "create mutable float binding" b
 letm ${1:Variable Name}: f64 = ${2:Value};$0
 endsnippet
-snippet li3m    "create mutable 32-bit integer binding"
+snippet li3m    "create mutable 32-bit integer binding" b
 letm ${1:Variable Name}: i32 = ${2:Value};$0
 endsnippet
-snippet lu3m    "create mutable 32-bit unsigned integer binding"
+snippet lu3m    "create mutable 32-bit unsigned integer binding" b
 letm ${1:Variable Name}: u32 = ${2:Value};$0
 endsnippet
-snippet lf3m    "create mutable 32-bit float binding"
+snippet lf3m    "create mutable 32-bit float binding" b
 letm ${1:Variable Name}: f32 = ${2:Value};$0
 endsnippet
-snippet li1m    "create mutable 16-bit integer binding"
+snippet li1m    "create mutable 16-bit integer binding" b
 letm ${1:Variable Name}: i16 = ${2:Value};$0
 endsnippet
-snippet lu1m    "create mutable 16-bit unsigned integer binding"
+snippet lu1m    "create mutable 16-bit unsigned integer binding" b
 letm ${1:Variable Name}: u16 = ${2:Value};$0
 endsnippet
-snippet li8m    "create mutable 8-bit integer binding"
+snippet li8m    "create mutable 8-bit integer binding" b
 letm ${1:Variable Name}: i8 = ${2:Value};$0
 endsnippet
-snippet lu8m    "create mutable 8-bit unsigned integer binding"
+snippet lu8m    "create mutable 8-bit unsigned integer binding" b
 let ${1:Variable Name}: u8 = ${2:Value};$0
 endsnippet
-snippet ls      "create &mut str binding"
+snippet ls      "create &mut str binding" b
 let ${1:Variable Name}: &${2:'lifetime} mut str = ${3:Value};$0
 endsnippet
-snippet lS      "create String binding"
+snippet lS      "create String binding" b
 let ${1:Variable Name}: String = ${3:Value};$0
 endsnippet
-snippet l"      "create string literal binding"
+snippet l"      "create string literal binding" b
 let ${1:Variable Name}: &'static str = "${2:String Literal}";$0
 endsnippet
-snippet pmod    "pub mod"
+snippet pmod    "pub mod" b
 pub mod ${1:`substitute(vim_snippets#Filename(), '\(_\|^\)\(.\)', '\u\2', 'g')`} {
     $0
 } /* $1 */
 endsnippet
-snippet st      "struct"
+snippet st      "struct" b
 struct ${1: StructNamee} {
     $0,
 } /* $1 */
 endsnippet
-snippet pst     "pub struct"
+snippet pst     "pub struct" b
 pub struct ${1: PubStructNamee} {
     $0,
 } /* $1 */
@@ -176,43 +176,55 @@ snippet td      "todo"
 // TODO: $1
 endsnippet
 # macros
-snippet !pl     "println! macro"
+snippet !pl     "println! macro" b
 println!("${1:format string}")$0
 endsnippet
-snippet !pl,    "println! macro with args"
-println!("${1:format string}",${2:args})$0
+snippet !pl,    "println! macro with args" b
+println!("${1:format string}", ${2:args})$0
 endsnippet
-snippet !p      "print! macro"
+snippet !p      "print! macro" b
 print!("${1:format string}")$0
 endsnippet
-snippet !p,     "print! macro with args"
-print!("${1:format string}",${2:args})$0
+snippet !p,     "print! macro with args" b
+print!("${1:format string}", ${2:args})$0
 endsnippet
-snippet !f      "format! macro"
+snippet !wl     "writeln! macro" b
+writeln!(${1:buffer}, "${2:format string}").unwrap();$0
+endsnippet
+snippet !wl,    "writeln! macro with args" b
+writeln!(${1:buffer}, "${2:format string}", ${3:args}).unwrap();$0
+endsnippet
+snippet !w      "write macro" b
+write!(${1:buffer}, "${2:format string}").unwrap();$0
+endsnippet
+snippet !w,     "write! macro with args" b
+write!(${1:buffer}, "${2:format string}", ${3:args}).unwrap();$0
+endsnippet
+snippet !f      "format! macro" w
 format!("${1:format string}")$0
 endsnippet
-snippet !f,     "format! macro with args"
-format!("${1:format string}",${2:args})$0
+snippet !f,     "format! macro with args" w
+format!("${1:format string}", ${2:args})$0
 endsnippet
-snippet !v      "vec! macro"
+snippet !v      "vec! macro" w
 vec![${1:items}]$0
 endsnippet
-snippet !as     "assert! macro"
+snippet !as     "assert! macro" b
 assert!(${1:assertion})$0
 endsnippet
-snippet !ass    "assert! macro with custom message"
+snippet !ass    "assert! macro with custom message" b
 assert!(${1:assertion}, "${2:message}")$0
 endsnippet
-snippet !as,    "assert! macro with custom message with args"
+snippet !as,    "assert! macro with custom message with args" b
 assert!(${1:assertion}, "${2:message}", ${3:message args})$0
 endsnippet
-snippet !ae     "assert_eq! macro"
-assert_eq!(${1:val1}, ${1:val2})$0
+snippet !ae     "assert_eq! macro" b
+assert_eq!(${1:val1}, ${2:val2})$0
 endsnippet
-snippet !aee    "assert_eq! macro with custom message"
+snippet !aee    "assert_eq! macro with custom message" b
 assert_eq!(${1:val1}, ${2:val2}, "${3:message}")$0
 endsnippet
-snippet !ae,    "assert! macro with custom message with args"
+snippet !ae,    "assert! macro with custom message with args" b
 assert_eq!(${1:val1}, ${2:val2}, "${3:message}", ${4:message args})$0
 endsnippet
 # attributes

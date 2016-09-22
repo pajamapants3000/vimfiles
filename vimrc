@@ -10,7 +10,7 @@
 " Start with the standard runtime
 set runtimepath=$VIMRUNTIME
 " Set the default configuration, in case it's not already set
-" Currently available: 'c', 'lua', 'python', 'min'
+" Currently available: 'c', 'lua', 'python', 'min', 'mutt', 'none'
 " NOTE: this vimrc should be sourced by another script that would typically
 " have already set this.
 if !exists('config_type')
@@ -1275,10 +1275,14 @@ autocmd InsertEnter * :call NumberToggleRel()
 autocmd InsertLeave * :call NumberToggleRel()
 
 " Pick up desired filetypes
-" VB.NET
-au BufNewFile,BufRead *.aspx.vb     setf vbnet
-" ASP.NET
-au BufNewFile,BufRead *.aspx        setf aspnet
+augroup filetypedetect
+    " Mail
+    autocmd BufNewFile, BufRead *mutt-*     setf mail
+    " VB.NET
+    au BufNewFile,BufRead *.aspx.vb         setf vbnet
+    " ASP.NET
+    au BufNewFile,BufRead *.aspx            setf aspnet
+augroup END
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Final startup config - set config and theme

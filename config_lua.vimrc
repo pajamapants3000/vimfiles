@@ -129,6 +129,7 @@ let PLUGIN_VIM_COFFEE_SCRIPT = 1
 let PLUGIN_RCSHELL = 1
 let PLUGIN_RUST = 1
 let PLUGIN_VIM_TOML = 1
+let PLUGIN_HLA = 1
 
 " Doing more with vim!
 let PLUGIN_CALENDAR = 0

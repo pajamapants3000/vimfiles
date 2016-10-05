@@ -32,11 +32,9 @@ endif
 " Now add the "/after" paths
 let &runtimepath .= ',' . this_script_path . '/after'
 if has('win64')
-    set rtp+=substitute($USERPROFILE, "\\", "/", "g") .
-\           '/OneDrive/vimfiles/after'
+    set rtp+=substitute($USERPROFILE, "\\", "/", "g").'/OneDrive/vimfiles/after'
 elseif has('win32')
-    set rtp+=substitute($USERPROFILE, "\\", "/", "g") .
-\           '/OneDrive/x86/vimfiles/after'
+    set rtp+=substitute($USERPROFILE, "\\", "/", "g").'/OneDrive/x86/vimfiles/after'
 else
     set rtp+=$HOME/.vim/after
 endif
@@ -517,6 +515,9 @@ if PLUGIN_VBNET
 endif
 if PLUGIN_ASPNET
     Plugin 'vim-scripts/aspnet.vim'
+endif
+if PLUGIN_HLA
+    Plugin 'jmahler/hla.vim'
 endif
 "**********************"
 "**********************"
@@ -1274,14 +1275,30 @@ inoremap <C-S-]> <C-t>
 autocmd InsertEnter * :call NumberToggleRel()
 autocmd InsertLeave * :call NumberToggleRel()
 
-" Pick up desired filetypes
+" Pick up desired filetypes and source any appropriate configuration
 augroup filetypedetect
     " Mail
-    autocmd BufNewFile, BufRead *mutt-*     setf mail
+    autocmd BufNewFile,BufRead,BufEnter *mutt-* setf mail
     " VB.NET
-    au BufNewFile,BufRead *.aspx.vb         setf vbnet
+    au BufNewFile,BufRead,BufEnter *.aspx.vb    setf vbnet
     " ASP.NET
-    au BufNewFile,BufRead *.aspx            setf aspnet
+    au BufNewFile,BufRead,BufEnter *.aspx       setf aspnet
+    " Python
+    au BufNewFile,BufRead,BufEnter *.py,*.py2,*.py3,*.pyw   setf python
+    " Makefiles
+    au BufNewFile,BufRead,BufEnter [Mm]akefile{,.*},*.{make,mak,mk}
+                \setf make
+    " C
+    au BufNewFile,BufRead,BufEnter *.[ch]       setf c
+    " C++
+    au BufNewFile,BufRead,BufEnter *.[ch]{xx,++,pp},*.C     setf cpp
+    " Rust
+    au BufNewFile,BufRead,BufEnter *.rst        setf rust
+    " HTML
+    au BufNewFile,BufRead,BufEnter *.htm{,l}    setf html
+    " CSS
+    au BufNewFile,BufRead,BufEnter *.css        setf css
+    
 augroup END
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

@@ -31,6 +31,12 @@
 import os
 import ycm_core
 
+# obtain important path names
+def DirectoryOfThisScript():
+  return os.path.dirname( os.path.abspath( __file__ ) )
+def DirectoryOfExecution():
+    return os.path.abspath( '.' )
+
 # These are the compilation flags that will be used in case there's no
 # compilation database set (by default, one is not set).
 # CHANGE THIS LIST OF FLAGS. YES, THIS IS THE DROID YOU HAVE BEEN LOOKING FOR.
@@ -102,10 +108,6 @@ else:
   database = None
 
 SOURCE_EXTENSIONS = [ '.cpp', '.cxx', '.cc', '.c', '.m', '.mm' ]
-
-def DirectoryOfThisScript():
-  return os.path.dirname( os.path.abspath( __file__ ) )
-
 
 def MakeRelativePathsInFlagsAbsolute( flags, working_directory ):
   if not working_directory:

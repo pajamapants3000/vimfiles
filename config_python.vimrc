@@ -131,6 +131,7 @@ let PLUGIN_RUST = 1
 let PLUGIN_VIM_TOML = 1
 let PLUGIN_VBNET = 1
 let PLUGIN_ASPNET = 1
+let PLUGIN_HLA = 1
 
 " Doing more with vim!
 let PLUGIN_CALENDAR = 0

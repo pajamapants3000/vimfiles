@@ -1298,6 +1298,8 @@ augroup filetypedetect
     au BufNewFile,BufRead,BufEnter *.htm{,l}    setf html
     " CSS
     au BufNewFile,BufRead,BufEnter *.css        setf css
+    " HLA
+    au BufNewFile,BufRead,BufEnter *.h{la,hf}   setf hla
     
 augroup END
 

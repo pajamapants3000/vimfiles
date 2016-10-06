@@ -891,8 +891,8 @@ let g:UltiSnipsUsePythonVersion = 3
 "+what tell the plugin what mappings to set.
 let g:UltiSnipsExpandTrigger="j<tab>"
 let g:UltiSnipsListSnippets="<F3>"
-let g:UltiSnipsJumpForwardTrigger="<c-j>"
-let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+let g:UltiSnipsJumpForwardTrigger="<c-o>"
+let g:UltiSnipsJumpBackwardTrigger="<c-i>"
 " Trying to take advantage of the "expand or jump" combination, especially
 "+since <tab> is taken by YCM, but haven't gotten it to work right yet.
 "+the problem is executing the function from insert mode.

@@ -1135,6 +1135,77 @@ nnoremap <Leader>op :Open<CR>
 "^^^^^^^^^
     if PLUGIN_VIMWIKI
 " vimwiki settings
+" NOTE: in a wiki, run command :echo vimwiki_list to see settings
+let wiki = {}
+" taken from default dictionary
+let wiki.maxhi = 0
+let wiki.css_name = 'style.css'
+let wiki.auto_export = 0
+let wiki.diary_index = 'diary'
+let wiki.template_default = 'default'
+let wiki.auto_toc = 0
+let wiki.auto_tags = 0
+let wiki.nested_syntaxes = {}
+let wiki.diary_sort = 'desc'
+let wiki.path = '/home/tommy/vimwiki/'
+let wiki.diary_link_fmt = '%Y-%m-%d'
+let wiki.template_ext = '.tpl'
+let wiki.syntax = 'default'
+let wiki.custom_wiki2html = ''
+let wiki.automatic_nested_syntaxes = 1
+let wiki.index = 'index'
+let wiki.diary_header = 'Diary'
+let wiki.ext = '.wiki'
+let wiki.path_html = '/home/tommy/vimwiki_html/'
+let wiki.temp = 0
+let wiki.template_path = '/home/tommy/vimwiki/templates/'
+let wiki.list_margin = -1
+let wiki.diary_rel_path = 'diary/'
+" Wiki directory structure
+" vimwiki/ cloned at ssh://hg@bitbucket.org/pajamapants3000/my_vimwiki
+if has('win32')
+    let wiki.path = $USERPROFILE.'/vimwiki/'
+    let wiki.path_html = $USERPROFILE.'/vimwiki/html/'
+    let wiki.template_path = $USERPROFILE.'/vimwiki/templates/'
+else
+    let wiki.path = $HOME.'/vimwiki/'
+    let wiki.path_html = $HOME.'/vimwiki/public_html/'
+    let wiki.template_path = $HOME.'/vimwiki/templates/'
+endif
+"
+let wiki.auto_export = 1
+let wiki.auto_toc = 1
+" start with 'c++' which doesn't get interpreted right as .c++; any others
+let syntaxes = {'c++': 'cpp'}
+let syntaxes.cpp = 'cpp'
+let syntaxes.python = 'python'
+let syntaxes.asm = 'asm'
+let syntaxes.rust = 'rust'
+let syntaxes.go = 'go'
+let syntaxes.sh = 'sh'
+let syntaxes.make = 'make'
+let syntaxes.lua = 'lua'
+let syntaxes.hla = 'hla'
+let wiki.nested_syntaxes = syntaxes
+" Add additional dictionaries to list for additional wikis
+"let wiki2 = {}
+" Global settings
+let g:vimwiki_list = [wiki]
+let g:vimwiki_hl_headers = 1
+let g:vimwiki_use_calendar = 1
+" Probably want to do this selectively; can do per file/buffer?
+" Want off more often than on; just turn on before saving a specific buffer
+" to get it to apply to that html page
+let g:vimwiki_html_header_numbering = 0
+" Default, 1, ignores newlines; 0 inserts <br />
+"let g:vimwiki_list_ignore_newline = 0
+" Heading colors
+":hi VimwikiHeader1 guifg=#FF0000
+":hi VimwikiHeader2 guifg=#00FF00
+":hi VimwikiHeader3 guifg=#0000FF
+":hi VimwikiHeader4 guifg=#FF00FF
+":hi VimwikiHeader5 guifg=#00FFFF
+":hi VimwikiHeader6 guifg=#FFFF00
     endif   " PLUGIN_VIMWIKI
 
 " vim-notes

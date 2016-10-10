@@ -1186,6 +1186,7 @@ let syntaxes.sh = 'sh'
 let syntaxes.make = 'make'
 let syntaxes.lua = 'lua'
 let syntaxes.hla = 'hla'
+let syntaxes.toml = 'toml'
 let wiki.nested_syntaxes = syntaxes
 " Add additional dictionaries to list for additional wikis
 "let wiki2 = {}

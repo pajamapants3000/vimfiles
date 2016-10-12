@@ -1190,6 +1190,7 @@ let syntaxes.sh = 'sh'
 let syntaxes.make = 'make'
 let syntaxes.lua = 'lua'
 let syntaxes.hla = 'hla'
+let syntaxes.toml = 'toml'
 let wiki.nested_syntaxes = syntaxes
 " Add additional dictionaries to list for additional wikis
 "let wiki2 = {}
@@ -1361,8 +1362,9 @@ augroup filetypedetect
     " Python
     au BufNewFile,BufRead,BufEnter *.py,*.py2,*.py3,*.pyw   setf python
     " Makefiles
-    au BufNewFile,BufRead,BufEnter [Mm]akefile{,.*},*.{make,mak,mk}
-                \setf make
+    au BufNewFile,BufRead,BufEnter
+                \ [Mm]akefile{,.*},*.{make,mak,mk}
+                \ setf make
     " C
     au BufNewFile,BufRead,BufEnter *.[ch]       setf c
     " C++

@@ -92,6 +92,10 @@ endif
 if PLUGIN_LOCALRC
     Plugin 'thinca/vim-localrc'
 endif
+" vifm.vim - vifm in vim!
+if PLUGIN_VIFM
+    Plugin 'vifm/vifm.vim'
+endif
 " MiniBufExplorer - like tab bar but for buffers
 "+unite kinda renders this unnecessary, unless I want to SEE the buffers
 "+at all times, but they can never be removed (I think?). So, disabling for now.

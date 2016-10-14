@@ -1,19 +1,18 @@
 " File cpp.vim
 " c++-specific vim configuration
 
-" Easy-compile single source file. Add interface/input later for linking and
-"+other situation-specific settings and input
-map <leader>o :!make -f %:h/Makefile
-map <leader>[ :!%:p:r<CR>
-map <leader>] :!%:p:r
+" Start by sourcing all of the C stuff
+source './c.vim'
+
+nunmap <leader>p
 if has('win32')
-    map <leader>C :cd $SYNCPATH\Copy\Code\C++<CR>
-    map <leader>L :cd $SYNCPATH\Copy\Code\C++\Accelerated_C++<CR>
-    map <leader>p :!g++ -Wall -std=gnu++11 -o %:r.exe %<CR>
+    nnoremap <leader>CC :cd $AA_DRIVPATH\Copy\Code\C++<CR>
+    nnoremap <leader>L :cd $AA_DRIVPATH\Copy\Code\C++\Accelerated_C++<CR>
+    nnoremap <leader>p :!gcc -Wall -std=gnu99 -o %:r.exe %<CR>
 else
-    map <leader>C :cd ~/Copy/Code/C++<CR>
-    map <leader>L :cd ~/Copy/Code/C++/Accelerated_C++<CR>
-    map <leader>p :!g++ -Wall -std=gnu++11 -o %:r %<CR>
+    nnoremap <leader>CC :cd ~/Copy/Code/C++<CR>
+    nnoremap <leader>L :cd ~/Copy/Code/C++/Accelerated_C++<CR>
+    nnoremap <leader>p :!g++ -Wall -std=gnu++11 -o %:r %<CR>
 endif
 "
 " Additional configuration
@@ -22,16 +21,6 @@ if has('win32')
     set tags+=$HOME\ctags\cxx.tags
 else
     set tags+=$HOME/.config/ctags/cxx.tags
-endif
-
-" path additions
-set path+=$CXXPATH/include
-set path+=$CPATH/include
-if has('win32')
-  set path+=$LOCAL/include
-else
-  set path+=/usr/include
-  set path+=/usr/local/include
 endif
 
 set cms=//\ %s

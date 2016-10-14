@@ -3,17 +3,17 @@
 
 " Easy-compile single source file. Add interface/input later for linking and
 "+other situation-specific settings and input
-map <leader>o :!make -f %:h/Makefile
-map <leader>[ :!%:p:r<CR>
-map <leader>] :!%:p:r
+nnoremap <leader>o :!make -f %:h/Makefile
+nnoremap <leader>[ :!%:p:r<CR>
+nnoremap <leader>] :!%:p:r
 if has('win32')
-    map <leader>C :cd $DRIVEPATH\Code\C<CR>
-    map <leader>K :cd $DRIVEPATH\Code\C\King<CR>
-    map <leader>p :!gcc -Wall -std=gnu99 -o %:r.exe %<CR>
+    nnoremap <leader>C :cd $AA_DRIVPATH\Code\C<CR>
+    nnoremap <leader>K :cd $AA_DRIVPATH\Code\C\King<CR>
+    nnoremap <leader>p :!gcc -Wall -std=gnu99 -o %:r.exe %<CR>
 else
-    map <leader>C :cd $DRIVEPATH/Copy/Code/C<CR>
-    map <leader>K :cd $DRIVEPATH/Copy/Code/C/King<CR>
-    map <leader>p :!gcc -Wall -std=gnu99 -o %:r %<CR>
+    nnoremap <leader>C :cd $DRIVEPATH/Copy/Code/C<CR>
+    nnoremap <leader>K :cd $DRIVEPATH/Copy/Code/C/King<CR>
+    nnoremap <leader>p :!gcc -Wall -std=gnu99 -o %:r %<CR>
 endif
 "
 " Additional configuration

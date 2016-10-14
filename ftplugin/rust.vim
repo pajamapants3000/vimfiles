@@ -19,3 +19,6 @@ endif
 set cms=//\ %s
 set isk=a-z,A-Z,48-57,-,_,!,#
 
+" Set b:match_words for matchit
+"let b:match_words = '\<foo\>:\<bar\>'
+

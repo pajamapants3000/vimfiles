@@ -16,3 +16,4 @@ else
     " Open-ended make
     map <leader>] :!make -f %
 endif
+

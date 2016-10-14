@@ -10,4 +10,6 @@ set expandtab
 set foldlevel=0
 set foldclose=all
 
-" End snippets.vim
+" Set b:match_words for matchit
+"let b:match_words = '\<foo\>:\<bar\>'
+

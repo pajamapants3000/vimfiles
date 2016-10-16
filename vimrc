@@ -1051,7 +1051,7 @@ nnoremap <silent> [unite]d  :<C-u>UniteWithBufferDir
 " Pyclewn
 "^^^^^^^^^
     if PLUGIN_PYCLEWN
-let g:pyclewn_temrinal="konsole, -e"
+let g:pyclewn_terminal="konsole, -e"
 let g:pyclewn_python="python3"
     endif   " PLUGIN_PYCLEWN
 

@@ -1169,7 +1169,7 @@ let wiki.diary_rel_path = 'diary/'
 " vimwiki/ cloned at ssh://hg@bitbucket.org/pajamapants3000/my_vimwiki
 if has('win32')
     let wiki.path = $USERPROFILE.'/vimwiki/'
-    let wiki.path_html = $USERPROFILE.'/vimwiki/html/'
+    let wiki.path_html = $USERPROFILE.'/vimwiki/public_html/'
     let wiki.template_path = $USERPROFILE.'/vimwiki/templates/'
 else
     let wiki.path = $HOME.'/vimwiki/'

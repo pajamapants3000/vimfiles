@@ -13,5 +13,4 @@ let g:tlTokenList += [ 'OOH' ]                  " very interesting
 let g:tlTokenList += [ 'CHAL' ]                 " challenge
 let g:tlTokenList += [ 'LATR' ]                 " come back to this later
 let g:tlTokenList += [ 'BTW' ]                  " an aside (by the way)
-let g:tlTokenList += [ 'HMM' ]                  " personal thought (my own)
 

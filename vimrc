@@ -1051,7 +1051,7 @@ nnoremap <silent> [unite]d  :<C-u>UniteWithBufferDir
 " Pyclewn
 "^^^^^^^^^
     if PLUGIN_PYCLEWN
-let g:pyclewn_temrinal="konsole, -e"
+let g:pyclewn_terminal="konsole, -e"
 let g:pyclewn_python="python3"
     endif   " PLUGIN_PYCLEWN
 
@@ -1145,7 +1145,7 @@ let wiki = {}
 let wiki.maxhi = 0
 let wiki.css_name = 'style.css'
 let wiki.auto_export = 0
-let wiki.diary_index = 'diary'
+let wiki.diary_index = 'index'
 let wiki.template_default = 'default'
 let wiki.auto_toc = 0
 let wiki.auto_tags = 0

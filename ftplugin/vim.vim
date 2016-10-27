@@ -1,3 +1,3 @@
-" File c.vim
-" vimL-specific vim configuration
+" File vim.vim
+" vimscript-specific vim configuration
 set nowrap

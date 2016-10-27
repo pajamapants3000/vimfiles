@@ -636,7 +636,7 @@ set ssop-=options               " Don't mess with options/plugins loaded!
 " GUI Options
 "*************
 " Turn off toolbar
-set guioptions-=T
+set guioptions-=TrR
 " Turn off GUI tabs; use tabline instead
 set guioptions-=e
 set showtabline=1

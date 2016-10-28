@@ -2,7 +2,8 @@
 " c++-specific vim configuration
 
 " Start by sourcing all of the C stuff
-source './c.vim'
+let this_script_path = resolve(expand('<sfile>:p:h'))
+exe 'source ' . this_script_path . '/c.vim'
 
 nunmap <leader>p
 if has('win32')

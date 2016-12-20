@@ -14,3 +14,7 @@ let g:tlTokenList += [ 'CHAL' ]                 " challenge
 let g:tlTokenList += [ 'LATR' ]                 " come back to this later
 let g:tlTokenList += [ 'BTW' ]                  " an aside (by the way)
 
+" Mappings
+" Insert line break, followed by actual carriage return
+inoremap br<CR> <br /><CR>
+

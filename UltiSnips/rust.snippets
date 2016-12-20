@@ -188,16 +188,16 @@ snippet td      "todo"
 endsnippet
 # macros
 snippet !pl     "println! macro" b
-println!("${1:format string}")$0
+println!("${1:format string}");$0
 endsnippet
 snippet !pl,    "println! macro with args" b
-println!("${1:format string}", ${2:args})$0
+println!("${1:format string}", ${2:args});$0
 endsnippet
 snippet !p      "print! macro" b
-print!("${1:format string}")$0
+print!("${1:format string}");$0
 endsnippet
 snippet !p,     "print! macro with args" b
-print!("${1:format string}", ${2:args})$0
+print!("${1:format string}", ${2:args});$0
 endsnippet
 snippet !wl     "writeln! macro" b
 writeln!(${1:buffer}, "${2:format string}").unwrap();$0

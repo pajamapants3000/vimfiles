@@ -1,0 +1,185 @@
+#
+# Begin openscad.snippets
+#
+
+# Snippets for OpenSCAD (*.scad) files
+snippet mod "module" b
+module ${1:module name}( ${2:variable list} )
+{
+    $0
+}
+endsnippet
+snippet fun "function" b
+function ${1:function name}( ${2:variable list} )
+{
+    $0
+}
+endsnippet
+snippet in "include separate source file" b
+include <${1:source_file}.scad>$0
+endsnippet
+snippet use "use separate source file" b
+use <${1:source_file}.scad>$0
+endsnippet
+snippet im "import stl file" b
+import <${1:source_file}.stl>$0
+endsnippet
+# 2D
+snippet ci "circle"
+circle( r = ${1:radius} );$0
+endsnippet
+snippet sq "square"
+square( s = ${1:size}, center = ${2:false} );$0
+endsnippet
+snippet pg "polygon"
+polygon( points = ${1:points}${2:, paths = <optional paths>} );$0
+endsnippet
+snippet tex "text; full feature"
+text( text = "${1:text}", s = ${2:size}, font = "${3:Liberation Mono}", halign = "${4:left}", valign = "${5:baseline}", spacing = ${6:1}, direction = "${7:ltr}", language = "${8:en}", script = "${9:latin}"${10:, $fn = number of segments} );$0
+endsnippet
+snippet te "text"
+text( text = "${1:text}"${2:, additional options} );$0
+endsnippet
+# 3D Shapes
+snippet cc "cuboid"
+cube( size = [${1:x}, ${2:y}, ${3:z}], center = ${4:false} );$0
+endsnippet
+snippet ccc "cube or cuboid with size in vector variable"
+cube( size = ${1:x}, center = ${4:false} );$0
+endsnippet
+snippet sp "sphere"
+sphere( r = ${1:radius}, \$fn = ${2:0}, \$fa = ${3:12}, \$fs = ${4:2} );$0
+endsnippet
+snippet spp "sphere with any $fx set in environment"
+sphere( r = ${1:radius}, ${2:$fn = 0, $fa = 12, $fs = 2} );$0
+endsnippet
+snippet cy "cylinder"
+cylinder( h = ${1:height}, r = ${2:radius}, center = ${3:false} );$0
+endsnippet
+snippet cn "cylindrical cone"
+cylinder( h = ${1:height}, r1 = ${2:bottom radius}, r2 = ${2:top radius}, center = ${3:false} );$0
+endsnippet
+snippet po "polyhedron"
+polyhedron( points = ${1:point vector list}, faces = ${2:face verticies vector list}, convexity = ${3:1} );$0
+endsnippet
+# Transformations
+snippet ro "rotate in degrees"
+rotate( a = [${1:x-rot}, ${2:y-rot}, ${3:z-rot}] )$0
+endsnippet
+snippet rov "rotate about a vector"
+rotate( a = ${1:degrees}, v = ${2:vector-defined axis} )$0
+endsnippet
+snippet sc "scale"
+scale( v = [${1:x}, ${2:y}, ${3:z}] )$0
+endsnippet
+snippet res "resize"
+resize( newsize = [${1:x}, ${2:y}, ${3:z}] )$0
+endsnippet
+snippet tr "translate"
+translate( v = [${1:x}, ${2:y}, ${3:z}] )$0
+endsnippet
+snippet mi "mirror"
+mirror( v = [${1:x}, ${2:y}, ${3:z}] )$0
+endsnippet
+snippet mmm "multmatrix with variable argument"
+multmatrix( m = ${1:M} )$0
+endsnippet
+snippet mm "multmatrix"
+multmatrix( m = [
+    [ ${1:Scale X}, ${2:Scale X sheared along Y}, ${3:Scale X sheared along Z} ${4:Translate X}],
+    [ ${5:Scale Y sheared along X}, ${6:Scale Y}, ${7:Scale Y sheared along Z} ${8:Translate Y}],
+    [ ${9:Scale Z sheared along X}, ${10:Scale Z sheared along Y}, ${11:Scale Z} ${12:Translate Z}],
+    [ 0, 0, 0, 1]
+    ] )$0
+endsnippet
+snippet mma "set multimatrix variable value"
+M = [
+    [ ${1:Scale X}, ${2:Scale X sheared along Y}, ${3:Scale X sheared along Z} ${4:Translate X}],
+    [ ${5:Scale Y sheared along X}, ${6:Scale Y}, ${7:Scale Y sheared along Z} ${8:Translate Y}],
+    [ ${9:Scale Z sheared along X}, ${10:Scale Z sheared along Y}, ${11:Scale Z} ${12:Translate Z}],
+    [ 0, 0, 0, 1]
+    ];
+endsnippet
+snippet co "color rgba; fractional values"
+color( [${1:r}, ${2:g}, ${3:b}, ${4:a}] )$0
+endsnippet
+snippet coa "color rgb, a; fractional values"
+color( [${1:r}, ${2:g}, ${3:b}], a = ${4:1.0} )$0
+endsnippet
+snippet col "color name, a; fractional value for a"
+color( "${1:name}", a = ${2:1.0} )$0
+endsnippet
+snippet co255 "color rgba; 0-255"
+color( [${1:r}/255, ${2:g}/255, ${3:b}/255, ${4:a}/255] )$0
+endsnippet
+snippet coa255 "color rgb, a; 0-255"
+color( [${1:r}/255, ${2:g}/255, ${3:b}/255], a = ${4:255}/255 )$0
+endsnippet
+snippet col255 "color name, a; 0-255 for a"
+color( "${1:name}", a = ${2:255}/255 )$0
+endsnippet
+snippet ofr "offset"
+offset( r = ${1:radius}, chamfer = ${2:false} )$0
+endsnippet
+snippet ofd "offset"
+offset( delta = ${1:delta}, chamfer = ${2:false} )$0
+endsnippet
+snippet mi "minkowski"
+minkowski() {
+    $0
+}
+endsnippet
+snippet hu "hull"
+hull() {
+    $0
+}
+endsnippet
+# Boolean combinations
+snippet un "union"
+union() {
+    $0
+}
+endsnippet
+snippet di "difference"
+difference() {
+    $0
+}
+endsnippet
+snippet in "intersection"
+intersection() {
+    $0
+}
+endsnippet
+snippet ren "render"
+render( convexity = ${1:1} )$0
+endsnippet
+# Conditionals
+snippet ?: "ternary operator"
+${1:test} ? ${2:value if true} : ${3:value if false}$0
+endsnippet
+# Iterations
+snippet fo "for loop"
+for( i = [ ${1:start} : ${2:increment} : ${3:end} ] )
+{
+    $0
+}
+endsnippet
+snippet fov "for loop; vector sets values"
+for( i = ${1:values} )
+{
+    $0
+}
+endsnippet
+snippet inf "intersection_for"
+intersection_for( i = [ ${1:start} : ${2:increment} : ${3:end} ] )
+{
+    $0
+}
+endsnippet
+snippet infv "intersection_for; vector sets values"
+intersection_for( i = ${1:values} )
+{
+    $0
+}
+endsnippet
+

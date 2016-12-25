@@ -636,6 +636,8 @@ set foldmethod=marker
 set foldlevel=99
 set showcmd
 set incsearch
+" Set file format to unix line endings
+set ff=unix
 syntax on                       " syntax highlighing
 filetype on                     " try to detect filetypes
 filetype plugin indent on       " enable loading indent file for filetype
@@ -942,10 +944,6 @@ nmap <leader>C :call Pycon()<CR>
 "**Options**
 " If you want :UltiSnipsEdit to split your window.
 "let g:UltiSnipsEditSplit="vertical"
-" This is sad I know, but for full cooperation with YCM, for the time being...
-"+I tried setting both to Python 3 and YCM crashes! But like this they work
-"+GREAT together!
-"For Python/Jedi work (not YCM) Py3 is fine.
 let g:UltiSnipsUsePythonVersion = 3
 "**Mappings**
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
@@ -971,6 +969,8 @@ let g:UltiSnipsSnippetDirectories=[this_script_path . "/UltiSnips"]
 "+absolute or relative path and act accordingly! So be careful with
 "+expanding variables, append dot as needed to be explicit.
 let g:UltiSnipsSnippetsDir=this_script_path . "/UltiSnips"
+" how does UltiSnipsEdit open? ('normal', 'horizontal', 'vertical', 'context')
+let g:UltiSnipsEditSplit='horizontal'
     endif   " PLUGIN_ULTISNIPS
 
 " YouCompleteMe

@@ -17,20 +17,24 @@ if !exists('config_type')
     let config_type = 'none'
 endif
 " Set the initial user configuration to the location of this script
-let this_script_path = resolve(expand('<sfile>:p:h'))
-let &runtimepath .= ',' . this_script_path
+let g:CloudConfig = resolve(expand('<sfile>:p:h'))
+let &runtimepath .= ',' . g:CloudConfig
+" Set local configuration path - mostly plugins
 " Source flags for this configuration
-execute 'source ' . this_script_path . '/config_' . config_type . '.vimrc'
+execute 'source ' . g:CloudConfig . '/config_' . config_type . '.vimrc'
 " Now add the usual system-specific user configuration
 if has('win64')
-    set rtp+=substitute($USERPROFILE, "\\", "/", "g") . '/OneDrive/vimfiles'
+    let g:LocalConfig =
+        \substitute($USERPROFILE, "\\", "/", "g") . '/OneDrive/vimfiles'
 elseif has('win32')
-    set rtp+=substitute($USERPROFILE, "\\", "/", "g") . '/OneDrive/x86/vimfiles'
+    let g:LocalConfig =
+        \substitute($USERPROFILE, "\\", "/", "g") . '/OneDrive/x86/vimfiles'
 else
-    set rtp+=$HOME/.vim
+    let g:LocalConfig = $HOME.'/.vim'
 endif
+execute "set rtp+=" . g:LocalConfig
 " Now add the "/after" paths
-let &runtimepath .= ',' . this_script_path . '/after'
+let &runtimepath .= ',' . g:CloudConfig . '/after'
 if has('win64')
     set rtp+=substitute($USERPROFILE, "\\", "/", "g").'/OneDrive/vimfiles/after'
 elseif has('win32')
@@ -412,7 +416,7 @@ endif
 if PLUGIN_VIM_VIRTUALENV
     Plugin 'jmcantrell/vim-virtualenv'
 endif
-if PLUGIN_VIM_RACER 
+if PLUGIN_VIM_RACER
     Plugin 'racer-rust/vim-racer'
 endif
 "******************************
@@ -587,7 +591,7 @@ endif
 " vim-orgmode - ripoff of popular emacs plugin
 "   used for organization and such
 if PLUGIN_VIM_ORGMODE
-    Plugin 'jceb/vim-orgmode'    
+    Plugin 'jceb/vim-orgmode'
 endif
 " vim-taskwarrior - vim interface to taskwarrior utility
 if PLUGIN_VIM_TASKWARRIOR
@@ -599,9 +603,9 @@ endif
 call vundle#end()
 " Should append to vundle setup, but it is repeated further down.
 "filetype plugin indent on
-"***************************************************************************
-" Main Configuration
-"********************
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Additional Runtime Configuration
+"**********************************
 " vifm integration
 if has('unix')
     set runtimepath+=/usr/share/vifm/vim-doc/
@@ -612,49 +616,6 @@ endif
 if has('nvim')
   runtime! python_setup.vim
 endif
-" * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-" Highlight past 79 columns - More insistent; has odd effect on popup text
-" This should be moved to the python config
-"augroup vimrc_autocmds
-"    autocmd!
-"    " highlight characters past column 79
-"    autocmd FileType python highlight Excess ctermbg=DarkGrey guibg=lightgrey
-"    autocmd FileType python match Excess /\%79v.*/
-"    autocmd FileType python set nowrap
-"    augroup END
-" Cool alternative, just color the column!
-set colorcolumn=80
-highlight ColorColumn ctermbg=darkgray
-" * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-" Change one of the tabstops to 1? Only tabs are pressed, not built in.
-" UPDATE: I like the built-in tab stops now.
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set expandtab
-set foldmethod=marker
-set foldlevel=99
-set showcmd
-set incsearch
-" Set file format to unix line endings
-set ff=unix
-syntax on                       " syntax highlighing
-filetype on                     " try to detect filetypes
-filetype plugin indent on       " enable loading indent file for filetype
-" Set tags to include ctags
-set tags+=./tags
-" Session options to save on request
-set ssop-=options               " Don't mess with options/plugins loaded!
-" GUI Options
-"*************
-" Turn off scrollbar
-set guioptions-=r
-set guioptions-=R
-" Turn off toolbar
-set guioptions-=T
-" Turn off GUI tabs; use tabline instead
-set guioptions-=e
-set showtabline=1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Functions
 "***********
@@ -684,6 +645,18 @@ function! NumberToggle()
         else
             set number
         endif
+    endif
+endfunc
+"
+" Add all tasklist identifiers to Todo highlighting
+"^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+function! TlTokenHi()
+    if exists('g:tlTokenList')
+        for token in g:tlTokenList
+            " for some reason, couldn't get `match` to work!
+            execute "syn keyword tlToken " . token
+        endfor
+        hi link tlToken Todo
     endif
 endfunc
 "
@@ -754,6 +727,7 @@ nnoremap <F5> :GundoToggle<CR>
 "**Options**
 "let g:tlWindowPosition = 1 "0 is default, window on top. 1 -> window on bottom
 ""tlTokenList: List of tokens that tasklist searches for
+" plugin sets default if we do not set here first
 "+default = ['FIXME', 'TODO', 'XXX']
 "let g:tlTokenList = ['FIXME', 'TODO', 'XXX']
 "**Mappings**
@@ -964,11 +938,11 @@ let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 inoremap <silent> <S-F12> <C-R>=(pumvisible()? "\<LT>C-E>":"")<CR><C-R>=UltiSnipsCallUnite()<CR>
 nnoremap <silent> <S-F12> a<C-R>=(pumvisible()? "\<LT>C-E>":"")<CR><C-R>=UltiSnipsCallUnite()<CR>
 " Use ONLY snippets in a single folder (ignore builtins, etc)
-let g:UltiSnipsSnippetDirectories=[this_script_path . "/UltiSnips"]
+let g:UltiSnipsSnippetDirectories=[g:CloudConfig . "/UltiSnips"]
 " Set the private snippet storage folder; US will detect if it is an
 "+absolute or relative path and act accordingly! So be careful with
 "+expanding variables, append dot as needed to be explicit.
-let g:UltiSnipsSnippetsDir=this_script_path . "/UltiSnips"
+let g:UltiSnipsSnippetsDir=g:CloudConfig . "/UltiSnips"
 " how does UltiSnipsEdit open? ('normal', 'horizontal', 'vertical', 'context')
 let g:UltiSnipsEditSplit='horizontal'
     endif   " PLUGIN_ULTISNIPS
@@ -1241,18 +1215,25 @@ endif
 let wiki.auto_export = 1
 let wiki.auto_toc = 1
 " start with 'c++' which doesn't get interpreted right as .c++; any others
-let syntaxes = {'c++': 'cpp'}
-let syntaxes.cpp = 'cpp'
-let syntaxes.python = 'python'
-let syntaxes.asm = 'asm'
-let syntaxes.rust = 'rust'
-let syntaxes.go = 'go'
-let syntaxes.sh = 'sh'
-let syntaxes.make = 'make'
-let syntaxes.lua = 'lua'
-let syntaxes.hla = 'hla'
-let syntaxes.toml = 'toml'
-let wiki.nested_syntaxes = syntaxes
+let syntaxes                = {'c++': 'cpp'}
+let syntaxes['cpp']         = 'cpp'
+let syntaxes['python']      = 'python'
+let syntaxes['asm']         = 'asm'
+let syntaxes['rust']        = 'rust'
+let syntaxes['go']          = 'go'
+let syntaxes['sh']          = 'sh'
+let syntaxes['make']        = 'make'
+let syntaxes['lua']         = 'lua'
+let syntaxes['hla']         = 'hla'
+let syntaxes['toml']        = 'toml'
+let syntaxes['c']           = 'c'
+" TODO: 'c' overrides this when set to 'cs', but doesn't affect cpp or c++;
+" why!?
+" Tried reordering... same result
+" so I set to 'sharp' and all is well
+let syntaxes['sharp']       = 'cs'
+let syntaxes['sql']         = 'sql'
+let wiki.nested_syntaxes    = syntaxes
 " Add additional dictionaries to list for additional wikis
 "let wiki2 = {}
 " Global settings
@@ -1291,7 +1272,7 @@ let g:vimwiki_html_header_numbering = 0
     if PLUGIN_VIM_TASKWARRIOR
 " vimtaskwarrior settings
     endif " PLUGIN_VIM_TASKWARRIOR
-    
+
 " vim-snippets
 "^^^^^^^^^^^^^^
 if PLUGIN_VIM_SNIPPETS
@@ -1466,14 +1447,60 @@ augroup filetypedetect
     au BufNewFile,BufRead,BufEnter *.css        setf css
     " HLA
     au BufNewFile,BufRead,BufEnter *.h{la,hf}   setf hla
-    
+
 augroup END
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Final startup config - set config and theme
-"*********************************************
+" Main Configuration
+"********************
+" * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+" Highlight past 79 columns - More insistent; has odd effect on popup text
+" This should be moved to the python config
+"augroup vimrc_autocmds
+"    autocmd!
+"    " highlight characters past column 79
+"    autocmd FileType python highlight Excess ctermbg=DarkGrey guibg=lightgrey
+"    autocmd FileType python match Excess /\%79v.*/
+"    autocmd FileType python set nowrap
+"    augroup END
+" Cool alternative, just color the column!
+set colorcolumn=80
+highlight ColorColumn ctermbg=darkgray
+" * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+" Change one of the tabstops to 1? Only tabs are pressed, not built in.
+" UPDATE: I like the built-in tab stops now.
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set expandtab
+set foldmethod=marker
+set foldlevel=99
+set showcmd
+set incsearch
+" Set file format to unix line endings
+set ff=unix
+syntax on                       " syntax highlighing
+execute 'source ' . g:CloudConfig . '/syntax/syntax.vim'
+filetype on                     " try to detect filetypes
+filetype plugin indent on       " enable loading indent file for filetype
+" Set tags to include ctags
+set tags+=./tags
+" Session options to save on request
+set ssop-=options               " Don't mess with options/plugins loaded!
+" GUI Options
+"*************
+" Turn off scrollbar
+set guioptions-=r
+set guioptions-=R
+" Turn off toolbar
+set guioptions-=T
+" Turn off GUI tabs; use tabline instead
+set guioptions-=e
+set showtabline=1
+"*********
 set number
 set relativenumber
+"*********
 " Font and colorscheme require some system-specific settings
 if has('win32')
     "************************************

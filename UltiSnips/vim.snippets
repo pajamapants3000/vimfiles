@@ -44,4 +44,28 @@ if !hasmapto('<Plug>${1:Command name}')
     map <unique> <leader>${2:key combo} <Plug>$1
 endif
 endsnippet
+snippet syn     "syntax file start" b
+" Personal ${1:`!p snip.rv = snip.basename`} syntax.
+" Language: ${2:lang}
+" Version: 0.1
+" Last Change: `date +%Y/%m/%d`
+" Maintainer: Tommy Lincoln <pajamapants3000@gmail.com>
+
+if exists("b:current_syntax")
+  finish
+endif
+
+let s:cpo_save = &cpo
+set cpo&vim
+
+syn case match
+
+$0
+
+let b:current_syntax = "$1"
+
+let &cpo = s:cpo_save
+unlet s:cpo_save
+
+endsnippet
 

@@ -23,7 +23,7 @@ let &runtimepath .= ',' . this_script_path
 execute 'source ' . this_script_path . '/config_' . config_type . '.vimrc'
 " Now add the usual system-specific user configuration
 if has('win64')
-    set rtp+=substitute($USERPROFILE, "\\", "/", "g") . '/OneDrive/vimfiles'
+    set rtp+=substitute($USERPROFILE, "\\", "/", "g") . '/vimfiles'
 elseif has('win32')
     set rtp+=substitute($USERPROFILE, "\\", "/", "g") . '/OneDrive/x86/vimfiles'
 else
@@ -32,7 +32,7 @@ endif
 " Now add the "/after" paths
 let &runtimepath .= ',' . this_script_path . '/after'
 if has('win64')
-    set rtp+=substitute($USERPROFILE, "\\", "/", "g").'/OneDrive/vimfiles/after'
+    set rtp+=substitute($USERPROFILE, "\\", "/", "g").'/vimfiles/after'
 elseif has('win32')
     set rtp+=substitute($USERPROFILE, "\\", "/", "g").'/OneDrive/x86/vimfiles/after'
 else
@@ -47,8 +47,8 @@ filetype off
 " Add vundle to runtime path so vim can find installed plugins
 if has('win32')
     if has('win64')
-        set rtp+=$USERPROFILE\OneDrive\vimfiles\bundle\vundle
-        call vundle#begin('$USERPROFILE\OneDrive\vimfiles\bundle')
+        set rtp+=$USERPROFILE\vimfiles\bundle\vundle
+        call vundle#begin('$USERPROFILE\vimfiles\bundle')
     else
         set rtp+=$USERPROFILE\OneDrive\x86\vimfiles\bundle\vundle
         call vundle#begin('$USERPROFILE\OneDrive\x86\vimfiles\bundle')
@@ -817,6 +817,12 @@ let g:SuperTabContextDefaultCompletionType = "<c-p>"
 "^^^^^^^^^^^
     if PLUGIN_VIM_SIGNIFY
 " vim-signify settings
+let g:signify_vcs_list = [ 'git', 'hg', 'tfs' ]
+if has('win32')     " 'win64' comes with 'win32' as well, so it's included here
+    let g:signify_difftool = 'fc'
+else
+    let g:signify_difftool = 'diff'     " this is the default
+endif
     endif   " PLUGIN_VIM_SIGNIFY
 
 " airline
@@ -1006,7 +1012,7 @@ if has('win32')
     let g:ycm_path_to_python_interpreter="C:/Python35/python.exe"
     let g:ycm_server_python_interpreter="C:/Python35/python.exe"
     if has('win64')
-        let g:ycm_global_ycm_extra_conf=$USERPROFILE."/OneDrive/vimfiles/.ycm_extra_conf.py"
+        let g:ycm_global_ycm_extra_conf=$USERPROFILE."/vimfiles/.ycm_extra_conf.py"
     else
         let g:ycm_global_ycm_extra_conf=$USERPROFILE."/OneDrive/x86/vimfiles/.ycm_extra_conf.py"
     endif
@@ -1030,7 +1036,7 @@ endif
 "set hidden
 if has('win32')
     " uncomment if using standalone
-    let g:racer_cmd = $USERPROFILE.'/OneDrive/vimfiles/bundle/vim-racer/racerd.exe'
+    let g:racer_cmd = $USERPROFILE.'/vimfiles/bundle/vim-racer/racerd.exe'
     let RUST_SRC_PATH = $USERPROFILE.'/repo/rust/src'
     let CARGO_HOME = $USERPROFILE.'/.cargo'
 else

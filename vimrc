@@ -25,7 +25,7 @@ execute 'source ' . g:CloudConfig . '/config_' . config_type . '.vimrc'
 " Now add the usual system-specific user configuration
 if has('win64')
     let g:LocalConfig =
-        \substitute($USERPROFILE, "\\", "/", "g") . '/OneDrive/vimfiles'
+        \substitute($USERPROFILE, "\\", "/", "g") . '/vimfiles'
 elseif has('win32')
     let g:LocalConfig =
         \substitute($USERPROFILE, "\\", "/", "g") . '/OneDrive/x86/vimfiles'

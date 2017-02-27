@@ -3,13 +3,14 @@
 # Snippets for coding in HTML
 
 snippet hdr     "Typical html header" b
-<!doctype html />
+<!DOCTYPE html>
 <html lang="en-US">
 <head>
-<meta charset="UTF-8" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>${1:Webpage Title}</title>
-$0
+  <title>${1:Webpage Title}</title>
+  $0
 endsnippet
 snippet xdr     "Typical xhtml header" b
 <!doctype xhtml />
@@ -21,18 +22,17 @@ snippet xdr     "Typical xhtml header" b
 $0
 endsnippet
 snippet skel    "Basic html outline" b
-<!doctype html />
+<!DOCTYPE html>
 <html lang="en-US">
 <head>
-<meta charset="UTF-8" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>${1:Webpage Title}</title>
+  <link rel="stylesheet" href="style.css" type="text/css" media="all" />
 
 </head>
-
 <body>
   $0
-
 </body>
 </html>
 endsnippet

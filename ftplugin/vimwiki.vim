@@ -7,17 +7,19 @@
 if !exists('g:tlTokenList')
     let g:tlTokenList = ['FIXME', 'TODO', 'XXX']
 endif
-let g:tlTokenList += [ 'HUH' ]                  " unanswered question
+let g:tlTokenList += [ 'QQQ' ]                  " unanswered question
 let g:tlTokenList += [ 'QnA' ]                  " answered question
 let g:tlTokenList += [ 'NOTE' ]                 " important point
 let g:tlTokenList += [ 'IDEA' ]                 " idea
 let g:tlTokenList += [ 'OOH' ]                  " very interesting
+let g:tlTokenList += [ 'TIP' ]                  " tip or suggestion
 let g:tlTokenList += [ 'CHAL' ]                 " challenge
+let g:tlTokenList += [ 'CARE' ]                 " warning/caution/be careful
 let g:tlTokenList += [ 'LATR' ]                 " come back to this later
 let g:tlTokenList += [ 'BTW' ]                  " an aside (by the way)
 let g:tlTokenList += [ 'TIP' ]                  " a handy suggestion
-let g:tlTokenList += [ 'ME' ]                   " thought I had; may be wrong
 let g:tlTokenList += [ 'WHOA' ]                 " a warning; caution
+let g:tlTokenList += [ 'AHA' ]                  " clarifies/reveals
 " Add tasklist tokens to Todo highlighting
 call TlTokenHi()
 

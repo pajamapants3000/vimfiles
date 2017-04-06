@@ -1,0 +1,131 @@
+# Begin html-markup.snippets
+
+# Snippets for coding in HTML and any other type using HTML markup for text
+#   can use to extend capabilities in vimwiki, for example 
+
+snippet h1      "heading1 inline"
+<h1>${1:Enter Heading}</h1>$0
+endsnippet
+snippet h2      "heading2 inline"
+<h2>${1:Enter Heading}</h2>$0
+endsnippet
+snippet h3      "heading3 inline"
+<h3>${1:Enter Heading}</h3>$0
+endsnippet
+snippet h4      "heading4 inline"
+<h4>${1:Enter Heading}</h4>$0
+endsnippet
+snippet h5      "heading5 inline"
+<h5>${1:Enter Heading}</h5>$0
+endsnippet
+snippet h6      "heading6 inline"
+<h6>${1:Enter Heading}</h6>$0
+endsnippet
+snippet ul      "unordered list"
+<ul>
+  <li>${1:Enter list item}</li>$2
+</ul>
+$0
+endsnippet
+snippet ol      "ordered list"
+<ol>
+  <li>${1:Enter list item}</li>$2
+</ol>
+$0
+endsnippet
+snippet li      "list item" b
+<li>${1:Enter list item}</li>$0
+endsnippet
+snippet ita     "italic text"
+<i>${1:Text to put in italics}</i>$0
+endsnippet
+snippet em      "emphasized text"
+<em>${1:Text to emphasize}</em>$0
+endsnippet
+snippet bld     "bold text"
+<b>${1:Text to put in bold}</b>$0
+endsnippet
+snippet str     "strong text"
+<strong>${1:Text to make strong}</strong>$0
+endsnippet
+snippet sm      "small text"
+<small>${1:Text to make small}</small>$0
+endsnippet
+snippet hi      "highlighted text"
+<marked>${1:Text to highlight}</marked>$0
+endsnippet
+snippet del     "strikethrough text"
+<del>${1:Text to strike through}</del>$0
+endsnippet
+snippet und     "underlined text"
+<ins>${1:Text to underline}</ins>$0
+endsnippet
+snippet sup     "superscript text"
+<sup>${1:Text to put in superscript}</sup>$0
+endsnippet
+snippet sub     "subscript text"
+<sub>${1:Text to put in subscript}</sub>$0
+endsnippet
+snippet q       "quoted text"
+<q>${1:Text to put in quotes}</q>$0
+endsnippet
+snippet bq      "blockquoted text"
+<blockquote>${1:Text to put in blockquotes}</blockquote>$0
+endsnippet
+snippet abbr    "abbreviation"
+<abbr title="${1:Full meaning}">${2:Abbreviation}</abbr>$0
+endsnippet
+snippet addr1   "Address 1"
+<address>
+${1:Name}<br />
+${2:Street1}<br />
+${3:Street2}<br />
+${4:City}, ${5:State}<br />
+${6:Country}<br />
+</address>
+$0
+endsnippet
+snippet cntct1  "Contact info 1"
+<address>
+${1:Name}<br />
+${2:email}<br />
+${3:Website}<br />
+Office: ${4:Office Number}<br />
+Mobile: ${5:Mobile Number}<br />
+</address>
+$0
+endsnippet
+snippet ci      "Cited work title"
+<cite>${1:Title of cited work}</cite>$0
+endsnippet
+snippet bdo     "Bi-directional override"
+<bdo dir="rtl">${1:Text to type backwards!}</bdo>$0
+endsnippet
+snippet code    "Computer code"
+<code>
+${1:Computer code}
+</code>
+$0
+endsnippet
+snippet stdin   "Computer input"
+<kbd>
+${1:Title of cited work}
+</kbd>
+$0
+endsnippet
+snippet stdout  "Computer output"
+<samp>
+${1:Computer output}
+</samp>
+$0
+endsnippet
+snippet var     "Variable"
+<var>${1:Variable}</var>$0
+endsnippet
+snippet pre     "Preformatted text"
+<pre>
+${1:Preformatted text}
+</pre>
+$0
+endsnippet
+

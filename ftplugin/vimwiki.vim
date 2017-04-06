@@ -17,7 +17,8 @@ let g:tlTokenList += [ 'CHAL' ]                 " challenge
 let g:tlTokenList += [ 'CARE' ]                 " warning/caution/be careful
 let g:tlTokenList += [ 'LATR' ]                 " come back to this later
 let g:tlTokenList += [ 'BTW' ]                  " an aside (by the way)
-let g:tlTokenList += [ 'ME' ]                   " my own interpretation, additions
+let g:tlTokenList += [ 'TIP' ]                  " a handy suggestion
+let g:tlTokenList += [ 'WHOA' ]                 " a warning; caution
 let g:tlTokenList += [ 'AHA' ]                  " clarifies/reveals
 let g:tlTokenList += [ 'TEST' ]                 " need to test this
 " Add tasklist tokens to Todo highlighting

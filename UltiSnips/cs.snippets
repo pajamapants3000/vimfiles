@@ -2,11 +2,75 @@
 
 # Snippets for coding in C#
 
-snippet cwl "Console.WriteLine"
+snippet cwl "Console.WriteLine" w
 Console.WriteLine (${1:output string})$0
 endsnippet
-snippet cwl" "Console.WriteLine"
+snippet cwl" "Console.WriteLine" w
 Console.WriteLine ("${1:output string}")$0
+endsnippet
+snippet cw "Console.Write" w
+Console.Write (${1:output string})$0
+endsnippet
+snippet cw" "Console.Write" w
+Console.Write ("${1:output string}")$0
+endsnippet
+# Date & Time
+snippet dt "DateTime" w
+DateTime
+endsnippet
+snippet dto "DateTimeOffset" w
+DateTimeOffset
+endsnippet
+snippet ts "TimeSpan" w
+TimeSpan
+endsnippet
+snippet tz "TimeZone" w
+TimeZone
+endsnippet
+snippet tzi "TimeZoneInfo" w
+TimeZoneInfo
+endsnippet
+# Interfaces
+snippet ie "IEnumerable" w
+IEnumerable
+endsnippet
+snippet ie< "IEnumerable<T>" w
+IEnumerable<${1:T}>$0
+endsnippet
+snippet id "IDisposable" w
+IDisposable
+endsnippet
+snippet id< "IDisposable<T>" w
+IDisposeable<${1:T}>$0
+endsnippet
+snippet if "IFormattable" w
+IFormattable
+endsnippet
+snippet if< "IFormattable<T>" w
+IFormatteable<${1:T}>$0
+endsnippet
+snippet ifp "IFormatProvider" w
+IFormatProvider
+endsnippet
+snippet icf "ICustomFormatter" w
+ICustomFormatter
+endsnippet
+
+# Format Providers
+snippet ci "CultureInfo" w
+CultureInfo
+endsnippet
+snippet nfi "NumberFormatInfo" w
+NumberFormatInfo
+endsnippet
+snippet dtfi "DateTimeFormatInfo" w
+DateTimeFormatInfo
+endsnippet
+snippet ns "NumberStyles" w
+NumberStyles
+endsnippet
+snippet dts "DateTimeStyles" w
+DateTimeStyles
 endsnippet
 
 

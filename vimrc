@@ -198,6 +198,10 @@ endif
 if PLUGIN_SENSIBLE
     Plugin 'tpope/vim-sensible'
 endif
+" unicode.vim - unicode tools and completion
+if PLUGIN_UNICODE
+    Plugin 'chrisbra/unicode.vim'
+endif
 "*******"
 " UNITE "
 "^^^^^^^"
@@ -1489,6 +1493,18 @@ if PLUGIN_VIM_SIGNIFY
     "let g:signify_fold_context = [0, 3]
 endif
 
+" vim-surround
+"^^^^^^^^^^^^^^
+if PLUGIN_VIM_SURROUND
+    " wrap current word in backticks
+    nmap `` ysiw`
+    nmap (( ysiw(
+    nmap )) ysiw)
+    nmap [[ ysiw[
+    nmap ]] ysiw]
+    nmap {{ ysiw{
+    nmap }} ysiw}
+endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Mappings
 "**************
@@ -1678,6 +1694,10 @@ set showtabline=1
 set number
 set relativenumber
 "*********
+if has('multi_byte')
+    set encoding=utf-8
+endif
+"*********
 " Font and colorscheme require some system-specific settings
 if has('win32')
     "************************************
@@ -1702,3 +1722,4 @@ colorscheme luna
 "colorscheme CodeFactoryv3
 "colorscheme Chasing_Logic
 
+" vim: set ft=vim: "

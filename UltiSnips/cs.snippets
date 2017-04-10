@@ -1,75 +1,133 @@
 # Begin cs.snippets
 
 # Snippets for coding in C#
+snippet if      "if statement" b
+if (${1:condition})
+{
+    ${2:block}
+}
+$0
+endsnippet
+snippet fo      "simple for loop counter" b
+for (int ${1:i} = 0; $1 < ${2:range}; ++$1)
+{
+    $0
+}
+endsnippet
+snippet for     "general for setup" b
+for (${1:initialize}; ${2:test}; ${3:alter})
+{
+    $0
+}
+endsnippet
+snippet do      "do-while loop" b
+do
+{
+    $0
+} while (${1:test});
+endsnippet
+snippet fe      "foreach" b
+foreach (${1:var} in ${2:collection})
+{
+    ${3:loop body}
+}
+$0
+endsnippet
+snippet //      "single line comment"
+// ${1:Enter_comment_here}
 
-snippet cwl "Console.WriteLine" w
+endsnippet
+snippet /*      "basic comment"
+/* ${1:Enter_comment_here} */$0
+endsnippet
+snippet /**     "multi-line comment"
+/*
+ * ${1:Enter_comment_here}
+ */$0
+endsnippet
+
+snippet cwl     "Console.WriteLine" w
 Console.WriteLine (${1:output string})$0
 endsnippet
-snippet cwl" "Console.WriteLine" w
+snippet cwl"    "Console.WriteLine" w
 Console.WriteLine ("${1:output string}")$0
 endsnippet
-snippet cw "Console.Write" w
+snippet cw      "Console.Write" w
 Console.Write (${1:output string})$0
 endsnippet
-snippet cw" "Console.Write" w
+snippet cw"     "Console.Write" w
 Console.Write ("${1:output string}")$0
 endsnippet
+snippet sb      "StringBuilder" w
+StringBuilder
+endsnippet
+snippet ccul    "CurrentCulture" w
+CurrentCulture
+endsnippet
+snippet icul    "InvariantCulture" w
+InvariantCulture
+endsnippet
+snippet nsty "NumberStyles" w
+NumberStyles
+endsnippet
+
+
 # Date & Time
-snippet dt "DateTime" w
+snippet dt      "DateTime" w
 DateTime
 endsnippet
-snippet dto "DateTimeOffset" w
+snippet dto     "DateTimeOffset" w
 DateTimeOffset
 endsnippet
-snippet ts "TimeSpan" w
+snippet ts      "TimeSpan" w
 TimeSpan
 endsnippet
-snippet tz "TimeZone" w
+snippet tz      "TimeZone" w
 TimeZone
 endsnippet
-snippet tzi "TimeZoneInfo" w
+snippet tzi     "TimeZoneInfo" w
 TimeZoneInfo
 endsnippet
 # Interfaces
-snippet ie "IEnumerable" w
+snippet ie      "IEnumerable" w
 IEnumerable
 endsnippet
-snippet ie< "IEnumerable<T>" w
+snippet ie<     "IEnumerable<T>" w
 IEnumerable<${1:T}>$0
 endsnippet
-snippet id "IDisposable" w
+snippet id      "IDisposable" w
 IDisposable
 endsnippet
-snippet id< "IDisposable<T>" w
+snippet id<     "IDisposable<T>" w
 IDisposeable<${1:T}>$0
 endsnippet
-snippet if "IFormattable" w
+snippet ift     "IFormattable" w
 IFormattable
 endsnippet
-snippet if< "IFormattable<T>" w
+snippet if<     "IFormattable<T>" w
 IFormatteable<${1:T}>$0
 endsnippet
-snippet ifp "IFormatProvider" w
+snippet ifp     "IFormatProvider" w
 IFormatProvider
 endsnippet
-snippet icf "ICustomFormatter" w
+snippet icf     "ICustomFormatter" w
 ICustomFormatter
 endsnippet
 
 # Format Providers
-snippet ci "CultureInfo" w
+snippet ci      "CultureInfo" w
 CultureInfo
 endsnippet
-snippet nfi "NumberFormatInfo" w
+snippet nfi     "NumberFormatInfo" w
 NumberFormatInfo
 endsnippet
-snippet dtfi "DateTimeFormatInfo" w
+snippet dtfi    "DateTimeFormatInfo" w
 DateTimeFormatInfo
 endsnippet
-snippet ns "NumberStyles" w
+snippet ns      "NumberStyles" w
 NumberStyles
 endsnippet
-snippet dts "DateTimeStyles" w
+snippet dts     "DateTimeStyles" w
 DateTimeStyles
 endsnippet
 

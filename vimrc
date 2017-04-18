@@ -572,6 +572,9 @@ endif
 if PLUGIN_VIM_PS1
     Plugin 'PProvost/vim-ps1'
 endif
+if PLUGIN_POLLEN
+    Plugin 'fasiha/pollen.vim'
+endif
 "**********************"
 "**********************"
 " Doing more with vim! "

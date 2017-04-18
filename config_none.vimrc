@@ -145,6 +145,7 @@ let PLUGIN_ASPNET = 0
 let PLUGIN_HLA = 0
 let PLUGIN_OPENSCAD = 0
 let PLUGIN_VIM_PS1 = 0
+let PLUGIN_POLLEN = 0
 
 " Doing more with vim!
 let PLUGIN_CALENDAR = 0

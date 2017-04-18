@@ -575,6 +575,9 @@ endif
 if PLUGIN_POLLEN
     Plugin 'fasiha/pollen.vim'
 endif
+if PLUGIN_SCRIBBLE
+    Plugin 'nickng/vim-scribble'
+endif
 "**********************"
 "**********************"
 " Doing more with vim! "
@@ -1640,6 +1643,8 @@ augroup filetypedetect
     au BufNewFile,BufRead,BufEnter *.css        setf css
     " HLA
     au BufNewFile,BufRead,BufEnter *.h{la,hf}   setf hla
+    " Pollen
+    au BufNewFile,BufRead,BufEnter *.p{p,m,md}  setf pollen
 
 augroup END
 

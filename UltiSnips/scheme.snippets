@@ -1,0 +1,23 @@
+# scheme.snippets
+
+# Snippets for the Scheme programming langauge
+#   includes Racket, and many other dialects
+
+snippet ;       "comment appended to line"
+; ${1:comment}
+$0
+endsnippet
+snippet ;;      "one-line comment" b
+;; ${1:comment}
+$0
+endsnippet
+snippet |       "block comment"
+#|
+    ${1:block comment}
+|#
+$0
+endsnippet
+snippet #       "S-expression comment" w
+#; ${1:S-expression comment}$0
+endsnippet
+

@@ -146,6 +146,7 @@ let PLUGIN_HLA = 1
 let PLUGIN_OPENSCAD = 1
 let PLUGIN_VIM_PS1 = 1
 let PLUGIN_POLLEN = 1
+let PLUGIN_SCRIBBLE = 1
 
 " Doing more with vim!
 let PLUGIN_CALENDAR = 0

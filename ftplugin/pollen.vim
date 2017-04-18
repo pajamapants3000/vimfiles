@@ -2,8 +2,8 @@
 " vim configuration for pollen preprocessor files (.pp, .pm, .pmd)
 
 " pollen commands
-nnoremap <leader>- :!raco pollen render %p<CR>
-nnoremap <leader>= :!raco pollen start<CR>
+nnoremap <leader>- :!raco pollen render %:p<CR>
+nnoremap <leader>= :ConqueTermTab raco pollen start<CR>
 " jump to important directories
 if has('win32')
     nnoremap <leader>p :cd $USERPROFILE\pollen<CR>

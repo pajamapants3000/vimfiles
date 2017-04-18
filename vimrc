@@ -937,11 +937,13 @@ nmap <S-F7> <Plug>ColorstepReload
 "^^^^^^^^^^^^
     if PLUGIN_CONQUETERM_VIM
 "**Options**
-let g:ConqueTerm_FastMode = 0
+let g:ConqueTerm_FastMode = 1
 let g:ConqueTerm_PyVersion = 3
 let g:ConqueTerm_PyExe = 'C:\Python35\python.exe'
-let g:ConqueTerm_Syntax = 'python'
+"let g:ConqueTerm_Syntax = 'python'
 let g:ConqueTerm_Color = 1
+let g:ConqueTerm_ReadUnfocused = 1
+let g:ConqueTerm_InsertOnEnter = 0
 "**Mappings**
 nmap <leader>C :call Pycon()<CR>
 "  bpython with Conque is disabled because it is too slow!

@@ -22,6 +22,7 @@ let g:tlTokenList += [ 'WHOA' ]                 " a warning; caution
 let g:tlTokenList += [ 'AHA' ]                  " clarifies/reveals
 let g:tlTokenList += [ 'TEST' ]                 " need to test this
 let g:tlTokenList += [ 'ME' ]                   " just my own commentary
+let g:tlTokenList += [ 'REV' ]                  " review content
 
 " Add tasklist tokens to Todo highlighting
 call TlTokenHi()

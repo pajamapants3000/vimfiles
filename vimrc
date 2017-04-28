@@ -1646,7 +1646,7 @@ augroup filetypedetect
     " HLA
     au BufNewFile,BufRead,BufEnter *.h{la,hf}   setf hla
     " Pollen
-    au BufNewFile,BufRead,BufEnter *.p{p,m,md}  setf pollen
+    au BufNewFile,BufRead,BufEnter *.p{,p,m,md,tree} setf pollen
 
 augroup END
 

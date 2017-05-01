@@ -1571,8 +1571,6 @@ inoremap <leader><Enter><Space><Space><Space> <Enter><Left><Delete><Left>
             \<Left><Delete><Left><Delete>
 nnoremap <M-n> :call NumberToggle()<cr>
 nnoremap <C-n> :call NumberToggleRel()<cr>
-" Unicode shortcuts
-inoremap lolo <c-v>u25ca
 "***********************************************
 " NOTE: List of mappings that can't hurt to use!
 " <C-M> - default: a synonym for <CR> or + in Normal mode

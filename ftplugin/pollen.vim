@@ -20,9 +20,10 @@ else
     set tags+=$HOME/.config/ctags/pollen.tags
 endif
 
+set smartindent
+set lisp
 " I don't think there are any working comments in pollen
 "+only for the output file type (e.g. html)
 set cms=<!--\ %s\ -->
-
 
 

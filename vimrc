@@ -526,9 +526,9 @@ endif
 if PLUGIN_LAST256
     Plugin 'sk1418/last256'
 endif
-"********************************
-" Additional Syntax Highlighting
-"^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+"***********************************************************
+" Additional Syntax Highlighting and Other Filetype Plugins
+"^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 if PLUGIN_VIM_QML
     Plugin 'peterhoeg/vim-qml'
 endif
@@ -571,6 +571,9 @@ if PLUGIN_OPENSCAD
 endif
 if PLUGIN_VIM_PS1
     Plugin 'PProvost/vim-ps1'
+endif
+if PLUGIN_RACKET
+    Plugin 'wlangstroth/vim-racket'
 endif
 if PLUGIN_POLLEN
     Plugin 'fasiha/pollen.vim'
@@ -1417,6 +1420,7 @@ let syntaxes['ps1']         = 'ps1'
 " so I set to 'sharp' and all is well
 let syntaxes['sharp']       = 'cs'
 let syntaxes['sql']         = 'sql'
+let syntaxes['rkt']         = 'racket'
 let wiki.nested_syntaxes    = syntaxes
 " Add additional dictionaries to list for additional wikis
 "let wiki2 = {}

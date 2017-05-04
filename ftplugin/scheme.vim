@@ -17,6 +17,6 @@ endif
 set lisp
 " I don't think there are any working comments in pollen
 "+only for the output file type (e.g. html)
-set cms=; %s
+set cms="; %s"
 
 

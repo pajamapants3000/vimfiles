@@ -704,7 +704,7 @@ function! TlTokenHi()
     endif
 endfunc
 "
-" UltiSnips functions
+" UltiSnips Functions
 "^^^^^^^^^^^^^^^^^^^^^
     if PLUGIN_ULTISNIPS
 " Map expand and jump forward to the same key; applies as appropriate
@@ -718,6 +718,11 @@ Unite -winheight=100 -immediately -no-empty ultisnips
 return ''
 endfunction
     endif   " PLUGIN_ULTISNIPS
+
+" Vimwiki Functions
+"^^^^^^^^^^^^^^^^^^^
+    if PLUGIN_VIMWIKI
+    endif   " PLUGIN_VIMWIKI
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin-specific settings and mappings
 "***************************************
@@ -1150,7 +1155,6 @@ vnoremap <leader><space> :call OmniSharp#GetCodeActions('visual')<cr>
 
 " rename with dialog
 nnoremap <leader>nm :OmniSharpRename<cr>
-nnoremap <F2> :OmniSharpRename<cr>
 " rename without dialog - with cursor on the symbol to rename... ':Rename newname'
 command! -nargs=1 Rename :call OmniSharp#RenameTo("<args>")
 

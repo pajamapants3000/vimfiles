@@ -1411,20 +1411,26 @@ let syntaxes['python']      = 'python'
 let syntaxes['asm']         = 'asm'
 let syntaxes['rust']        = 'rust'
 let syntaxes['go']          = 'go'
+let syntaxes['rkt']         = 'racket'
 let syntaxes['sh']          = 'sh'
 let syntaxes['make']        = 'make'
 let syntaxes['lua']         = 'lua'
 let syntaxes['hla']         = 'hla'
 let syntaxes['toml']        = 'toml'
+let syntaxes['xml']         = 'xml'
+let syntaxes['asp']         = 'aspnet'
 let syntaxes['c']           = 'c'
 let syntaxes['ps1']         = 'ps1'
+let syntaxes['sql']         = 'sql'
+let syntaxes['html']        = 'html'
+let syntaxes['vbs']         = 'vbs'
+let syntaxes['vb']          = 'vb'
+let syntaxes['xaml']        = 'xaml'
 " TODO: 'c' overrides this when set to 'cs', but doesn't affect cpp or c++;
 " why!?
 " Tried reordering... same result
 " so I set to 'sharp' and all is well
 let syntaxes['sharp']       = 'cs'
-let syntaxes['sql']         = 'sql'
-let syntaxes['rkt']         = 'racket'
 let wiki.nested_syntaxes    = syntaxes
 " Add additional dictionaries to list for additional wikis
 "let wiki2 = {}

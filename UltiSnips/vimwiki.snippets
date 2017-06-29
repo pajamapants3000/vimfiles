@@ -2,71 +2,81 @@
 
 # Snippets for writing vimwiki pages
 
-# Include markup that was separated out for use in multiple contexts:
-extends html-markup
+# Include markup that was separated out for use in multiple contexts: (huh?)
 snippet br "line break" i
 <br />$0
 endsnippet
 
 # vimwiki markup
-snippet -- "emphasis"
+snippet hdrr    "Section header" b
+%title ${1:Section Title} | ${2:Parent Title}
+
+    = Contents =
+
+endsnippet
+snippet hdr     "Table of contents header" b
+%title ${1:Title of Listing} | ${2:Parent Title}
+
+* 
+endsnippet
+snippet --      "emphasis"
 _${1:emphasized text}_$0
 endsnippet
-snippet -x- "auto-emphasis" A
+snippet -x-     "auto-emphasis" A
 _${1:emphasized text}_$0
 endsnippet
-snippet ** "strong"
+snippet **      "strong"
 *${1:strong text}*$0
 endsnippet
-snippet *x* "auto-strong" A
+snippet *x*     "auto-strong" A
 *${1:strong text}*$0
 endsnippet
-snippet ~~ "strikeout"
+snippet ~~      "strikeout"
 ~~${1:strikeout text}~~$0
 endsnippet
-snippet ~x~ "auto-strikeout" A
+snippet ~x~     "auto-strikeout" A
 ~~${1:strikeout text}~~$0
 endsnippet
-snippet `` "code"
+snippet ``      "code"
 `${1:code}`$0
 endsnippet
-snippet `x` "auto-code" A
+snippet `x`     "auto-code" A
 \`${1:code}\`$0
 endsnippet
-snippet ^^ "superscript"
+snippet ^^      "superscript"
 ^${1:super}^$0
 endsnippet
-snippet ^x^ "auto-superscript" A
+snippet ^x^     "auto-superscript" A
 ^${1:super}^$0
 endsnippet
-snippet ,, "subscript"
+snippet ,,      "subscript"
 ,,${1:sub},,$0
 endsnippet
-snippet ,x, "auto-subscript" A
+snippet ,x,     "auto-subscript" A
 ,,${1:sub},,$0
 endsnippet
-snippet $$ "mathematical formula"
+snippet $$      "mathematical formula"
 \$${1:mathematical formula}\$$0
 endsnippet
-snippet $x$ "auto-create mathematical formula" A
+snippet $x$     "auto-create mathematical formula" A
 \$${1:mathematical formula}\$$0
 endsnippet
-snippet {{{ "nested syntax block" b
+snippet {{{     "nested syntax block" b
 {{{${1:syntax}
 $0
 }}}
 endsnippet
-snippet {cpp "C++ block" b
+snippet {cpp    "C++ block" b
 {{{cpp
 $0
 }}}
 endsnippet
-snippet {sharp "C++ block" b
+snippet {sharp  "C++ block" b
 {{{sharp
 $0
 }}}
 endsnippet
-snippet {c "C block" b
+snippet {c      "C block" b
 {{{c
 $0
 }}}
@@ -76,84 +86,87 @@ snippet {python "Python block" b
 $0
 }}}
 endsnippet
-snippet {rust "Rust block" b
+snippet {rust   "Rust block" b
 {{{rust
 $0
 }}}
 endsnippet
-snippet {go "Go block" b
+snippet {go     "Go block" b
 {{{go
 $0
 }}}
 endsnippet
-snippet {sh "posix shell/bash block" b
+snippet {sh     "posix shell/bash block" b
 {{{sh
 $0
 }}}
 endsnippet
-snippet {ps1 "PowerShell block" b
+snippet {ps1    "PowerShell block" b
 {{{ps1
 $0
 }}}
 endsnippet
-snippet {asm "assembly block" b
+snippet {asm    "assembly block" b
 {{{asm
 $0
 }}}
 endsnippet
-snippet {hla "HLA block" b
+snippet {hla    "HLA block" b
 {{{hla
 $0
 }}}
 endsnippet
-snippet {make "makefile block" b
+snippet {make   "makefile block" b
 {{{make
 $0
 }}}
 endsnippet
-snippet {lua "Lua block" b
+snippet {lua    "Lua block" b
 {{{lua
 $0
 }}}
 endsnippet
-snippet {toml "toml block" b
+snippet {toml   "toml block" b
 {{{toml
 $0
 }}}
 endsnippet
-snippet {rkt "Racket block" b
+snippet {rkt    "Racket block" b
 {{{rkt
 $0
 }}}
 endsnippet
-snippet {$ "mathematical formulae block" b
+snippet {sql    "SQL block" b
+{{{sql
+$0
+}}}
+endsnippet
+snippet {$      "mathematical formulae block" b
 {{$
 $0
 }}$
 endsnippet
 
-
-
 # Powershell notes
-snippet ps "PowerShell" w
+snippet ps      "PowerShell" w
 PowerShell
 endsnippet
-snippet sn "PSSnapin" w
+snippet sn      "PSSnapin" w
 PSSnapin
 endsnippet
-snippet ex "extension"
+snippet ex      "extension"
 extension
 endsnippet
-snippet Ex "Extension" w
+snippet Ex      "Extension" w
 Extension
 endsnippet
-snippet mo "module"
+snippet mo      "module"
 module
 endsnippet
-snippet Mo "Module" w
+snippet Mo      "Module" w
 Module
 endsnippet
-snippet ms "Microsoft"
+snippet ms      "Microsoft"
 Microsoft
 endsnippet
 

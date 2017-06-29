@@ -134,7 +134,6 @@ snippet psi     "ProcessStartInfo" w
 ProcessStartInfo
 endsnippet
 
-
 # Namespaces
 snippet s.o     "System.Object" w
 System.Object
@@ -257,8 +256,6 @@ snippet s.en    "System.Environment" w
 System.Environment
 endsnippet
 
-
-
 # Date & Time
 snippet dt      "DateTime" w
 DateTime
@@ -275,6 +272,7 @@ endsnippet
 snippet tzi     "TimeZoneInfo" w
 TimeZoneInfo
 endsnippet
+
 # Interfaces
 snippet ie      "IEnumerable" w
 IEnumerable
@@ -331,9 +329,8 @@ snippet icm<    "IComparer<T>" w
 IComparer<T>
 endsnippet
 
-
 # Format Providers
-snippet ci      "CultureInfo" w
+snippet culi    "CultureInfo" w
 CultureInfo
 endsnippet
 snippet nfi     "NumberFormatInfo" w
@@ -349,4 +346,43 @@ snippet dts     "DateTimeStyles" w
 DateTimeStyles
 endsnippet
 
+# IL and Dynamic Code Generation
+snippet gem     "IL emit, no arguments"
+${1:gen}.Emit(OpCodes.${2:opcode});
+endsnippet
+snippet gem1    "IL emit, one argument"
+${1:gen}.Emit(OpCodes.${2:opcode}, ${3:arg});
+endsnippet
+snippet gemld   "IL emit - load local variable"
+${1:gen}.Emit(OpCodes.Ldloc, ${2:arg});
+endsnippet
+snippet gemst   "IL emit - store local variable"
+${1:gen}.Emit(OpCodes.Stloc, ${2:arg});
+endsnippet
+snippet gewl    "IL emit - writeline"
+${1:gen}.EmitWriteLine(${2:stringVar});
+endsnippet
+snippet dym     "create dynamic method" b
+var ${1:dynMeth} = new DynamicMethod(
+    "${2:Method name}",
+    ${3:Return type - e.g. typeof(int) or null},
+    ${4:Parameter type(s) - e.g. new[] { typeof(int), typeof(int) } or null},
+    ${5:Owner type or typeof(void)}
+    );
+ILGenerator ${6:gen} = $1.GetILGenerator();
+
+$0
+
+$6.Emit(OpCodes.Ret);
+$1.Invoke(${7:object}, ${8:array of arguments});
+endsnippet
+snippet dym0    "create simple dynamic method" b
+var ${1:dynMeth} = new DynamicMethod( "${2:Method name}", null, null, typeof (void));
+ILGenerator ${6:gen} = $1.GetILGenerator();
+
+$0
+
+$6.Emit(OpCodes.Ret);
+$1.Invoke(null, null);
+endsnippet
 

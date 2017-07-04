@@ -45,6 +45,120 @@ snippet /**     "multi-line comment"
  * ${1:Enter_comment_here}
  */$0
 endsnippet
+snippet tc "try/catch" b
+try
+{
+    ${1:code block}
+}
+catch (${2:Exception} ex)
+{
+    ${3:handle exception}
+}
+$0
+endsnippet
+snippet tf "try/finally" b
+try
+{
+    ${1:code block}
+}
+finally
+{
+    ${4:final code to _always_ execute at the end}
+}
+$0
+endsnippet
+snippet tcc "try/catch/catch" b
+try
+{
+    ${1:code block}
+}
+catch (${2:Exception} ex)
+{
+    ${3:handle exception}
+}
+catch (${4:Exception} ex)
+{
+    ${5:handle exception}
+}
+$0
+endsnippet
+snippet tccc "try/catch/catch/catch" b
+try
+{
+    ${1:code block}
+}
+catch (${2:Exception} ex)
+{
+    ${3:handle exception}
+}
+catch (${4:Exception} ex)
+{
+    ${5:handle exception}
+}
+catch (${6:Exception} ex)
+{
+    ${7:handle exception}
+}
+$0
+endsnippet
+snippet tcf "try/catch/finally" b
+try
+{
+    ${1:code block}
+}
+catch (${2:Exception} ex)
+{
+    ${3:handle exception}
+}
+finally
+{
+    ${4:final code to _always_ execute at the end}
+}
+$0
+endsnippet
+snippet tccf "try/catch/catch/finally" b
+try
+{
+    ${1:code block}
+}
+catch (${2:Exception} ex)
+{
+    ${3:handle exception}
+}
+catch (${4:Exception} ex)
+{
+    ${5:handle exception}
+}
+finally
+{
+    ${6:final code to _always_ execute at the end}
+}
+$0
+endsnippet
+snippet tcccf "try/catch/catch/catch/finally" b
+try
+{
+    ${1:code block}
+}
+catch (${2:Exception} ex)
+{
+    ${3:handle exception}
+}
+catch (${4:Exception} ex)
+{
+    ${5:handle exception}
+}
+catch (${6:Exception} ex)
+{
+    ${7:handle exception}
+}
+finally
+{
+    ${8:final code to _always_ execute at the end}
+}
+$0
+endsnippet
+
 
 snippet cc      "ConsoleColor" w
 ConsoleColor
@@ -384,5 +498,145 @@ $0
 
 $6.Emit(OpCodes.Ret);
 $1.Invoke(null, null);
+endsnippet
+snippet dtc     "create dynamic try/catch" b
+MethodInfo ${1:getMessageProp} = typeof( ${2:Exception} )
+                                 .GetProperty( "Message" ).GetGetMethod();
+MethodInfo ${3:writeLineString} = typeof( Console ).GetMethod ( "WriteLine" ),
+                                            new[] { typeof (object) } );
+${4:gen}.BeginExceptionBlock();
+    ConstructorInfo ${5:ci} = typeof ($2.GetConstructor(
+                                                  new ${6:Type[0]} );
+    $4.Emit( OpCodes.Newobj, $5 );
+    $4.Emit( OpCodes.Throw );
+$4.BeginCatchBlock( typeof( $2 ) );
+    $4.Emit( OpCodes.Callvirt, $1 )
+    $4.Emit( OpCodes.Call, $3 )
+$4.EndExceptionBlock();
+$0
+endsnippet
+snippet dtf     "create dynamic try/finally" b
+${1:gen}.BeginExceptionBlock();
+    ${2:dynamic code block}
+$1.BeginFinallyBlock();
+    $1.EmitWriteLine( "Finally" );
+$1.EndExceptionBlock();
+$0
+endsnippet
+snippet dtcc    "create dynamic try/catch/catch" b
+MethodInfo ${1:getMessageProp1} = typeof( ${2:Exception} )
+                                 .GetProperty( "Message" ).GetGetMethod();
+MethodInfo ${3:getMessageProp2} = typeof( ${4:Exception} )
+                                 .GetProperty( "Message" ).GetGetMethod();
+MethodInfo ${5:writeLineString} = typeof( Console ).GetMethod ( "WriteLine" ),
+                                            new[] { typeof (object) } );
+${6:gen}.BeginExceptionBlock();
+    ConstructorInfo ${7:ci} = typeof ($2.GetConstructor(
+                                                  new ${8:Type[0]} );
+    $6.Emit( OpCodes.Newobj, $7 );
+    $6.Emit( OpCodes.Throw );
+$6.BeginCatchBlock( typeof( $2 ) );
+    $6.Emit( OpCodes.Callvirt, $1 )
+    $6.Emit( OpCodes.Call, $5 )
+$6.BeginCatchBlock( typeof( $4 ) );
+    $6.Emit( OpCodes.Callvirt, $3 )
+    $6.Emit( OpCodes.Call, $5 )
+$6.EndExceptionBlock();
+$0
+endsnippet
+snippet dtccc   "create dynamic try/catch/catch/catch" b
+MethodInfo ${1:getMessageProp1} = typeof( ${2:Exception} )
+                                 .GetProperty( "Message" ).GetGetMethod();
+MethodInfo ${3:getMessageProp2} = typeof( ${4:Exception} )
+                                 .GetProperty( "Message" ).GetGetMethod();
+MethodInfo ${5:getMessageProp2} = typeof( ${6:Exception} )
+                                 .GetProperty( "Message" ).GetGetMethod();
+MethodInfo ${7:writeLineString} = typeof( Console ).GetMethod ( "WriteLine" ),
+                                            new[] { typeof (object) } );
+${8:gen}.BeginExceptionBlock();
+    ConstructorInfo ${9:ci} = typeof ($2.GetConstructor(
+                                                  new ${10:Type[0]} );
+    $8.Emit( OpCodes.Newobj, $7 );
+    $8.Emit( OpCodes.Throw );
+$8.BeginCatchBlock( typeof( $2 ) );
+    $8.Emit( OpCodes.Callvirt, $1 )
+    $8.Emit( OpCodes.Call, $7 )
+$8.BeginCatchBlock( typeof( $4 ) );
+    $8.Emit( OpCodes.Callvirt, $3 )
+    $8.Emit( OpCodes.Call, $7 )
+$8.BeginCatchBlock( typeof( $6 ) );
+    $8.Emit( OpCodes.Callvirt, $5 )
+    $8.Emit( OpCodes.Call, $7 )
+$8.EndExceptionBlock();
+$0
+endsnippet
+snippet dtcf    "create dynamic try/catch/finally" b
+MethodInfo ${1:getMessageProp} = typeof( ${2:Exception} )
+                                 .GetProperty( "Message" ).GetGetMethod();
+MethodInfo ${3:writeLineString} = typeof( Console ).GetMethod ( "WriteLine" ),
+                                            new[] { typeof (object) } );
+${4:gen}.BeginExceptionBlock();
+    ConstructorInfo ${5:ci} = typeof ($2.GetConstructor(
+                                                  new ${6:Type[0]} );
+    $4.Emit( OpCodes.Newobj, $5 );
+    $4.Emit( OpCodes.Throw );
+$4.BeginCatchBlock( typeof( $2 ) );
+    $4.Emit( OpCodes.Callvirt, $1 )
+    $4.Emit( OpCodes.Call, $3 )
+$4.BeginFinallyBlock();
+    $4.EmitWriteLine( "Finally" );
+$4.EndExceptionBlock();
+$0
+endsnippet
+snippet dtccf   "create dynamic try/catch/catch/finally" b
+MethodInfo ${1:getMessageProp1} = typeof( ${2:Exception} )
+                                 .GetProperty( "Message" ).GetGetMethod();
+MethodInfo ${3:getMessageProp2} = typeof( ${4:Exception} )
+                                 .GetProperty( "Message" ).GetGetMethod();
+MethodInfo ${5:writeLineString} = typeof( Console ).GetMethod ( "WriteLine" ),
+                                            new[] { typeof (object) } );
+${6:gen}.BeginExceptionBlock();
+    ConstructorInfo ${7:ci} = typeof ($2.GetConstructor(
+                                                  new ${8:Type[0]} );
+    $6.Emit( OpCodes.Newobj, $7 );
+    $6.Emit( OpCodes.Throw );
+$6.BeginCatchBlock( typeof( $2 ) );
+    $6.Emit( OpCodes.Callvirt, $1 )
+    $6.Emit( OpCodes.Call, $5 )
+$6.BeginCatchBlock( typeof( $4 ) );
+    $6.Emit( OpCodes.Callvirt, $3 )
+    $6.Emit( OpCodes.Call, $5 )
+$6.BeginFinallyBlock();
+    $6.EmitWriteLine( "Finally" );
+$6.EndExceptionBlock();
+$0
+endsnippet
+snippet dtcccf  "create dynamic try/catch/catch/catch/finally" b
+MethodInfo ${1:getMessageProp1} = typeof( ${2:Exception} )
+                                 .GetProperty( "Message" ).GetGetMethod();
+MethodInfo ${3:getMessageProp2} = typeof( ${4:Exception} )
+                                 .GetProperty( "Message" ).GetGetMethod();
+MethodInfo ${5:getMessageProp2} = typeof( ${6:Exception} )
+                                 .GetProperty( "Message" ).GetGetMethod();
+MethodInfo ${7:writeLineString} = typeof( Console ).GetMethod ( "WriteLine" ),
+                                            new[] { typeof (object) } );
+${8:gen}.BeginExceptionBlock();
+    ConstructorInfo ${9:ci} = typeof ($2.GetConstructor(
+                                                  new ${10:Type[0]} );
+    $8.Emit( OpCodes.Newobj, $7 );
+    $8.Emit( OpCodes.Throw );
+$8.BeginCatchBlock( typeof( $2 ) );
+    $8.Emit( OpCodes.Callvirt, $1 )
+    $8.Emit( OpCodes.Call, $7 )
+$8.BeginCatchBlock( typeof( $4 ) );
+    $8.Emit( OpCodes.Callvirt, $3 )
+    $8.Emit( OpCodes.Call, $7 )
+$8.BeginCatchBlock( typeof( $6 ) );
+    $8.Emit( OpCodes.Callvirt, $5 )
+    $8.Emit( OpCodes.Call, $7 )
+$8.BeginFinallyBlock();
+    $8.EmitWriteLine( "Finally" );
+$8.EndExceptionBlock();
+$0
 endsnippet
 

@@ -45,7 +45,7 @@ snippet /**     "multi-line comment"
  * ${1:Enter_comment_here}
  */$0
 endsnippet
-snippet tc "try/catch" b
+snippet tc      "try/catch" b
 try
 {
     ${1:code block}
@@ -56,7 +56,7 @@ catch (${2:Exception} ex)
 }
 $0
 endsnippet
-snippet tf "try/finally" b
+snippet tf      "try/finally" b
 try
 {
     ${1:code block}
@@ -67,7 +67,7 @@ finally
 }
 $0
 endsnippet
-snippet tcc "try/catch/catch" b
+snippet tcc     "try/catch/catch" b
 try
 {
     ${1:code block}
@@ -82,7 +82,7 @@ catch (${4:Exception} ex)
 }
 $0
 endsnippet
-snippet tccc "try/catch/catch/catch" b
+snippet tccc    "try/catch/catch/catch" b
 try
 {
     ${1:code block}
@@ -101,7 +101,7 @@ catch (${6:Exception} ex)
 }
 $0
 endsnippet
-snippet tcf "try/catch/finally" b
+snippet tcf     "try/catch/finally" b
 try
 {
     ${1:code block}
@@ -116,7 +116,7 @@ finally
 }
 $0
 endsnippet
-snippet tccf "try/catch/catch/finally" b
+snippet tccf    "try/catch/catch/finally" b
 try
 {
     ${1:code block}
@@ -135,7 +135,7 @@ finally
 }
 $0
 endsnippet
-snippet tcccf "try/catch/catch/catch/finally" b
+snippet tcccf   "try/catch/catch/catch/finally" b
 try
 {
     ${1:code block}
@@ -158,8 +158,84 @@ finally
 }
 $0
 endsnippet
+snippet ucl     "public class"
+public class ${1:ClassName}
+{
+    $0
+}
+endsnippet
+snippet ucls    "public class with inheritance"
+public class ${1:ClassName} : ${2:ParentName}
+{
+    $0
+}
+endsnippet
+snippet cl      "private class"
+private class ${1:ClassName}
+{
+    $0
+}
+endsnippet
+snippet cl      "private class with inheritance"
+private class ${1:ClassName} : ${2:ParentName}
+{
+    $0
+}
+endsnippet
+snippet ns      "namespace"
+namespace ${1:NamespaceName}
+{
+    $0
+}
+endsnippet
+snippet ufn     "public function/method"
+public ${1:Type} ${2:Name}(${3:Arguments})
+{
+    $0
+}
+endsnippet
+snippet fn      "private function/method"
+private ${1:Type} ${2:Name}(${3:Arguments})
+{
+    $0
+}
+endsnippet
+snippet pro     "private property - simple"
+private ${1:Type} ${2:Name} { get; set; }
+endsnippet
+snippet prop    "private property - full"
+private $1 `!p snip.rv = '_' + ''.join(t[2].[0].lower() + t[2][1:])`
+private ${1:Type} ${2:Name}
+{
+    get
+    {
+        return `!p snip.rv = '_' + ''.join(t[2].[0].lower() + t[2][1:])`;
+    }
+    set
+    {
+        `!p snip.rv = '_' + ''.join(t[2].[0].lower() + t[2][1:])` = value;
+    }
+}
+endsnippet
+snippet upro    "public property - simple"
+public ${1:Type} ${2:Name} { get; set; }
+endsnippet
+snippet uprop   "public property - full"
+private $1 `!p snip.rv = '_' + ''.join(t[2].[0].lower() + t[2][1:])`
+public ${1:Type} ${2:Name}
+{
+    get
+    {
+        return `!p snip.rv = '_' + ''.join(t[2].[0].lower() + t[2][1:])`;
+    }
+    set
+    {
+        `!p snip.rv = '_' + ''.join(t[2].[0].lower() + t[2][1:])` = value;
+    }
+}
+endsnippet
 
-
+# Commonly used objects; classes, methods, properties, etc.
 snippet cc      "ConsoleColor" w
 ConsoleColor
 endsnippet
@@ -394,10 +470,10 @@ endsnippet
 snippet ie<     "IEnumerable<T>" w
 IEnumerable<${1:T}>$0
 endsnippet
-snippet ien      "IEnumerator" w
+snippet ien     "IEnumerator" w
 IEnumerator
 endsnippet
-snippet ien<     "IEnumerator<T>" w
+snippet ien<    "IEnumerator<T>" w
 IEnumerator<${1:T}>$0
 endsnippet
 snippet id      "IDisposable" w

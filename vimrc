@@ -28,7 +28,7 @@ if has('win64')
         \substitute($USERPROFILE, "\\", "/", "g") . '/vimfiles'
 elseif has('win32')
     let g:LocalConfig =
-        \substitute($USERPROFILE, "\\", "/", "g") . '/OneDrive/x86/vimfiles'
+        \substitute($OneDrive, "\\", "/", "g") . '/x86/vimfiles'
 else
     let g:LocalConfig = $HOME.'/.vim'
 endif
@@ -38,7 +38,7 @@ let &runtimepath .= ',' . g:CloudConfig . '/after'
 if has('win64')
     set rtp+=substitute($USERPROFILE, "\\", "/", "g").'/vimfiles/after'
 elseif has('win32')
-    set rtp+=substitute($USERPROFILE, "\\", "/", "g").'/OneDrive/x86/vimfiles/after'
+    set rtp+=substitute($OneDrive, "\\", "/", "g").'/x86/vimfiles/after'
 else
     set rtp+=$HOME/.vim/after
 endif
@@ -54,8 +54,8 @@ if has('win32')
         set rtp+=$USERPROFILE\vimfiles\bundle\vundle
         call vundle#begin('$USERPROFILE\vimfiles\bundle')
     else
-        set rtp+=$USERPROFILE\OneDrive\x86\vimfiles\bundle\vundle
-        call vundle#begin('$USERPROFILE\OneDrive\x86\vimfiles\bundle')
+        set rtp+=$OneDrive\x86\vimfiles\bundle\vundle
+        call vundle#begin('$OneDrive\x86\vimfiles\bundle')
     endif
 else
     set rtp+=~/.vim/bundle/vundle
@@ -1039,7 +1039,7 @@ if has('win32')
     if has('win64')
         let g:ycm_global_ycm_extra_conf=$USERPROFILE."/vimfiles/.ycm_extra_conf.py"
     else
-        let g:ycm_global_ycm_extra_conf=$USERPROFILE."/OneDrive/x86/vimfiles/.ycm_extra_conf.py"
+        let g:ycm_global_ycm_extra_conf=$OneDrive."/x86/vimfiles/.ycm_extra_conf.py"
     endif
     " white/blacklist for .ycm_extra_conf.py files. precede with ! if blacklist
     "+accepts wildcards *, ?, and [seq]
@@ -1363,20 +1363,36 @@ nnoremap <Leader>op :Open<CR>
 " vimwiki
 "^^^^^^^^^
     if PLUGIN_VIMWIKI
-" vimwiki settings
+"*** VIMWIKI SETTINGS ***"
+"***> Per-Wiki Configuration Dictionaries <***"
 " NOTE: in a wiki, run command :echo vimwiki_list to see settings
 let wiki = {}
-" taken from default dictionary
+" taken from default dictionary; comment out defaults and add any changes
 let wiki.maxhi = 0
 let wiki.css_name = 'style.css'
-let wiki.auto_export = 0
+"let wiki.auto_export = 0
+let wiki.auto_export = 1
 let wiki.diary_index = 'index'
 let wiki.template_default = 'default'
-let wiki.auto_toc = 0
+"let wiki.auto_toc = 0
+let wiki.auto_toc = 1
 let wiki.auto_tags = 0
-let wiki.nested_syntaxes = {}
+"let wiki.nested_syntaxes = {}
+let vimwiki_wiki_syntaxes = {}
+let wiki.nested_syntaxes = vimwiki_wiki_syntaxes
 let wiki.diary_sort = 'desc'
-let wiki.path = '/home/tommy/vimwiki/'
+"let wiki.path = '/home/tommy/vimwiki/'
+"let wiki.path_html = '/home/tommy/vimwiki_html/'
+"let wiki.template_path = '/home/tommy/vimwiki/templates/'
+if has('win32')
+    let wiki.path = $USERPROFILE.'/vimwiki/'
+    let wiki.path_html = $USERPROFILE.'/vimwiki_html/'
+    let wiki.template_path = $USERPROFILE.'/vimwiki/templates/'
+else
+    let wiki.path = '/home/tommy/vimwiki/'
+    let wiki.path_html = '/home/tommy/vimwiki_html/'
+    let wiki.template_path = '/home/tommy/vimwiki/templates/'
+endif
 let wiki.diary_link_fmt = '%Y-%m-%d'
 let wiki.template_ext = '.tpl'
 let wiki.syntax = 'default'
@@ -1385,56 +1401,15 @@ let wiki.automatic_nested_syntaxes = 1
 let wiki.index = 'index'
 let wiki.diary_header = 'Diary'
 let wiki.ext = '.wiki'
-let wiki.path_html = '/home/tommy/vimwiki_html/'
 let wiki.temp = 0
-let wiki.template_path = '/home/tommy/vimwiki/templates/'
 let wiki.list_margin = -1
 let wiki.diary_rel_path = 'diary/'
-" Wiki directory structure
-" vimwiki/ cloned at ssh://hg@bitbucket.org/pajamapants3000/my_vimwiki
-if has('win32')
-    let wiki.path = $USERPROFILE.'/vimwiki/'
-    let wiki.path_html = $USERPROFILE.'/vimwiki/public_html/'
-    let wiki.template_path = $USERPROFILE.'/vimwiki/templates/'
-else
-    let wiki.path = $HOME.'/vimwiki/'
-    let wiki.path_html = $HOME.'/vimwiki/public_html/'
-    let wiki.template_path = $HOME.'/vimwiki/templates/'
-endif
-"
-let wiki.auto_export = 1
-let wiki.auto_toc = 1
-" start with 'c++' which doesn't get interpreted right as .c++; any others
-let syntaxes                = {'c++': 'cpp'}
-let syntaxes['cpp']         = 'cpp'
-let syntaxes['python']      = 'python'
-let syntaxes['asm']         = 'asm'
-let syntaxes['rust']        = 'rust'
-let syntaxes['go']          = 'go'
-let syntaxes['rkt']         = 'racket'
-let syntaxes['sh']          = 'sh'
-let syntaxes['make']        = 'make'
-let syntaxes['lua']         = 'lua'
-let syntaxes['hla']         = 'hla'
-let syntaxes['toml']        = 'toml'
-let syntaxes['xml']         = 'xml'
-let syntaxes['asp']         = 'aspnet'
-let syntaxes['c']           = 'c'
-let syntaxes['ps1']         = 'ps1'
-let syntaxes['sql']         = 'sql'
-let syntaxes['html']        = 'html'
-let syntaxes['vbs']         = 'vbs'
-let syntaxes['vb']          = 'vb'
-let syntaxes['xaml']        = 'xaml'
-" TODO: 'c' overrides this when set to 'cs', but doesn't affect cpp or c++;
-" why!?
-" Tried reordering... same result
-" so I set to 'sharp' and all is well
-let syntaxes['sharp']       = 'cs'
-let wiki.nested_syntaxes    = syntaxes
 " Add additional dictionaries to list for additional wikis
 "let wiki2 = {}
-" Global settings
+"***> Wiki directory structure <***"
+" vimwiki/ cloned at ssh://hg@bitbucket.org/pajamapants3000/my_vimwiki
+"***> Global settings <***"
+let g:vimwiki_folding = 'list'
 let g:vimwiki_list = [wiki]
 let g:vimwiki_hl_headers = 1
 let g:vimwiki_use_calendar = 1
@@ -1444,7 +1419,38 @@ let g:vimwiki_use_calendar = 1
 let g:vimwiki_html_header_numbering = 0
 " Default, 1, ignores newlines; 0 inserts <br />
 "let g:vimwiki_list_ignore_newline = 0
-" Heading colors
+"***> Syntaxes - For use with Code Blocks <***"
+" start with 'c++' which doesn't get interpreted right as .c++; any others
+" TODO: 'c' overrides this when set to 'cs', but doesn't affect cpp or c++;
+" why!?
+" Tried reordering... same result
+" so I set to 'sharp' and all is well
+let vimwiki_wiki_syntaxes['c++']         = 'cpp'
+let vimwiki_wiki_syntaxes['cpp']         = 'cpp'
+let vimwiki_wiki_syntaxes['python']      = 'python'
+let vimwiki_wiki_syntaxes['asm']         = 'asm'
+let vimwiki_wiki_syntaxes['rust']        = 'rust'
+let vimwiki_wiki_syntaxes['go']          = 'go'
+let vimwiki_wiki_syntaxes['rkt']         = 'racket'
+let vimwiki_wiki_syntaxes['sh']          = 'sh'
+let vimwiki_wiki_syntaxes['make']        = 'make'
+let vimwiki_wiki_syntaxes['lua']         = 'lua'
+let vimwiki_wiki_syntaxes['hla']         = 'hla'
+let vimwiki_wiki_syntaxes['toml']        = 'toml'
+let vimwiki_wiki_syntaxes['xml']         = 'xml'
+let vimwiki_wiki_syntaxes['asp']         = 'aspnet'
+let vimwiki_wiki_syntaxes['c']           = 'c'
+let vimwiki_wiki_syntaxes['ps1']         = 'ps1'
+let vimwiki_wiki_syntaxes['sql']         = 'sql'
+let vimwiki_wiki_syntaxes['html']        = 'html'
+let vimwiki_wiki_syntaxes['js']          = 'javascript'
+let vimwiki_wiki_syntaxes['vbs']         = 'vbs'
+let vimwiki_wiki_syntaxes['vb']          = 'vb'
+let vimwiki_wiki_syntaxes['xaml']        = 'xaml'
+let vimwiki_wiki_syntaxes['sharp']       = 'cs'
+"***> Heading colors <***"
+" Sets colors shown in vim for each heading level;
+" defaults shown commented out
 ":hi VimwikiHeader1 guifg=#FF0000
 ":hi VimwikiHeader2 guifg=#00FF00
 ":hi VimwikiHeader3 guifg=#0000FF

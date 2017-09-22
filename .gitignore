@@ -4,5 +4,6 @@
 .directory
 *.swp
 *.exe
+bundle
 test.vimrc
 

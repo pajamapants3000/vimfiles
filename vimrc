@@ -19,28 +19,28 @@ endif
 " Set the initial user configuration to the location of this script
 let g:CloudConfig = resolve(expand('<sfile>:p:h'))
 let &runtimepath .= ',' . g:CloudConfig
+if has('win32')
+    let g:PlatformIndependentHome = substitute($USERPROFILE, "\\", "/", "g")
+else
+    let g:PlatformIndependentHome = $HOME
+endif
+if has('win32')
+    let g:PlatformIndependentVimFolder = 'vimfiles'
+else
+    let g:PlatformIndependentVimFolder = '.vim'
+endif
+let g:VundleFolder = g:PlatformIndependentVimFolder.'/bundle'
 " Set local configuration path - mostly plugins
 " Source flags for this configuration
 execute 'source ' . g:CloudConfig . '/config_' . config_type . '.vimrc'
 " Now add the usual system-specific user configuration
-if has('win64')
-    let g:LocalConfig =
-        \substitute($USERPROFILE, "\\", "/", "g") . '/vimfiles'
-elseif has('win32')
-    let g:LocalConfig =
-        \substitute($OneDrive, "\\", "/", "g") . '/x86/vimfiles'
-else
-    let g:LocalConfig = $HOME.'/.vim'
-endif
+let g:LocalConfig =
+      \ g:PlatformIndependentHome . '/' g:PlatformIndependentVimFolder
 execute "set rtp+=" . g:LocalConfig
 " Now add the "/after" paths
 let &runtimepath .= ',' . g:CloudConfig . '/after'
-if has('win64')
-    set rtp+=substitute($USERPROFILE, "\\", "/", "g").'/vimfiles/after'
-elseif has('win32')
-    set rtp+=substitute($OneDrive, "\\", "/", "g").'/x86/vimfiles/after'
-else
-    set rtp+=$HOME/.vim/after
+set runtimepath
+      \ +=g:PlatformIndependentHome.'/'.g:PlatformIndependentVimFolder.'/after'
 endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vundle and plugins
@@ -49,19 +49,8 @@ endif
 set nocompatible
 filetype off
 " Add vundle to runtime path so vim can find installed plugins
-if has('win32')
-    if has('win64')
-        set rtp+=$USERPROFILE\vimfiles\bundle\vundle
-        call vundle#begin('$USERPROFILE\vimfiles\bundle')
-    else
-        set rtp+=$OneDrive\x86\vimfiles\bundle\vundle
-        call vundle#begin('$OneDrive\x86\vimfiles\bundle')
-    endif
-else
-    set rtp+=~/.vim/bundle/vundle
-    call vundle#begin('~/.vim/bundle')
-endif
-
+set runtimepath+=g:VundleFolder.'/vundle'
+call vundle#begin(g:VundleFolder.'/vundle')
 " let Vundle manage Vundle
 " required!
 Plugin 'gmarik/vundle'
@@ -394,6 +383,22 @@ endif
 if PLUGIN_DISPATCH
     Plugin 'tpope/vim-dispatch'
 endif
+" NeoComplete - Autocomplete
+if PLUGIN_NEOCOMPLETE
+    Plugin 'Shougo/neocomplete.vim'
+endif
+" NecoVim - autocomplete sources for vim filetype
+if PLUGIN_NECOVIM
+    Plugin 'Shougo/neco-vim'
+endif
+" Neosnippet - snippets
+if PLUGIN_NEOSNIPPET
+    Plugin 'Shougo/neosnippet'
+endif
+" Neosnippet-snippets - default snippet set
+if PLUGIN_NEOSNIPPET_SNIPPETS
+    Plugin 'Shougo/neosnippet-snippets'
+endif
 "*********
 " C / C++
 "^^^^^^^^^
@@ -448,8 +453,19 @@ endif
 if PLUGIN_VIM_VIRTUALENV
     Plugin 'jmcantrell/vim-virtualenv'
 endif
+"********
+" Rust
+"^^^^^^^^
+" Vim-Racer - racer completion engine for Rust
 if PLUGIN_VIM_RACER
     Plugin 'racer-rust/vim-racer'
+endif
+"********
+" Racket
+"^^^^^^^^
+" vim-racket - great overall Racket support
+if PLUGIN_VIM_RACKET
+    Plugin 'wlangstroth/vim-racket'
 endif
 "******************************
 " Colorscheme and theme related
@@ -1018,38 +1034,109 @@ let g:ycm_complete_in_strings=1
 let g:ycm_collect_identifiers_from_comments_and_strings=1
 let g:ycm_collect_identifiers_from_tags_files=1
 let g:ycm_seed_identifiers_with_syntax=1
-if has('win32')
-    let g:ycm_rust_src_path = $USERPROFILE.'/repo/rust/src'
-    let RUST_SRC_PATH = $USERPROFILE.'/repo/rust/src'
-    let CARGO_HOME = $USERPROFILE.'/.cargo'
-else
-    let g:ycm_rust_src_path = $HOME.'/repo/rust/src'
-    let RUST_SRC_PATH = $HOME.'/repo/rust/src'
-    let CARGO_HOME = $HOME.'/.cargo'
-endif
+let g:ycm_rust_src_path = g:PlatformIndependentHome.'/repo/rust/src'
 
 "let g:ycm_key_invoke_completion = '<C-.>' "Default=<C-Space>; changed for term
 "                                         "except this doesn't work in Konsole!
 "                                         "<C-Space> works in Konsole
 nnoremap yd :<c-u>YcmCompleter GoTo<CR>
 nnoremap yt :<c-u>YcmCompleter GetType<CR>
+let g:ycm_global_ycm_extra_conf=g:PlatformIndependentVimFolder."/.ycm_extra_conf.py"
 if has('win32')
     let g:ycm_path_to_python_interpreter="C:/Python35/python.exe"
     let g:ycm_server_python_interpreter="C:/Python35/python.exe"
-    if has('win64')
-        let g:ycm_global_ycm_extra_conf=$USERPROFILE."/vimfiles/.ycm_extra_conf.py"
-    else
-        let g:ycm_global_ycm_extra_conf=$OneDrive."/x86/vimfiles/.ycm_extra_conf.py"
-    endif
     " white/blacklist for .ycm_extra_conf.py files. precede with ! if blacklist
     "+accepts wildcards *, ?, and [seq]
     let g:ycm_extra_conf_globlist=[$CXXPATH."/.ycm_extra_conf.py", $CPATH."/.ycm_extra_conf.py"]
 else
     let g:ycm_path_to_python_interpreter="/usr/bin/python2"
-    let g:ycm_global_ycm_extra_conf=$HOME."/.vim/.ycm_extra_conf.py"
     let g:ycm_extra_conf_globlist=[$CXXPATH."/.ycm_extra_conf.py", $CPATH."/.ycm_extra_conf.py"]
 endif
     endif   " PLUGIN_YOUCOMPLETEME
+
+" NeoComplete
+"^^^^^^^^^^^^^
+    if PLUGIN_NEOCOMPLETE
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplete#sources#syntax#min_keyword_length = 2
+
+" Define dictionary.
+let g:neocomplete#sources#dictionary#dictionaries = {
+    \ 'default' : '',
+    \ 'vimshell' : g:PlatformIndependentHome.'/.vimshell_hist',
+    \ 'scheme' : g:PlatformIndependentHome.'/.gosh_completions'
+        \ }
+
+" Define keyword.
+if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
+endif
+let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+
+" Plugin key-mappings.
+inoremap <expr><C-g>     neocomplete#undo_completion()
+inoremap <expr><C-l>     neocomplete#complete_common_string()
+
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
+  " For no inserting <CR> key.
+  "return pumvisible() ? "\<C-y>" : "\<CR>"
+endfunction
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+" Close popup by <Space>.
+inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
+
+" AutoComplPop like behavior.
+let g:neocomplete#enable_auto_select = 1
+
+" Shell like behavior(not recommended).
+"set completeopt+=longest
+"let g:neocomplete#enable_auto_select = 1
+"let g:neocomplete#disable_auto_complete = 1
+"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
+
+" Enable omni completion.
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+" Enable heavy omni completion.
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
+endif
+"let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+"let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+"let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+
+" For perlomni.vim setting.
+" https://github.com/c9s/perlomni.vim
+let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+    endif   " PLUGIN_NEOCOMPLETE
+
+" Neco-Vim
+"^^^^^^^^^^^^^
+    if PLUGIN_NECOVIM
+    endif   " PLUGIN_NECOVIM
+
+" NeoSnippet
+"^^^^^^^^^^^^^
+    if PLUGIN_NEOSNIPPET
+    endif   " PLUGIN_NEOSNIPPET
 
 " Syntastic
 "^^^^^^^^^^^
@@ -1192,16 +1279,9 @@ let g:OmniSharp_server_type = 'roslyn'
 "
 " suggested in vim-racer README; not sure though
 "set hidden
-if has('win32')
-    " uncomment if using standalone
-    let g:racer_cmd = $USERPROFILE.'/vimfiles/bundle/vim-racer/racerd.exe'
-    let RUST_SRC_PATH = $USERPROFILE.'/repo/rust/src'
-    let CARGO_HOME = $USERPROFILE.'/.cargo'
-else
-    let g:racer_cmd = $HOME.'/.vin/bundle/vim-racer/racerd.exe'
-    let RUST_SRC_PATH = $HOME.'/repo/rust/src'
-    let CARGO_HOME = $HOME.'/.cargo'
-endif
+let g:racer_cmd = g:VundleFolder.'/vim-racer/racerd.exe'
+let RUST_SRC_PATH = g:PlatformIndependentHome.'/repo/rust/src'
+let CARGO_HOME = g:PlatformIndependentHome.'/.cargo'
     endif   " PLUGIN_VIM_RACER
 
 " Python_Pydoc.vim
@@ -1384,15 +1464,9 @@ let wiki.diary_sort = 'desc'
 "let wiki.path = '/home/tommy/vimwiki/'
 "let wiki.path_html = '/home/tommy/vimwiki_html/'
 "let wiki.template_path = '/home/tommy/vimwiki/templates/'
-if has('win32')
-    let wiki.path = $USERPROFILE.'/vimwiki/'
-    let wiki.path_html = $USERPROFILE.'/vimwiki_html/'
-    let wiki.template_path = $USERPROFILE.'/vimwiki/templates/'
-else
-    let wiki.path = '/home/tommy/vimwiki/'
-    let wiki.path_html = '/home/tommy/vimwiki_html/'
-    let wiki.template_path = '/home/tommy/vimwiki/templates/'
-endif
+let wiki.path = g:PlatformIndependentHome.'/vimwiki/'
+let wiki.path_html = wiki.path . '../vimwiki_html/'
+let wiki.template_path = wiki.path . 'templates/'
 let wiki.diary_link_fmt = '%Y-%m-%d'
 let wiki.template_ext = '.tpl'
 let wiki.syntax = 'default'
@@ -1409,7 +1483,7 @@ let wiki.diary_rel_path = 'diary/'
 "***> Wiki directory structure <***"
 " vimwiki/ cloned at ssh://hg@bitbucket.org/pajamapants3000/my_vimwiki
 "***> Global settings <***"
-let g:vimwiki_folding = 'list'
+let g:vimwiki_folding = 'expr'
 let g:vimwiki_list = [wiki]
 let g:vimwiki_hl_headers = 1
 let g:vimwiki_use_calendar = 1
@@ -1663,8 +1737,12 @@ augroup filetypedetect
     au BufNewFile,BufRead,BufEnter *.css        setf css
     " HLA
     au BufNewFile,BufRead,BufEnter *.h{la,hf}   setf hla
+    " Racket
+    au BufNewFile,BufRead,BufEnter *.rkt        setf racket
     " Pollen
     au BufNewFile,BufRead,BufEnter *.p{,p,m,md,tree} setf pollen
+    " Vim
+    au BufNewFile,BufRead,BufEnter *.vim {,.,.g,_,_g}vimrc setf vim
 
 augroup END
 

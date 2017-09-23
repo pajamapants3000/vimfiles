@@ -19,29 +19,22 @@ endif
 " Set the initial user configuration to the location of this script
 let g:CloudConfig = resolve(expand('<sfile>:p:h'))
 let &runtimepath .= ',' . g:CloudConfig
-if has('win32')
-    let g:PlatformIndependentHome = substitute($USERPROFILE, "\\", "/", "g")
-else
-    let g:PlatformIndependentHome = $HOME
-endif
-if has('win32')
-    let g:PlatformIndependentVimFolder = 'vimfiles'
-else
-    let g:PlatformIndependentVimFolder = '.vim'
-endif
+let g:PlatformIndependentHome =
+        \ has('win32') ? substitute($USERPROFILE, "\\", "/", "g") : $HOME
+let g:PlatformIndependentVimFolder =
+        \ has('win32') ? 'vimfiles' : '.vim'
 let g:VundleFolder = g:PlatformIndependentVimFolder.'/bundle'
 " Set local configuration path - mostly plugins
 " Source flags for this configuration
 execute 'source ' . g:CloudConfig . '/config_' . config_type . '.vimrc'
 " Now add the usual system-specific user configuration
 let g:LocalConfig =
-      \ g:PlatformIndependentHome . '/' g:PlatformIndependentVimFolder
-execute "set rtp+=" . g:LocalConfig
+      \ g:PlatformIndependentHome . '/' . g:PlatformIndependentVimFolder
+execute "set runtimepath+=" . g:LocalConfig
 " Now add the "/after" paths
 let &runtimepath .= ',' . g:CloudConfig . '/after'
-set runtimepath
-      \ +=g:PlatformIndependentHome.'/'.g:PlatformIndependentVimFolder.'/after'
-endif
+execute 'set runtimepath+='.
+      \ g:PlatformIndependentHome.'/'.g:PlatformIndependentVimFolder.'/after'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vundle and plugins
 "********************
@@ -49,8 +42,8 @@ endif
 set nocompatible
 filetype off
 " Add vundle to runtime path so vim can find installed plugins
-set runtimepath+=g:VundleFolder.'/vundle'
-call vundle#begin(g:VundleFolder.'/vundle')
+execute 'set runtimepath+=' . g:VundleFolder . '/vundle'
+call vundle#begin(g:VundleFolder)
 " let Vundle manage Vundle
 " required!
 Plugin 'gmarik/vundle'
@@ -102,6 +95,10 @@ endif
 " TaskList - ... task list
 if PLUGIN_TASKLIST
     Plugin 'vim-scripts/TaskList.vim'
+endif
+" vim-lexical - spell-check, thesaurus/dictionary completion
+if PLUGIN_LEXICAL
+    Plugin 'reedes/vim-lexical'
 endif
 " ConqueTerm - Run a (os native) terminal from within vim.
 if PLUGIN_CONQUETERM_VIM
@@ -330,6 +327,22 @@ endif
 if PLUGIN_YOUCOMPLETEME
     Plugin 'valloric/youcompleteme'
 endif
+" Completor - modern asynchronous code completion - TRY IT!
+if PLUGIN_COMPLETOR
+    Plugin 'maralla/completor.vim'
+endif
+" MUcomplete
+if PLUGIN_MUCOMPLETE
+    Plugin 'lifepillar/vim-mucomplete'
+endif
+" Vimcompletesme - lightweight "super-minimal" tab completion
+if PLUGIN_VIMCOMPLETESME
+    Plugin 'ajh17/vimcompletesme'
+endif
+" contextcomplete - another lightweight autocomplete
+if PLUGIN_CONTEXTCOMPLETE
+    Plugin 'vim-scripts/contextcomplete'
+endif
 " Ultisnips - Provides (supposedly) awesome snippet support; fast, simple
 if PLUGIN_ULTISNIPS
     Plugin 'SirVer/ultisnips'
@@ -353,6 +366,10 @@ endif
 " Syntastic - Syntax checking hacks for vim
 if PLUGIN_SYNTASTIC
     Plugin 'scrooloose/syntastic'
+endif
+" vim-tags - helps generate tag files from project
+if PLUGIN_VIM_TAGS
+    Plugin 'szw/vim-tags'
 endif
 " vim-easytags - Automated tag file generation and syntax highlighting of tags
 if PLUGIN_VIM_EASYTAGS
@@ -466,6 +483,17 @@ endif
 " vim-racket - great overall Racket support
 if PLUGIN_VIM_RACKET
     Plugin 'wlangstroth/vim-racket'
+endif
+" vrod - Racket Omni-completion and Documentation
+if PLUGIN_VROD
+    Plugin 'MicahElliott/vrod'
+endif
+"*****
+" SQL
+"^^^^^
+" SQLComplete
+if PLUGIN_SQLCOMPLETE
+    Plugin 'vim-scripts/SQLComplete.vim'
 endif
 "******************************
 " Colorscheme and theme related
@@ -588,16 +616,12 @@ endif
 if PLUGIN_VIM_PS1
     Plugin 'PProvost/vim-ps1'
 endif
-if PLUGIN_RACKET
-    Plugin 'wlangstroth/vim-racket'
-endif
 if PLUGIN_POLLEN
     Plugin 'fasiha/pollen.vim'
 endif
 if PLUGIN_SCRIBBLE
     Plugin 'nickng/vim-scribble'
 endif
-"**********************"
 "**********************"
 " Doing more with vim! "
 "^^^^^^^^^^^^^^^^^^^^^^"
@@ -677,6 +701,42 @@ if has('nvim')
   runtime! python_setup.vim
 endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Constants
+"***********
+" Syntaxes/filetypes and their aliases and abbreviations
+" start with 'c++' which doesn't get interpreted right as .c++; any others
+" TODO: 'c' overrides this when set to 'cs', but doesn't affect cpp or c++;
+" why!?
+" Tried reordering... same result
+" so I set to 'sharp' and all is well
+let s:filetype_aliases = {}
+let s:filetype_aliases['c++']         = 'cpp'
+let s:filetype_aliases['cpp']         = 'cpp'
+let s:filetype_aliases['python']      = 'python'
+let s:filetype_aliases['asm']         = 'asm'
+let s:filetype_aliases['rust']        = 'rust'
+let s:filetype_aliases['go']          = 'go'
+let s:filetype_aliases['rkt']         = 'racket'
+let s:filetype_aliases['racket']      = 'racket'
+let s:filetype_aliases['sh']          = 'sh'
+let s:filetype_aliases['make']        = 'make'
+let s:filetype_aliases['lua']         = 'lua'
+let s:filetype_aliases['hla']         = 'hla'
+let s:filetype_aliases['toml']        = 'toml'
+let s:filetype_aliases['xml']         = 'xml'
+let s:filetype_aliases['asp']         = 'aspnet'
+let s:filetype_aliases['aspnet']      = 'aspnet'
+let s:filetype_aliases['c']           = 'c'
+let s:filetype_aliases['ps1']         = 'ps1'
+let s:filetype_aliases['sql']         = 'sql'
+let s:filetype_aliases['html']        = 'html'
+let s:filetype_aliases['js']          = 'javascript'
+let s:filetype_aliases['javascript']  = 'javascript'
+let s:filetype_aliases['vbs']         = 'vbs'
+let s:filetype_aliases['vb']          = 'vb'
+let s:filetype_aliases['xaml']        = 'xaml'
+let s:filetype_aliases['sharp']       = 'cs'
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Functions
 "***********
 " For super-line-numbering!
@@ -720,6 +780,13 @@ function! TlTokenHi()
     endif
 endfunc
 "
+" Return filetype, given some abbreviation or alias
+"^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+function! SetFileType(alias)
+    if has_key(s:filetype_aliases, a:alias)
+        :execute 'setf ' . s:filetype_aliases[a:alias]
+    endif
+endfunc
 " UltiSnips Functions
 "^^^^^^^^^^^^^^^^^^^^^
     if PLUGIN_ULTISNIPS
@@ -1035,13 +1102,17 @@ let g:ycm_collect_identifiers_from_comments_and_strings=1
 let g:ycm_collect_identifiers_from_tags_files=1
 let g:ycm_seed_identifiers_with_syntax=1
 let g:ycm_rust_src_path = g:PlatformIndependentHome.'/repo/rust/src'
+let RUST_SRC_PATH = g:ycm_rust_src_path
+let CARGO_HOME = g:PlatformIndependentHome.'/.cargo'
+let g:racer_cmd = g:VundleFolder.'/vim-racer/racerd.exe'
 
 "let g:ycm_key_invoke_completion = '<C-.>' "Default=<C-Space>; changed for term
 "                                         "except this doesn't work in Konsole!
 "                                         "<C-Space> works in Konsole
 nnoremap yd :<c-u>YcmCompleter GoTo<CR>
 nnoremap yt :<c-u>YcmCompleter GetType<CR>
-let g:ycm_global_ycm_extra_conf=g:PlatformIndependentVimFolder."/.ycm_extra_conf.py"
+let g:ycm_global_ycm_extra_conf=
+        \ g:PlatformIndependentVimFolder . "/.ycm_extra_conf.py"
 if has('win32')
     let g:ycm_path_to_python_interpreter="C:/Python35/python.exe"
     let g:ycm_server_python_interpreter="C:/Python35/python.exe"
@@ -1458,8 +1529,7 @@ let wiki.template_default = 'default'
 let wiki.auto_toc = 1
 let wiki.auto_tags = 0
 "let wiki.nested_syntaxes = {}
-let vimwiki_wiki_syntaxes = {}
-let wiki.nested_syntaxes = vimwiki_wiki_syntaxes
+let wiki.nested_syntaxes = s:filetype_aliases
 let wiki.diary_sort = 'desc'
 "let wiki.path = '/home/tommy/vimwiki/'
 "let wiki.path_html = '/home/tommy/vimwiki_html/'
@@ -1493,35 +1563,6 @@ let g:vimwiki_use_calendar = 1
 let g:vimwiki_html_header_numbering = 0
 " Default, 1, ignores newlines; 0 inserts <br />
 "let g:vimwiki_list_ignore_newline = 0
-"***> Syntaxes - For use with Code Blocks <***"
-" start with 'c++' which doesn't get interpreted right as .c++; any others
-" TODO: 'c' overrides this when set to 'cs', but doesn't affect cpp or c++;
-" why!?
-" Tried reordering... same result
-" so I set to 'sharp' and all is well
-let vimwiki_wiki_syntaxes['c++']         = 'cpp'
-let vimwiki_wiki_syntaxes['cpp']         = 'cpp'
-let vimwiki_wiki_syntaxes['python']      = 'python'
-let vimwiki_wiki_syntaxes['asm']         = 'asm'
-let vimwiki_wiki_syntaxes['rust']        = 'rust'
-let vimwiki_wiki_syntaxes['go']          = 'go'
-let vimwiki_wiki_syntaxes['rkt']         = 'racket'
-let vimwiki_wiki_syntaxes['sh']          = 'sh'
-let vimwiki_wiki_syntaxes['make']        = 'make'
-let vimwiki_wiki_syntaxes['lua']         = 'lua'
-let vimwiki_wiki_syntaxes['hla']         = 'hla'
-let vimwiki_wiki_syntaxes['toml']        = 'toml'
-let vimwiki_wiki_syntaxes['xml']         = 'xml'
-let vimwiki_wiki_syntaxes['asp']         = 'aspnet'
-let vimwiki_wiki_syntaxes['c']           = 'c'
-let vimwiki_wiki_syntaxes['ps1']         = 'ps1'
-let vimwiki_wiki_syntaxes['sql']         = 'sql'
-let vimwiki_wiki_syntaxes['html']        = 'html'
-let vimwiki_wiki_syntaxes['js']          = 'javascript'
-let vimwiki_wiki_syntaxes['vbs']         = 'vbs'
-let vimwiki_wiki_syntaxes['vb']          = 'vb'
-let vimwiki_wiki_syntaxes['xaml']        = 'xaml'
-let vimwiki_wiki_syntaxes['sharp']       = 'cs'
 "***> Heading colors <***"
 " Sets colors shown in vim for each heading level;
 " defaults shown commented out
@@ -1665,6 +1706,8 @@ inoremap <leader><Enter><Space><Space><Space> <Enter><Left><Delete><Left>
             \<Left><Delete><Left><Delete>
 nnoremap <M-n> :call NumberToggle()<cr>
 nnoremap <C-n> :call NumberToggleRel()<cr>
+nnoremap <expr> f<space>f SetFileType(expand('<cword>'))
+nnoremap f<space>v :<c-o>setf vimwiki
 "***********************************************
 " NOTE: List of mappings that can't hurt to use!
 " <C-M> - default: a synonym for <CR> or + in Normal mode
@@ -1740,9 +1783,10 @@ augroup filetypedetect
     " Racket
     au BufNewFile,BufRead,BufEnter *.rkt        setf racket
     " Pollen
-    au BufNewFile,BufRead,BufEnter *.p{,p,m,md,tree} setf pollen
+    au BufNewFile,BufRead,BufEnter *.p{,p,m,md,tree}  setf pollen
     " Vim
-    au BufNewFile,BufRead,BufEnter *.vim {,.,.g,_,_g}vimrc setf vim
+    au BufNewFile,BufRead,BufEnter *.vim              setf vim
+    au BufNewFile,BufRead,BufEnter {,.,.g,_,_g}vimrc  setf vim
 
 augroup END
 

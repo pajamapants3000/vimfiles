@@ -30,11 +30,37 @@ let g:tlTokenList += [ 'EG' ]                   " example
 " Add tasklist tokens to Todo highlighting
 call TlTokenHi()
 
+"^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 " Vim settings
+"**************
 set textwidth=80
 set formatoptions+=t
-
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set expandtab
+set foldmethod=marker
+set foldlevel=99
+set showcmd
+set incsearch
+"^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+" Functions
+"***********
+" SetFileType: set filetype to alias under cursor
+"^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+function! SetFileType(alias)
+    if has_key(g:filetype_aliases, a:alias)
+        :execute 'setf ' . g:filetype_aliases[a:alias]
+    endif
+endfunc
+"^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 " Mappings
+"**********
 " Insert line break, followed by actual carriage return
 inoremap br<CR> <br /><CR>
+nnoremap <expr> <leader>fsft SetFileType(expand('<cword>'))
+nmap <leader>ff <leader>fsft<c-o>cc
+inoremap <expr> <leader>fsft SetFileType(expand('<cword>'))
+imap <leader>ff <leader>fsft<c-o>cc
+"^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 

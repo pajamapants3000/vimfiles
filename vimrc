@@ -709,33 +709,33 @@ endif
 " why!?
 " Tried reordering... same result
 " so I set to 'sharp' and all is well
-let s:filetype_aliases = {}
-let s:filetype_aliases['c++']         = 'cpp'
-let s:filetype_aliases['cpp']         = 'cpp'
-let s:filetype_aliases['python']      = 'python'
-let s:filetype_aliases['asm']         = 'asm'
-let s:filetype_aliases['rust']        = 'rust'
-let s:filetype_aliases['go']          = 'go'
-let s:filetype_aliases['rkt']         = 'racket'
-let s:filetype_aliases['racket']      = 'racket'
-let s:filetype_aliases['sh']          = 'sh'
-let s:filetype_aliases['make']        = 'make'
-let s:filetype_aliases['lua']         = 'lua'
-let s:filetype_aliases['hla']         = 'hla'
-let s:filetype_aliases['toml']        = 'toml'
-let s:filetype_aliases['xml']         = 'xml'
-let s:filetype_aliases['asp']         = 'aspnet'
-let s:filetype_aliases['aspnet']      = 'aspnet'
-let s:filetype_aliases['c']           = 'c'
-let s:filetype_aliases['ps1']         = 'ps1'
-let s:filetype_aliases['sql']         = 'sql'
-let s:filetype_aliases['html']        = 'html'
-let s:filetype_aliases['js']          = 'javascript'
-let s:filetype_aliases['javascript']  = 'javascript'
-let s:filetype_aliases['vbs']         = 'vbs'
-let s:filetype_aliases['vb']          = 'vb'
-let s:filetype_aliases['xaml']        = 'xaml'
-let s:filetype_aliases['sharp']       = 'cs'
+let g:filetype_aliases = {}
+let g:filetype_aliases['c++']         = 'cpp'
+let g:filetype_aliases['cpp']         = 'cpp'
+let g:filetype_aliases['python']      = 'python'
+let g:filetype_aliases['asm']         = 'asm'
+let g:filetype_aliases['rust']        = 'rust'
+let g:filetype_aliases['go']          = 'go'
+let g:filetype_aliases['rkt']         = 'racket'
+let g:filetype_aliases['racket']      = 'racket'
+let g:filetype_aliases['sh']          = 'sh'
+let g:filetype_aliases['make']        = 'make'
+let g:filetype_aliases['lua']         = 'lua'
+let g:filetype_aliases['hla']         = 'hla'
+let g:filetype_aliases['toml']        = 'toml'
+let g:filetype_aliases['xml']         = 'xml'
+let g:filetype_aliases['asp']         = 'aspnet'
+let g:filetype_aliases['aspnet']      = 'aspnet'
+let g:filetype_aliases['c']           = 'c'
+let g:filetype_aliases['ps1']         = 'ps1'
+let g:filetype_aliases['sql']         = 'sql'
+let g:filetype_aliases['html']        = 'html'
+let g:filetype_aliases['js']          = 'javascript'
+let g:filetype_aliases['javascript']  = 'javascript'
+let g:filetype_aliases['vbs']         = 'vbs'
+let g:filetype_aliases['vb']          = 'vb'
+let g:filetype_aliases['xaml']        = 'xaml'
+let g:filetype_aliases['sharp']       = 'cs'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Functions
 "***********
@@ -780,11 +780,11 @@ function! TlTokenHi()
     endif
 endfunc
 "
-" Return filetype, given some abbreviation or alias
-"^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+" SetFileType: set filetype to alias under cursor
+"^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 function! SetFileType(alias)
-    if has_key(s:filetype_aliases, a:alias)
-        :execute 'setf ' . s:filetype_aliases[a:alias]
+    if has_key(g:filetype_aliases, a:alias)
+        :execute 'setf ' . g:filetype_aliases[a:alias]
     endif
 endfunc
 " UltiSnips Functions
@@ -1529,7 +1529,7 @@ let wiki.template_default = 'default'
 let wiki.auto_toc = 1
 let wiki.auto_tags = 0
 "let wiki.nested_syntaxes = {}
-let wiki.nested_syntaxes = s:filetype_aliases
+let wiki.nested_syntaxes = g:filetype_aliases
 let wiki.diary_sort = 'desc'
 "let wiki.path = '/home/tommy/vimwiki/'
 "let wiki.path_html = '/home/tommy/vimwiki_html/'
@@ -1706,8 +1706,8 @@ inoremap <leader><Enter><Space><Space><Space> <Enter><Left><Delete><Left>
             \<Left><Delete><Left><Delete>
 nnoremap <M-n> :call NumberToggle()<cr>
 nnoremap <C-n> :call NumberToggleRel()<cr>
-nnoremap <expr> f<space>f SetFileType(expand('<cword>'))
-nnoremap f<space>v :<c-u>setf vimwiki<cr>
+nnoremap <leader>fv :<c-u>setf vimwiki<cr>
+inoremap <leader>fv <c-o>:setf vimwiki<cr>
 "***********************************************
 " NOTE: List of mappings that can't hurt to use!
 " <C-M> - default: a synonym for <CR> or + in Normal mode

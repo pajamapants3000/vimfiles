@@ -53,14 +53,20 @@ function! SetFileType(alias)
         :execute 'setf ' . g:filetype_aliases[a:alias]
     endif
 endfunc
+function! GetFileType(alias)
+    if has_key(g:filetype_aliases, a:alias)
+        return g:filetype_aliases[a:alias]
+    endif
+endfunc
 "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 " Mappings
 "**********
 " Insert line break, followed by actual carriage return
 inoremap br<CR> <br /><CR>
-nnoremap <expr> <leader>fsft SetFileType(expand('<cword>'))
-nmap <leader>ff <leader>fsft<c-o>cc
-inoremap <expr> <leader>fsft SetFileType(expand('<cword>'))
-imap <leader>ff <leader>fsft<c-o>cc
+"nnoremap <expr> <leader>fsft SetFileType(expand('<cword>'))
+nmap <leader>ff <leader>fgft:<c-u>.s/^.*$//<CR>
+nnoremap <leader>fgft :<c-u>exe<space>'setf<space>'.GetFileType(expand('<cword>'))<CR>
+inoremap <leader>fgft <c-o>:exe<space>'setf<space>'.GetFileType(expand('<cword>'))<CR>
+imap <leader>ff <leader>fgft<c-o>cc<ESC>
 "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 

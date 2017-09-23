@@ -1707,7 +1707,7 @@ inoremap <leader><Enter><Space><Space><Space> <Enter><Left><Delete><Left>
 nnoremap <M-n> :call NumberToggle()<cr>
 nnoremap <C-n> :call NumberToggleRel()<cr>
 nnoremap <expr> f<space>f SetFileType(expand('<cword>'))
-nnoremap f<space>v :<c-o>setf vimwiki
+nnoremap f<space>v :<c-u>setf vimwiki<cr>
 "***********************************************
 " NOTE: List of mappings that can't hurt to use!
 " <C-M> - default: a synonym for <CR> or + in Normal mode

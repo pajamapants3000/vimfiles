@@ -20,10 +20,22 @@ else
     set tags+=$HOME/.config/ctags/pollen.tags
 endif
 
+"**************
+" Vim Settings
+"^^^^^^^^^^^^^^
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set expandtab
+set foldmethod=marker
+set foldlevel=99
+set showcmd
+set incsearch
+set nowrap
+set nospell
+set foldenable
 set smartindent
 set lisp
-" I don't think there are any working comments in pollen
-"+only for the output file type (e.g. html)
-set cms=<!--\ %s\ -->
 
+set commentstring=◊;\ %s
 

@@ -27,14 +27,21 @@ inoremap && &amp;
 inoremap >> &gt;
 inoremap << &lt;
 
-"***********************
-" Formatting and syntax
-"^^^^^^^^^^^^^^^^^^^^^^^
+"**************
+" Vim Settings
+"^^^^^^^^^^^^^^
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
 set expandtab
+set showcmd
+set incsearch
+set nowrap
+set nospell
+set foldenable
 set foldmethod=syntax
+
+set commentstring='\ %s
 
 "******
 " Tags

@@ -13,8 +13,23 @@
 " Cool alternative, just color the column!
 set colorcolumn=80
 highlight ColorColumn ctermbg=darkgray
-set nowrap
+"**************
+" Vim Settings
+"^^^^^^^^^^^^^^
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set expandtab
 set foldmethod=indent
+set foldlevel=99
+set showcmd
+set incsearch
+set nowrap
+set nospell
+set foldenable
+
+set commentstring='''\ %s\ '''
+
 
 " Functions
 "**********

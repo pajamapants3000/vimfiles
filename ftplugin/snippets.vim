@@ -1,9 +1,21 @@
 "
 " Begin snippets.vim
 
-" For some reason these settings seem to be lost when I work on
-" snippets files. Trying this to fix it.
+"**************
+" Vim Settings
+"^^^^^^^^^^^^^^
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
 set expandtab
+set showcmd
+set incsearch
+set nowrap
+set nospell
+set foldenable
+set foldmethod=syntax
+
+set commentstring=#\ %s
 
 " Collapse entire file except specific snippet being worked on
 " This makes the script double as a nice concise listing of available snippets

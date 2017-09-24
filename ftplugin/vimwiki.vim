@@ -39,10 +39,14 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set expandtab
-set foldmethod=marker
-set foldlevel=99
 set showcmd
 set incsearch
+set wrap
+set spell
+set foldenable
+set foldmethod=marker
+set foldlevel=99
+
 "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 " Functions
 "***********

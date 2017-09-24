@@ -1822,6 +1822,10 @@ set foldmethod=marker
 set foldlevel=99
 set showcmd
 set incsearch
+set dictionary="dictionary/en_US.txt"
+set thesaurus="thesaurus/en_US.txt"
+set nowrap
+set nospell
 " Set file format to unix line endings
 set ff=unix
 syntax on                       " syntax highlighing

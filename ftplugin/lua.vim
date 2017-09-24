@@ -26,9 +26,20 @@ else
     set tags+=$HOME/.config/ctags/lua.tags
 endif
 
-" Seems to be the Lua convention
+"**************
+" Vim Settings
+"^^^^^^^^^^^^^^
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
+set expandtab
+set foldmethod=marker
+set foldlevel=99
+set showcmd
+set incsearch
+set nowrap
+set nospell
 set foldenable
+
+set commentstring=--[[\ %s\ ]]
 

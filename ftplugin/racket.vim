@@ -17,7 +17,7 @@ set nospell
 set foldenable
 set lisp
 
-set commentstring=#|\ %s\ |#
+set commentstring=;\ %s
 
 " Additional configuration
 "*************************

@@ -522,6 +522,10 @@ endif
 if PLUGIN_POWERLINE_FONTS
     Plugin 'powerline/fonts'
 endif
+" ScrollColors - a color browser/chooser that works in Console as well as GUI
+if PLUGIN_SCROLLCOLORS
+    Plugin 'vim-scripts/ScrollColors'
+endif
 " Colorschemes
 " for vim-colorschemes: such a long list that I keep my own shortened versions
 "+Many of these seem to do undesirable things; try instead Colour-Sampler-Pk
@@ -532,10 +536,6 @@ endif
 "+side effects); also comes with GUI-browser!
 if PLUGIN_COLOUR_SAMPLER_PACK
     Plugin 'vim-scripts/Colour-Sampler-Pack'
-endif
-" ScrollColors - a color browser/chooser that works in Console as well as GUI
-if PLUGIN_SCROLLCOLORS
-    Plugin 'vim-scripts/ScrollColors'
 endif
 if PLUGIN_VIM_COLORS_SOLARIZED
     Plugin 'altercation/vim-colors-solarized'
@@ -1858,23 +1858,23 @@ endif
 if has('win32')
     "************************************
     " This version works on all non-LFS setups (so far; Fine as Windows setting.)
-    set guifont=Source_Code_Pro_Medium:h13:cANSI
+    set guifont=Source_Code_Pro_for_Powerline:h11:cANSI:qDRAFT
 else
     "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     " This version worked on my LFS setup (seems ok on all Linux)
 "    set guifont=Source\ Code\ Pro\ 13
-    set guifont=Source\ Code\ Pro\ for\ Powerline\ 13
+    set guifont=Source\ Code\ Pro\ for\ Powerline\ 11
     set t_Co=256
     set background=dark
     "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 endif
 " Here is a listing of my favorite colorschemes to choose from
-"colorscheme base16-monokai
+colorscheme base16-monokai
 "colorscheme desert
 "colorscheme Monokai
 "colorscheme solarized
 "colorscheme bmichaelsen
-colorscheme luna
+"colorscheme luna
 "colorscheme CodeFactoryv3
 "colorscheme Chasing_Logic
 

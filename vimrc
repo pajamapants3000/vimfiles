@@ -1821,7 +1821,7 @@ set expandtab
 set foldmethod=marker
 set foldlevel=99
 set showcmd
-set incsearch
+set noincsearch
 set dictionary="dictionary/en_US.txt"
 set thesaurus="thesaurus/en_US.txt"
 set nowrap

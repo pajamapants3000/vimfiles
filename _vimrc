@@ -57,9 +57,9 @@ endif
 try
 "^^^
     if empty($VIMFILES)
-        let VIMFILES=s:home_directory . '/vimfiles'
+        let $VIMFILES=s:home_directory . '/vimfiles'
     endif
-        let path=substitute($VIMFILES, "\\", "/", "g")
+    let path=substitute($VIMFILES, "\\", "/", "g")
     if !exists("path")
         throw "No vimfiles repository found!"
     elseif empty(path)

@@ -46,6 +46,8 @@ set spell
 set foldenable
 set foldmethod=marker
 set foldlevel=99
+execute 'set dictionary+=' . g:LocalConfig . '/dictionary/en_US.txt' 
+execute 'set thesaurus+=' . g:LocalConfig . '/thesaurus/en_US.txt' 
 
 "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 " Functions

@@ -36,6 +36,7 @@ set nospell
 set foldenable
 set smartindent
 set lisp
-
+execute 'set dictionary+='.g:PlatformIndependentVimFolder.'/dictionary/en_US.txt' 
+execute 'set thesaurus+='.g:PlatformIndependentVimFolder.'/thesaurus/en_US.txt' 
 set commentstring=◊;\ %s
 

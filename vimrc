@@ -1112,7 +1112,7 @@ let g:racer_cmd = g:VundleFolder.'/vim-racer/racerd.exe'
 nnoremap yd :<c-u>YcmCompleter GoTo<CR>
 nnoremap yt :<c-u>YcmCompleter GetType<CR>
 let g:ycm_global_ycm_extra_conf=
-        \ g:PlatformIndependentVimFolder . "/.ycm_extra_conf.py"
+        \ g:LocalConfig . "/.ycm_extra_conf.py"
 if has('win32')
     let g:ycm_path_to_python_interpreter="C:/Python35/python.exe"
     let g:ycm_server_python_interpreter="C:/Python35/python.exe"
@@ -1822,8 +1822,8 @@ set foldmethod=marker
 set foldlevel=99
 set showcmd
 set noincsearch
-set dictionary="dictionary/en_US.txt"
-set thesaurus="thesaurus/en_US.txt"
+execute 'set dictionary=' . g:LocalConfig . '/dictionary/en_US.txt' 
+execute 'set thesaurus=' . g:LocalConfig . '/thesaurus/en_US.txt' 
 set nowrap
 set nospell
 " Set file format to unix line endings

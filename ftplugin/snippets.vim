@@ -14,6 +14,8 @@ set nowrap
 set nospell
 set foldenable
 set foldmethod=syntax
+execute 'set dictionary+=' . g:LocalConfig . '/dictionary/en_US.txt' 
+execute 'set thesaurus+=' . g:LocalConfig . '/thesaurus/en_US.txt' 
 
 set commentstring=#\ %s
 

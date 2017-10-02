@@ -4,19 +4,19 @@
 "**************
 " Vim Settings
 "^^^^^^^^^^^^^^
-set tabstop=2
-set softtabstop=2
-set shiftwidth=2
-set expandtab
-set foldmethod=marker
-set foldlevel=99
-set showcmd
-set incsearch
-set nowrap
-set nospell
-set foldenable
+setlocal tabstop=2
+setlocal softtabstop=2
+setlocal shiftwidth=2
+setlocal expandtab
+setlocal foldmethod=marker
+setlocal foldlevel=99
+setlocal showcmd
+setlocal incsearch
+setlocal nowrap
+setlocal nospell
+setlocal foldenable
 
-set commentstring=#\ %s
+setlocal commentstring=#\ %s
 
 " sets formatoptions to insert comment string on new lines
 setlocal fo+=ro

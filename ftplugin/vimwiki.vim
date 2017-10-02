@@ -33,21 +33,21 @@ call TlTokenHi()
 "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 " Vim settings
 "**************
-set textwidth=80
-set formatoptions+=t
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set expandtab
-set showcmd
-set incsearch
-set wrap
-set spell
-set foldenable
-set foldmethod=marker
-set foldlevel=99
-execute 'set dictionary+=' . g:LocalConfig . '/dictionary/en_US.txt' 
-execute 'set thesaurus+=' . g:LocalConfig . '/thesaurus/en_US.txt' 
+setlocal textwidth=80
+setlocal formatoptions+=t
+setlocal tabstop=4
+setlocal softtabstop=4
+setlocal shiftwidth=4
+setlocal expandtab
+setlocal showcmd
+setlocal incsearch
+setlocal wrap
+setlocal spell
+setlocal foldenable
+setlocal foldmethod=marker
+setlocal foldlevel=99
+execute 'setlocal dictionary+=' . g:LocalConfig . '/dictionary/en_US.txt' 
+execute 'setlocal thesaurus+=' . g:LocalConfig . '/thesaurus/en_US.txt' 
 
 "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 " Functions
@@ -62,6 +62,8 @@ endfunc
 function! GetFileType(alias)
     if has_key(g:filetype_aliases, a:alias)
         return g:filetype_aliases[a:alias]
+    else
+        return 'text'
     endif
 endfunc
 "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

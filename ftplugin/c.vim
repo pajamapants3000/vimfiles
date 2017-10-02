@@ -19,34 +19,34 @@ endif
 " Additional configuration
 "*************************
 if has('win32')
-    set tags+=$HOME\ctags\c.tags
+    setlocal tags+=$HOME\ctags\c.tags
 else
-    set tags+=$HOME/.config/ctags/c.tags
+    setlocal tags+=$HOME/.config/ctags/c.tags
 endif
 
 " path additions
-set path+=$CXXPATH/include
-set path+=$CPATH/include
+setlocal path+=$CXXPATH/include
+setlocal path+=$CPATH/include
 if has('win32')
-  set path+=$LOCAL/include
+  setlocal path+=$LOCAL/include
 else
-  set path+=/usr/include
-  set path+=/usr/local/include
+  setlocal path+=/usr/include
+  setlocal path+=/usr/local/include
 endif
 
-set commentstring=//\ %s
+setlocal commentstring=//\ %s
 
 "**************
 " Vim Settings
 "^^^^^^^^^^^^^^
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set expandtab
-set foldmethod=marker
-set foldlevel=99
-set showcmd
-set incsearch
-set nowrap
-set nospell
+setlocal tabstop=4
+setlocal softtabstop=4
+setlocal shiftwidth=4
+setlocal expandtab
+setlocal foldmethod=marker
+setlocal foldlevel=99
+setlocal showcmd
+setlocal incsearch
+setlocal nowrap
+setlocal nospell
 

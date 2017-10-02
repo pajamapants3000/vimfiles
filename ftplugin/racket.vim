@@ -4,27 +4,28 @@
 "**************
 " Vim Settings
 "^^^^^^^^^^^^^^
-set tabstop=2
-set softtabstop=2
-set shiftwidth=2
-set expandtab
-set foldmethod=marker
-set foldlevel=99
-set showcmd
-set incsearch
-set nowrap
-set nospell
-set foldenable
-set lisp
+setlocal tabstop=2
+setlocal softtabstop=2
+setlocal shiftwidth=2
+setlocal expandtab
+setlocal foldmethod=marker
+setlocal foldlevel=99
+setlocal showcmd
+setlocal incsearch
+setlocal nowrap
+setlocal nospell
+setlocal foldenable
+setlocal lisp
+setlocal iskeyword+=+,-,*,/,%,<,=,>,:,$,?,!,@-@,94
 
-set commentstring=;\ %s
+setlocal commentstring=;\ %s
 
 " Additional configuration
 "*************************
 " ctags - not sure if this is even of use
 if has('win32')
-    set tags+=$HOME\ctags\racket.tags
+    setlocal tags+=$HOME\ctags\racket.tags
 else
-    set tags+=$HOME/.config/ctags/racket.tags
+    setlocal tags+=$HOME/.config/ctags/racket.tags
 endif
 

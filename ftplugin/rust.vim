@@ -11,30 +11,30 @@ map <leader>R :cd $RUSTPATH<CR>
 "**************
 " Vim Settings
 "^^^^^^^^^^^^^^
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set expandtab
-set foldmethod=marker
-set foldlevel=99
-set showcmd
-set incsearch
-set nowrap
-set nospell
-set foldenable
+setlocal tabstop=4
+setlocal softtabstop=4
+setlocal shiftwidth=4
+setlocal expandtab
+setlocal foldmethod=marker
+setlocal foldlevel=99
+setlocal showcmd
+setlocal incsearch
+setlocal nowrap
+setlocal nospell
+setlocal foldenable
 
-set commentstring=//\ %s
+setlocal commentstring=//\ %s
 
 " Additional configuration
 "*************************
 if has('win32')
-    set tags+=$USERPROFILE.'/ctags/rust.tags'
+    setlocal tags+=$USERPROFILE.'/ctags/rust.tags'
 else
-    set tags+=$HOME.'/.config/ctags/rust.tags'
+    setlocal tags+=$HOME.'/.config/ctags/rust.tags'
 endif
 
-set cms=//\ %s
-set isk=a-z,A-Z,48-57,-,_,!,#
+setlocal cms=//\ %s
+setlocal isk=a-z,A-Z,48-57,-,_,!,#
 
 " Set b:match_words for matchit
 "let b:match_words = '\<foo\>:\<bar\>'

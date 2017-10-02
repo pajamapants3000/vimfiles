@@ -3,23 +3,22 @@
 if has('win32')
     nnoremap    <leader>[   :!%:p<CR>
 endif
-set commentstring=;\ %s
+setlocal commentstring=;\ %s
 
-" Set b:match_words for matchit
+" setlocal b:match_words for matchit
 " I don't know if autohotkey has any use for this
 "let b:match_words = '\<foo\>:\<bar\>'
 
 "**************
-" Vim Settings
+" Vim settings
 "^^^^^^^^^^^^^^
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set expandtab
-set foldmethod=marker
-set foldlevel=99
-set showcmd
-set incsearch
-set nowrap
-set nospell
-
+setlocal tabstop=4
+setlocal softtabstop=4
+setlocal shiftwidth=4
+setlocal expandtab
+setlocal foldmethod=marker
+setlocal foldlevel=99
+setlocal showcmd
+setlocal incsearch
+setlocal nowrap
+setlocal nospell

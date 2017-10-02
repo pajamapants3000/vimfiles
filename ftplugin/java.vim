@@ -16,24 +16,23 @@ endif
 " Additional configuration
 "*************************
 if has('win32')
-    set tags+=$HOME\ctags\java.tags
+    setlocal tags+=$HOME\ctags\java.tags
 else
-    set tags+=$HOME/.config/ctags/java.tags
+    setlocal tags+=$HOME/.config/ctags/java.tags
 endif
 
-set commentstring=//\ %s
+setlocal commentstring=//\ %s
 
 "**************
 " Vim Settings
 "^^^^^^^^^^^^^^
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set expandtab
-set foldmethod=marker
-set foldlevel=99
-set showcmd
-set incsearch
-set nowrap
-set nospell
-
+setlocal tabstop=4
+setlocal softtabstop=4
+setlocal shiftwidth=4
+setlocal expandtab
+setlocal foldmethod=marker
+setlocal foldlevel=99
+setlocal showcmd
+setlocal incsearch
+setlocal nowrap
+setlocal nospell

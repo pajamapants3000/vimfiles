@@ -1,12 +1,12 @@
 "**************
 " Vim Settings
 "^^^^^^^^^^^^^^
-set foldmethod=syntax
-set foldlevel=99
-set showcmd
-set incsearch
-set wrap
-set nospell
+setlocal foldmethod=syntax
+setlocal foldlevel=99
+setlocal showcmd
+setlocal incsearch
+setlocal wrap
+setlocal nospell
 
 colorscheme peachpuff
 

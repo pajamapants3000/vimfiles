@@ -2,33 +2,22 @@
 " python-specific vim configuration
 "***********************************
 
-" Highlight past 79 columns - More insistent; has odd effect on popup text
-"augroup vimrc_autocmds
-"    autocmd!
-"    " highlight characters past column 79
-"    autocmd FileType python highlight Excess ctermbg=DarkGrey guibg=lightgrey
-"    autocmd FileType python match Excess /\%79v.*/
-"    autocmd FileType python set nowrap
-"    augroup END
-" Cool alternative, just color the column!
-set colorcolumn=80
-highlight ColorColumn ctermbg=darkgray
 "**************
 " Vim Settings
 "^^^^^^^^^^^^^^
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set expandtab
-set foldmethod=indent
-set foldlevel=99
-set showcmd
-set incsearch
-set nowrap
-set nospell
-set foldenable
+setlocal tabstop=4
+setlocal softtabstop=4
+setlocal shiftwidth=4
+setlocal expandtab
+setlocal foldmethod=indent
+setlocal foldlevel=99
+setlocal showcmd
+setlocal incsearch
+setlocal nowrap
+setlocal nospell
+setlocal foldenable
 
-set commentstring='''\ %s\ '''
+setlocal commentstring='''\ %s\ '''
 
 
 " Functions
@@ -81,8 +70,8 @@ endif
 " Additional configuration
 "*************************
 if has('win32')
-    set tags+=$HOME\ctags\py3.tags
+    setlocal tags+=$HOME\ctags\py3.tags
 else
-    set tags+=$HOME/.config/ctags/py3.tags
+    setlocal tags+=$HOME/.config/ctags/py3.tags
 endif
 

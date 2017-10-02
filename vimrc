@@ -1826,6 +1826,7 @@ execute 'set dictionary=' . g:LocalConfig . '/dictionary/en_US.txt'
 execute 'set thesaurus=' . g:LocalConfig . '/thesaurus/en_US.txt' 
 set nowrap
 set nospell
+set iskeyword=@,48-57,_,192-255
 " Set file format to unix line endings
 set ff=unix
 syntax on                       " syntax highlighing

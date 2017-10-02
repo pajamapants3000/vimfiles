@@ -15,28 +15,28 @@ endif
 "*************************
 " ctags - not sure if this is even of use
 if has('win32')
-    set tags+=$HOME\ctags\pollen.tags
+    setlocal tags+=$HOME\ctags\pollen.tags
 else
-    set tags+=$HOME/.config/ctags/pollen.tags
+    setlocal tags+=$HOME/.config/ctags/pollen.tags
 endif
 
 "**************
 " Vim Settings
 "^^^^^^^^^^^^^^
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set expandtab
-set foldmethod=marker
-set foldlevel=99
-set showcmd
-set incsearch
-set nowrap
-set nospell
-set foldenable
-set smartindent
-set lisp
-execute 'set dictionary+='.g:PlatformIndependentVimFolder.'/dictionary/en_US.txt' 
-execute 'set thesaurus+='.g:PlatformIndependentVimFolder.'/thesaurus/en_US.txt' 
-set commentstring=◊;\ %s
+setlocal tabstop=4
+setlocal softtabstop=4
+setlocal shiftwidth=4
+setlocal expandtab
+setlocal foldmethod=marker
+setlocal foldlevel=99
+setlocal showcmd
+setlocal incsearch
+setlocal nowrap
+setlocal nospell
+setlocal foldenable
+setlocal smartindent
+setlocal lisp
+execute 'setlocal dictionary+='.g:PlatformIndependentVimFolder.'/dictionary/en_US.txt' 
+execute 'setlocal thesaurus+='.g:PlatformIndependentVimFolder.'/thesaurus/en_US.txt' 
+setlocal commentstring=◊;\ %s
 

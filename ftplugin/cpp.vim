@@ -19,24 +19,25 @@ endif
 " Additional configuration
 "*************************
 if has('win32')
-    set tags+=$HOME\ctags\cxx.tags
+    setlocal tags+=$HOME\ctags\cxx.tags
 else
-    set tags+=$HOME/.config/ctags/cxx.tags
+    setlocal tags+=$HOME/.config/ctags/cxx.tags
 endif
 
-set commentstring=//\ %s
+setlocal commentstring=//\ %s
 
 "**************
 " Vim Settings
 "^^^^^^^^^^^^^^
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set expandtab
-set foldmethod=marker
-set foldlevel=99
-set showcmd
-set incsearch
-set nowrap
-set nospell
+setlocal tabstop=4
+setlocal softtabstop=4
+setlocal shiftwidth=4
+setlocal expandtab
+setlocal foldmethod=marker
+setlocal foldlevel=99
+setlocal showcmd
+setlocal incsearch
+setlocal nowrap
+setlocal nospell
+setlocal iskeyword=@,48-57,_,192-255
 

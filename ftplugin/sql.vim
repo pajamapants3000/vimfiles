@@ -4,16 +4,16 @@
 "**************
 " Vim Settings
 "^^^^^^^^^^^^^^
-set tabstop=2
-set softtabstop=2
-set shiftwidth=2
-set expandtab
-set showcmd
-set incsearch
-set nowrap
-set nospell
-set foldenable
-set foldmethod=marker
+setlocal tabstop=2
+setlocal softtabstop=2
+setlocal shiftwidth=2
+setlocal expandtab
+setlocal showcmd
+setlocal incsearch
+setlocal nowrap
+setlocal nospell
+setlocal foldenable
+setlocal foldmethod=marker
 
-set commentstring=--\ %s
+setlocal commentstring=--\ %s
 

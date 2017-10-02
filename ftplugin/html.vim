@@ -28,25 +28,25 @@ inoremap << &lt;
 "**************
 " Vim Settings
 "^^^^^^^^^^^^^^
-set tabstop=2
-set softtabstop=2
-set shiftwidth=2
-set expandtab
-set foldmethod=syntax
-set foldlevel=99
-set showcmd
-set incsearch
-set nowrap
-set nospell
+setlocal tabstop=2
+setlocal softtabstop=2
+setlocal shiftwidth=2
+setlocal expandtab
+setlocal foldmethod=syntax
+setlocal foldlevel=99
+setlocal showcmd
+setlocal incsearch
+setlocal nowrap
+setlocal nospell
 
-set commentstring=<!--\ %s\ -->
+setlocal commentstring=<!--\ %s\ -->
 
 "******
 " Tags
 "^^^^^^
 if has('win32')
-    set tags+=$HOME\ctags\html.tags
+    setlocal tags+=$HOME\ctags\html.tags
 else
-    set tags+=$HOME/.config/ctags/html.tags
+    setlocal tags+=$HOME/.config/ctags/html.tags
 endif
 

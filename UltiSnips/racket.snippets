@@ -2,7 +2,286 @@
 # Snippets for Racket code
 # 
 
-snippet test "test"
-this is a test
+# Note: The following symbols are used on the placeholder ids
+#       * indicates an optional form that may be repeated with space separation
+#       + indicates a required form that may be repeated with space separation
+#       [] indicates an optional form
+
+# Basic Racket procedures
+snippet #l "#lang"
+#lang ${1:language}
+$0
 endsnippet
+snippet #lr "#lang racket"
+#lang racket
+
+endsnippet
+snippet #lrb "#lang racket/base"
+#lang racket/base
+
+endsnippet
+snippet #lsb "#lang scribble/base"
+#lang scribble/base
+
+endsnippet
+snippet mod "module"
+(module ${1:id} ${2:module-path}
+  ${3:form*})
+$0
+endsnippet
+snippet mod* "module*"
+(module* ${1:id} ${2:module-path}
+  ${3:form*})
+$0
+endsnippet
+snippet mod* "module* with all bindings from enclosing module"
+(module* ${1:id} #f
+  ${2:form*})
+$0
+endsnippet
+snippet mod+ "module+"
+(module+ ${1:id}
+  ${2:form*})
+$0
+endsnippet
+snippet smod "submod"
+(submod ${1:root-module} ${2:submod-path-element*})$0
+endsnippet
+snippet smod. "submod rooted here"
+(submod "." ${1:submod-path-element*})$0
+endsnippet
+snippet smod.. "submod rooted from parent"
+(submod ".." ${1:submod-path-element*})$0
+endsnippet
+snippet pv "provide"
+(provide ${1:provide-spec*})$0
+endsnippet
+snippet pva "provide all-defined-out"
+(provide (all-defined-out))$0
+endsnippet
+snippet pvf "provide all-from-out"
+(provide (all-from-out ${1:module-path*}))$0
+endsnippet
+snippet rq "require - simple"
+(require ${1:require-spec*})$0
+endsnippet
+snippet co "contract-out - simple"
+(contract-out (${1:id} ${2:contract-expr}))$0
+endsnippet
+snippet a/c "and/c"
+(and/c ${1:contract} ${2:contract+})$0
+endsnippet
+snippet o/c "or/c"
+(or/c ${1:contract} ${2:contract+})$0
+endsnippet
+# Creating new bindings
+snippet def "define constant"
+(define ${1:id} ${2:expr})$0
+endsnippet
+snippet deff "define procedure"
+(define (${1:id} ${2:id*}) ${3:expr+})$0
+endsnippet
+snippet d/c "define/contract - constant"
+(define/contract ${1:id} ${2:contract-expr} ${3:init-value-expr})$0
+endsnippet
+snippet d/cfv "define/contract - constant with free-var"
+(define/contract ${1:id}
+  ${2:contract-expr}
+  #:freevar ${3:id} ${4:contract-expr}
+  ${5:init-value-expr})$0
+endsnippet
+snippet d/cfvs "define/contract - constant with two free-vars"
+(define/contract ${1:id}
+  ${2:contract-expr}
+  #:freevars (
+    [${3:id} ${4:contract-expr}]
+    [${5:id} ${6:contract-expr}])
+  ${7:init-value-expr})$0
+endsnippet
+snippet df/c "define/contract - procedure"
+(define/contract (${1:id} ${1:arg*})
+  ${3:contract-expr}
+  ${4:body+})$0
+endsnippet
+snippet df/c "define/contract - procedure"
+(define/contract (${1:id} ${1:arg*})
+  ${3:contract-expr}
+  ${4:body+})$0
+endsnippet
+snippet df/cfv "define/contract - procedure with free-var"
+(define/contract (${1:id} ${2:arg*})
+  ${3:contract-expr}
+  #:freevar ${4:id} ${5:contract-expr}
+  ${6:body+})$0
+endsnippet
+snippet df/cfvs "define/contract - procedure with two free-vars"
+(define/contract (${1:id} ${2:arg*})
+  ${3:contract-expr}
+  #:freevars (
+    [${4:id} ${5:contract-expr}]
+    [${6:id} ${7:contract-expr}])
+  ${8:body+})$0
+endsnippet
+
+snippet lmb "lambda"
+(lambda (${1:id*}) ${2:expr+})$0
+endsnippet
+snippet λ "lambda"
+(λ (${1:id*}) ${2:expr+})$0
+endsnippet
+snippet lt "let with one binding"
+(let ([${1:id} ${2:expr}]) ${3:expr+})$0
+endsnippet
+snippet lt2 "let with two bindings"
+(let ([${1:id} ${2:expr}] [${3:id} ${4:expr}]) ${5:expr+})$0
+endsnippet
+snippet lt3 "let with three bindings"
+(let ([${1:id} ${2:expr}]
+    [${3:id} ${4:expr}]
+    [${5:id} ${6:expr}])
+  ${7:expr+})
+$0
+endsnippet
+snippet lt* "let* with one binding"
+(let* ([${1:id} ${2:expr}]) ${3:expr+})$0
+endsnippet
+snippet lt** "let* with two bindings"
+(let* ([${1:id} ${2:expr}] [${3:id} ${4:expr}]) ${5:expr+})$0
+endsnippet
+snippet lt*** "let* with three bindings"
+(let* ([${1:id} ${2:expr}]
+    [${3:id} ${4:expr}]
+    [${5:id} ${6:expr}])
+  ${7:expr+})
+$0
+endsnippet
+snippet ltr "letrec with one binding"
+(letrec ([${1:id} ${2:expr}]) ${3:expr+})$0
+endsnippet
+snippet ltrr "letrec with two bindings"
+(letrec ([${1:id} ${2:expr}] [${3:id} ${4:expr}]) ${5:expr+})$0
+endsnippet
+snippet ltrrr "letrec with three bindings"
+(letrec ([${1:id} ${2:expr}]
+    [${3:id} ${4:expr}]
+    [${5:id} ${6:expr}])
+  ${7:expr+})
+$0
+endsnippet
+# Input/Ouput
+snippet pf "printf"
+(printf "${1:format-string}" ${2:string-expr*})$0
+endsnippet
+# Conditionals and Control Flow
+snippet if "if"
+(if ${1:predicate} ${2:then-expr} ${3:else-expr})$0
+endsnippet
+snippet condd "switch statement, 2 options plus default"
+(cond
+  [${1:test-expr} ${2:then-body+}]
+  [${1:test-expr} ${2:then-body+}]
+  [else ${2:then-body+}])
+endsnippet
+snippet condd "switch statement, 2 options plus default"
+(cond
+  [${1:test-expr} ${2:then-body+}]
+  [${1:test-expr} ${2:then-body+}]
+  [else ${2:then-body+}])
+endsnippet
+snippet cond3d "switch statement, 3 options plus default"
+(cond
+  [${1:test-expr} ${2:then-body+}]
+  [${1:test-expr} ${2:then-body+}]
+  [${1:test-expr} ${2:then-body+}]
+  [else ${2:then-body+}])
+endsnippet
+snippet cond4d "switch statement, 4 options plus default"
+(cond
+  [${1:test-expr} ${2:then-body+}]
+  [${1:test-expr} ${2:then-body+}]
+  [${1:test-expr} ${2:then-body+}]
+  [${1:test-expr} ${2:then-body+}]
+  [else ${2:then-body+}])
+endsnippet
+snippet cond5d "switch statement, 5 options plus default"
+(cond
+  [${1:test-expr} ${2:then-body+}]
+  [${1:test-expr} ${2:then-body+}]
+  [${1:test-expr} ${2:then-body+}]
+  [${1:test-expr} ${2:then-body+}]
+  [${1:test-expr} ${2:then-body+}]
+  [else ${2:then-body+}])
+endsnippet
+snippet cond6d "switch statement, 6 options plus default"
+(cond
+  [${1:test-expr} ${2:then-body+}]
+  [${1:test-expr} ${2:then-body+}]
+  [${1:test-expr} ${2:then-body+}]
+  [${1:test-expr} ${2:then-body+}]
+  [${1:test-expr} ${2:then-body+}]
+  [${1:test-expr} ${2:then-body+}]
+  [else ${2:then-body+}])
+endsnippet
+snippet cond "switch statement, 2 options"
+(cond
+  [${1:test-expr} ${2:then-body+}]
+  [${1:test-expr} ${2:then-body+}])
+endsnippet
+snippet cond3 "switch statement, 3 options"
+(cond
+  [${1:test-expr} ${2:then-body+}]
+  [${1:test-expr} ${2:then-body+}]
+  [${1:test-expr} ${2:then-body+}])
+endsnippet
+snippet cond4 "switch statement, 4 options"
+(cond
+  [${1:test-expr} ${2:then-body+}]
+  [${1:test-expr} ${2:then-body+}]
+  [${1:test-expr} ${2:then-body+}]
+  [${1:test-expr} ${2:then-body+}])
+endsnippet
+snippet cond5 "switch statement, 5 options"
+(cond
+  [${1:test-expr} ${2:then-body+}]
+  [${1:test-expr} ${2:then-body+}]
+  [${1:test-expr} ${2:then-body+}]
+  [${1:test-expr} ${2:then-body+}]
+  [${1:test-expr} ${2:then-body+}])
+endsnippet
+snippet cond6 "switch statement, 6 options"
+(cond
+  [${1:test-expr} ${2:then-body+}]
+  [${1:test-expr} ${2:then-body+}]
+  [${1:test-expr} ${2:then-body+}]
+  [${1:test-expr} ${2:then-body+}]
+  [${1:test-expr} ${2:then-body+}]
+  [${1:test-expr} ${2:then-body+}])
+endsnippet
+snippet and "and"
+(and ${1:test-expr} ${2:test-expr+})$0
+endsnippet
+snippet or "or"
+(or ${1:test-expr} ${2:test-expr+})$0
+endsnippet
+# Strings
+snippet substr "substring"
+(substring ${1:string} ${2:start} ${3:[end]})$0
+endsnippet
+snippet strlen "string-length"
+(string-length ${1:string})$0
+endsnippet
+snippet strap "string-append"
+(string-append ${1:string-expr} ${2:string-expr+})$0
+endsnippet
+# Predicates
+snippet ?num "number?"
+(number? ${1:x})$0
+endsnippet
+snippet ?pos "positive?"
+(positive? ${1:x})$0
+endsnippet
+snippet ?neg "negative?"
+(negative? ${1:x})$0
+endsnippet
+# Conversions
 

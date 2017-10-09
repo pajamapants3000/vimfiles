@@ -7,6 +7,7 @@
 " A X_plugins.vimrc file should be sourced at the beginning of vimrc
 
 " This plugins file will load just the most important plugins and settings
+"
 
 let PLUGIN_VIM_AIRLINE = 1
 let PLUGIN_VIM_AIRLINE_THEMES = 1
@@ -121,6 +122,11 @@ let PLUGIN_VIM_RACER = 0
 " Racket
 let PLUGIN_VIM_RACKET = 0
 let PLUGIN_VROD = 0
+
+" TypeScript
+let PLUGIN_TYPESCRIPT_VIM = 0
+let PLUGIN_YATS_VIM = 0
+let PLUGIN_TSUQUYOMI = 0
 
 " SQL
 let PLUGIN_SQLCOMPLETE = 0

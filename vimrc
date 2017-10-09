@@ -23,13 +23,13 @@ let g:PlatformIndependentHome =
         \ has('win32') ? substitute($USERPROFILE, "\\", "/", "g") : $HOME
 let g:PlatformIndependentVimFolder =
         \ has('win32') ? 'vimfiles' : '.vim'
-let g:VundleFolder = g:PlatformIndependentVimFolder.'/bundle'
 " Set local configuration path - mostly plugins
 " Source flags for this configuration
 execute 'source ' . g:CloudConfig . '/config_' . config_type . '.vimrc'
 " Now add the usual system-specific user configuration
 let g:LocalConfig =
       \ g:PlatformIndependentHome . '/' . g:PlatformIndependentVimFolder
+let g:VundleFolder = g:LocalConfig . '/bundle'
 execute "set runtimepath+=" . g:LocalConfig
 " Now add the "/after" paths
 let &runtimepath .= ',' . g:CloudConfig . '/after'
@@ -486,7 +486,22 @@ if PLUGIN_VIM_RACKET
 endif
 " vrod - Racket Omni-completion and Documentation
 if PLUGIN_VROD
-    Plugin 'MicahElliott/vrod'
+    Plugin 'pajamapants3000/vrod'
+endif
+"************
+" TypeScript
+"^^^^^^^^^^^^
+" typescript-vim - TypeScript syntax, indenting, compiler settings, etc.
+if PLUGIN_TYPESCRIPT_VIM
+    Plugin 'leafgarland/typescript-vim'
+endif
+" yats-vim - Yet Another TypeScript Syntax
+if PLUGIN_YATS_VIM
+    Plugin 'HerringtonDarkholme/yats.vim'
+endif
+" tsuquyomi - TypeScript IDE features
+if PLUGIN_TSUQUYOMI
+    Plugin 'Quramy/tsuquyomi'
 endif
 "*****
 " SQL
@@ -1105,7 +1120,10 @@ let g:ycm_rust_src_path = g:PlatformIndependentHome.'/repo/rust/src'
 let RUST_SRC_PATH = g:ycm_rust_src_path
 let CARGO_HOME = g:PlatformIndependentHome.'/.cargo'
 let g:racer_cmd = g:VundleFolder.'/vim-racer/racerd.exe'
-
+if !exists("g:ycm_semantic_triggers")
+  let g:ycm_semantic_triggers = {}
+endif
+let g:ycm_semantic_triggers['typescript'] = ['.']
 "let g:ycm_key_invoke_completion = '<C-.>' "Default=<C-Space>; changed for term
 "                                         "except this doesn't work in Konsole!
 "                                         "<C-Space> works in Konsole
@@ -1354,6 +1372,22 @@ let g:racer_cmd = g:VundleFolder.'/vim-racer/racerd.exe'
 let RUST_SRC_PATH = g:PlatformIndependentHome.'/repo/rust/src'
 let CARGO_HOME = g:PlatformIndependentHome.'/.cargo'
     endif   " PLUGIN_VIM_RACER
+
+" typescript-vim
+"^^^^^^^^^^^^^^^^
+    if PLUGIN_TYPESCRIPT_VIM
+" Customize compiler name and options
+"let g:typescript_compiler_binary = 'tsc'
+"let g:typescript_compiler_options = '$*'
+"
+augroup typescript_vim
+    " Override compiler settings
+    "autocmd FileType typescript :set makeprg=tsc
+    "
+    autocmd QuickFixCmdPost [^l]* nested cwindow
+    autocmd QuickFixCmdPost    l* nested lwindow
+augroup END
+    endif
 
 " Python_Pydoc.vim
 "^^^^^^^^^^^^^^^^^^

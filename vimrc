@@ -435,7 +435,17 @@ endif
 if PLUGIN_VIM_CSHARP
     Plugin 'OrangeT/vim-csharp'
 endif
-
+"****
+" Go
+"^^^^
+" gocode - autocompletion daemon for the Go programming language
+if PLUGIN_GOCODE
+    Plugin 'nsf/gocode'
+endif
+" godef - print where symbols are defined in Go source code
+if PLUGIN_GODEF
+    Plugin 'Manishearth/godef'
+endif
 "********
 " Lua
 "^^^^^^^^
@@ -487,6 +497,13 @@ endif
 " vrod - Racket Omni-completion and Documentation
 if PLUGIN_VROD
     Plugin 'pajamapants3000/vrod'
+endif
+"*******
+" Swift
+"^^^^^^^
+" completor-swift - Swift completion for completor.vim
+if PLUGIN_COMPLETOR_SWIFT
+    Plugin 'maralla/completor-swift'
 endif
 "************
 " TypeScript
@@ -1102,6 +1119,36 @@ let g:UltiSnipsSnippetsDir=g:CloudConfig . "/UltiSnips"
 let g:UltiSnipsEditSplit='horizontal'
     endif   " PLUGIN_ULTISNIPS
 
+" completor-vim
+"^^^^^^^^^^^^^^^
+    if PLUGIN_COMPLETOR
+let g:completor_python_binary = 'C:/Python35/python.exe'
+let g:completor_racer_binary = 'C:/Users/otrip/.cargo/bin/racer.exe'
+let g:completor_node_binary = 'C:/Program Files (x86)/nodejs/node.exe'
+let g:completor_clang_binary = $ONEDRIVE . '/bin/libclang.dll'
+let g:completor_gocode_binary = g:VundleFolder . '/gocode/gocode.go'
+"let g:completor_blacklist = ['tagbar', 'qf', 'netrw', 'unite', 'vimwiki']
+" Example of how to specify trigger for additional file type's omni function
+let g:completor_css_omni_trigger = '([\w-]+|@[\w-]*|[\w-]+:\s*[\w-]*)$'
+" By default, completor.vim sets some options to completeopt; they are:
+"set completeopt-=longest
+"set completeopt+=menuone
+"set completeopt-=menu
+"if &completeopt !~# 'noinsert\|noselect'
+"  set completeopt+=noselect
+"endif
+" to disable, uncomment:
+"let g:completor_set_options = 0
+"
+" Use Tab to select completion
+"inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+"inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+"inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
+" Use Tab to trigger completion (disable auto-trigger)
+"let g:completor_auto_trigger = 0
+"inoremap <expr> <Tab> pumvisible() ? "<C-N>" : "<C-R>=completor#do('complete')<CR>"
+"
+    endif
 " YouCompleteMe
 "^^^^^^^^^^^^^^^
     if PLUGIN_YOUCOMPLETEME

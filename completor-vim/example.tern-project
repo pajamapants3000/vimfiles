@@ -1,0 +1,19 @@
+/*
+ * example.tern-project
+ */
+
+// Copy this, or an actual project file, into the directory of any JavaScript
+// projects to have tern completion work.
+
+{
+  "plugins": {
+    "node": {},
+    "es_modules": {}
+  },
+  "libs": [
+    "ecma5",
+    "ecma6"
+  ],
+  "ecmaVersion": 6
+}
+

@@ -1,0 +1,13 @@
+#
+# example.clang_complete
+#
+
+# Not sure if this comment format is correct
+# Place .clang_complete under project root directory
+# each line should contain a single, entire argument to be passed to clang for
+# compilation.
+
+-std=c++11
+-I/Users/maralla/Workspace/src/dji-sdk/Onboard-SDK/lib/inc
+-I/Users/maralla/Workspace/src/dji-sdk/Onboard-SDK/sample/Linux/inc
+

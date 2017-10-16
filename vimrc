@@ -435,6 +435,13 @@ endif
 if PLUGIN_VIM_CSHARP
     Plugin 'OrangeT/vim-csharp'
 endif
+"******
+" XAML
+"^^^^^^
+" dotnet-complete: XAML and C# completion
+if PLUGIN_DOTNET_COMPLETE || PLUGIN_DOTNET_COMPLETE_XAML_ONLY
+    Plugin 'yuratomo/dotnet-complete'
+endif
 "****
 " Go
 "^^^^
@@ -1130,6 +1137,7 @@ let g:completor_gocode_binary = g:VundleFolder . '/gocode/gocode.go'
 "let g:completor_blacklist = ['tagbar', 'qf', 'netrw', 'unite', 'vimwiki']
 " Example of how to specify trigger for additional file type's omni function
 let g:completor_css_omni_trigger = '([\w-]+|@[\w-]*|[\w-]+:\s*[\w-]*)$'
+let g:completor_xml_omni_trigger = '\<'
 " By default, completor.vim sets some options to completeopt; they are:
 "set completeopt-=longest
 "set completeopt+=menuone
@@ -1434,6 +1442,17 @@ augroup typescript_vim
     autocmd QuickFixCmdPost [^l]* nested cwindow
     autocmd QuickFixCmdPost    l* nested lwindow
 augroup END
+    endif
+
+" dotnet-complete
+"^^^^^^^^^^^^^^^^^
+    if PLUGIN_DOTNET_COMPLETE
+au BufNewFile,BufRead *.xaml    setl omnifunc=xaml#complete
+if !PLUGIN_DOTNET_COMPLETE_XAML_ONLY
+    au BufNewFile,BufRead *.cs      setl omnifunc=cs#complet
+    au BufNewFile,BufRead *.cs      setl bexpr=cs#balloon()
+    au BufNewFile,BufRead *.cs      setl ballooneval
+endif
     endif
 
 " Python_Pydoc.vim
@@ -1853,6 +1872,11 @@ augroup filetypedetect
     au BufNewFile,BufRead,BufEnter *.[ch]       setf c
     " C++
     au BufNewFile,BufRead,BufEnter *.[ch]{xx,++,pp},*.C     setf cpp
+    " XAML
+        au BufNewFile,BufRead,BufEnter *.xaml       setf xml
+    if PLUGIN_DOTNET_COMPLETE
+        au BufNewFile,BufRead,BufEnter *.xaml       setl omnifunc=xaml#complete
+    endif
     " Rust
     au BufNewFile,BufRead,BufEnter *.rst        setf rust
     " HTML

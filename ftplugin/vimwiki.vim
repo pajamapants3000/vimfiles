@@ -72,9 +72,14 @@ endfunc
 " Insert line break, followed by actual carriage return
 inoremap br<CR> <br /><CR>
 "nnoremap <expr> <leader>fsft SetFileType(expand('<cword>'))
+" NOTE: WIP - execute BufRead autocommand for filetype
 nmap <leader>ff <leader>fgft:<c-u>.s/^.*$//<CR>
-nnoremap <leader>fgft :<c-u>exe<space>'setf<space>'.GetFileType(expand('<cword>'))<CR>
-inoremap <leader>fgft <c-o>:exe<space>'setf<space>'.GetFileType(expand('<cword>'))<CR>
+nnoremap <leader>fgft
+            \ :<c-u>exe<space>'setf<space>'.GetFileType(expand('<cword>'))<CR>
+"            \:<c-u>exe<space>'do<space>BufRead<space>x.'.expand('<cword>')<CR>
+inoremap <leader>fgft
+            \ <c-o>:exe<space>'setf<space>'.GetFileType(expand('<cword>'))<CR>
+"            \<c-o>:exe<space>'do<space>BufRead<space>x.'.expand('<cword>')<CR>
 imap <leader>ff <leader>fgft<c-o>cc<ESC>
 "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 

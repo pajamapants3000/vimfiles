@@ -775,7 +775,6 @@ let g:filetype_aliases['vbs']         = 'vbs'
 let g:filetype_aliases['vb']          = 'vb'
 let g:filetype_aliases['xaml']        = 'xaml'
 let g:filetype_aliases['sharp']       = 'cs'
-let g:filetype_aliases['vimwiki']     = 'vimwiki'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Functions
 "***********
@@ -829,6 +828,8 @@ endfunc
 function! SetFileType(alias)
     if has_key(g:filetype_aliases, a:alias)
         let filetype = g:filetype_aliases[a:alias]
+    elseif tolower(a:alias) == 'vimwiki'
+        let filetype = 'vimwiki'
     else
         let filetype = 'text'
     endif
@@ -1821,8 +1822,8 @@ nnoremap <C-n> :call NumberToggleRel()<cr>
 nnoremap <leader>ff :<c-u>redir<space>@z<CR>
             \:<c-u>exe<space>'echo<space>"filetype<space>is<space>now<space>'
             \.SetFileType(expand('<cword>')).'"'<CR>
-            \:<c-u>redir<space>END<CR>
-            \:<c-u>echo<space>@z<CR>ciw<ESC>
+            \:<c-u>redir<space>END<CR>ciw<ESC>
+            \:<c-u>echo<space>@z<CR>
 inoremap <leader>ff <c-o>:redir<space>@z<CR>
             \<c-o>:exe<space>'echo<space>"filetype<space>is<space>now<space>'
             \.SetFileType(expand('<cword>')).'"'<CR>
@@ -1833,11 +1834,11 @@ nnoremap <leader>fv :<c-u>redir<space>@z<CR>
             \:<c-u>exe<space>'echo<space>"filetype<space>is<space>now<space>'
             \.SetFileType('vimwiki').'"'<CR>
             \:<c-u>redir<space>END<CR>
-            \:<c-u>echo<space>@z<CR>ciw<ESC>
+            \:<c-u>echo<space>@z<CR>
 inoremap <leader>fv <c-o>:redir<space>@z<CR>
             \<c-o>:exe<space>'echo<space>"filetype<space>is<space>now<space>'
             \.SetFileType('vimwiki').'"'<CR>
-            \<c-o>:redir<space>END<CR><c-o>ciw<ESC>
+            \<c-o>:redir<space>END<CR>
             \<c-o>:echo<space>@z<CR>
 "
 "***********************************************

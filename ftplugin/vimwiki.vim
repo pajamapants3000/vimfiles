@@ -46,40 +46,18 @@ setlocal spell
 setlocal foldenable
 setlocal foldmethod=marker
 setlocal foldlevel=99
-execute 'setlocal dictionary+=' . g:LocalConfig . '/dictionary/en_US.txt' 
-execute 'setlocal thesaurus+=' . g:LocalConfig . '/thesaurus/en_US.txt' 
+execute 'setlocal dictionary+=' . g:LocalConfig . '/dictionary/en_US.txt'
+execute 'setlocal thesaurus+=' . g:LocalConfig . '/thesaurus/en_US.txt'
 
 "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 " Functions
 "***********
-" SetFileType: set filetype to alias under cursor
-"^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-function! SetFileType(alias)
-    if has_key(g:filetype_aliases, a:alias)
-        :execute 'setf ' . g:filetype_aliases[a:alias]
-    endif
-endfunc
-function! GetFileType(alias)
-    if has_key(g:filetype_aliases, a:alias)
-        return g:filetype_aliases[a:alias]
-    else
-        return 'text'
-    endif
-endfunc
+"
 "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 " Mappings
 "**********
 " Insert line break, followed by actual carriage return
 inoremap br<CR> <br /><CR>
-"nnoremap <expr> <leader>fsft SetFileType(expand('<cword>'))
-" NOTE: WIP - execute BufRead autocommand for filetype
-nmap <leader>ff <leader>fgft:<c-u>.s/^.*$//<CR>
-nnoremap <leader>fgft
-            \ :<c-u>exe<space>'setf<space>'.GetFileType(expand('<cword>'))<CR>
-"            \:<c-u>exe<space>'do<space>BufRead<space>x.'.expand('<cword>')<CR>
-inoremap <leader>fgft
-            \ <c-o>:exe<space>'setf<space>'.GetFileType(expand('<cword>'))<CR>
-"            \<c-o>:exe<space>'do<space>BufRead<space>x.'.expand('<cword>')<CR>
-imap <leader>ff <leader>fgft<c-o>cc<ESC>
+
 "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 

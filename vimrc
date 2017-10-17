@@ -775,6 +775,7 @@ let g:filetype_aliases['vbs']         = 'vbs'
 let g:filetype_aliases['vb']          = 'vb'
 let g:filetype_aliases['xaml']        = 'xaml'
 let g:filetype_aliases['sharp']       = 'cs'
+let g:filetype_aliases['vimwiki']     = 'vimwiki'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Functions
 "***********
@@ -820,12 +821,22 @@ function! TlTokenHi()
 endfunc
 "
 " SetFileType: set filetype to alias under cursor
-"^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+" ************************************************
+" Arguments: alias - filetype alias; a key in the filetype/alias dictionary
+" Obtains filetype from dictionary of filetype aliases, using alias as a key
+" Changes current filetype to that filetype and executes autocommand to set
+"+any filetype settings
 function! SetFileType(alias)
     if has_key(g:filetype_aliases, a:alias)
-        :execute 'setf ' . g:filetype_aliases[a:alias]
+        let filetype = g:filetype_aliases[a:alias]
+    else
+        let filetype = 'text'
     endif
+    :execute 'setf ' . filetype
+    :execute 'do BufRead x.' . filetype
+    return filetype
 endfunc
+"^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 " UltiSnips Functions
 "^^^^^^^^^^^^^^^^^^^^^
     if PLUGIN_ULTISNIPS
@@ -1806,8 +1817,29 @@ inoremap <leader><Enter><Space><Space><Space> <Enter><Left><Delete><Left>
             \<Left><Delete><Left><Delete>
 nnoremap <M-n> :call NumberToggle()<cr>
 nnoremap <C-n> :call NumberToggleRel()<cr>
-nnoremap <leader>fv :<c-u>setf vimwiki<cr>
-inoremap <leader>fv <c-o>:setf vimwiki<cr>
+" Set filetype to filetype corresponding to alias under the cursor
+nnoremap <leader>ff :<c-u>redir<space>@z<CR>
+            \:<c-u>exe<space>'echo<space>"filetype<space>is<space>now<space>'
+            \.SetFileType(expand('<cword>')).'"'<CR>
+            \:<c-u>redir<space>END<CR>
+            \:<c-u>echo<space>@z<CR>ciw<ESC>
+inoremap <leader>ff <c-o>:redir<space>@z<CR>
+            \<c-o>:exe<space>'echo<space>"filetype<space>is<space>now<space>'
+            \.SetFileType(expand('<cword>')).'"'<CR>
+            \<c-o>:redir<space>END<CR><c-o>ciw<ESC>
+            \<c-o>:echo<space>@z<CR>
+" Set filetype to vimwiki
+nnoremap <leader>fv :<c-u>redir<space>@z<CR>
+            \:<c-u>exe<space>'echo<space>"filetype<space>is<space>now<space>'
+            \.SetFileType('vimwiki').'"'<CR>
+            \:<c-u>redir<space>END<CR>
+            \:<c-u>echo<space>@z<CR>ciw<ESC>
+inoremap <leader>fv <c-o>:redir<space>@z<CR>
+            \<c-o>:exe<space>'echo<space>"filetype<space>is<space>now<space>'
+            \.SetFileType('vimwiki').'"'<CR>
+            \<c-o>:redir<space>END<CR><c-o>ciw<ESC>
+            \<c-o>:echo<space>@z<CR>
+"
 "***********************************************
 " NOTE: List of mappings that can't hurt to use!
 " <C-M> - default: a synonym for <CR> or + in Normal mode
@@ -1927,8 +1959,8 @@ set foldmethod=marker
 set foldlevel=99
 set showcmd
 set noincsearch
-execute 'set dictionary=' . g:LocalConfig . '/dictionary/en_US.txt' 
-execute 'set thesaurus=' . g:LocalConfig . '/thesaurus/en_US.txt' 
+execute 'set dictionary=' . g:LocalConfig . '/dictionary/en_US.txt'
+execute 'set thesaurus=' . g:LocalConfig . '/thesaurus/en_US.txt'
 set nowrap
 set nospell
 set iskeyword=@,48-57,_,192-255

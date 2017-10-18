@@ -1150,6 +1150,7 @@ let g:completor_gocode_binary = g:VundleFolder . '/gocode/gocode.go'
 " Example of how to specify trigger for additional file type's omni function
 let g:completor_css_omni_trigger = '([\w-]+|@[\w-]*|[\w-]+:\s*[\w-]*)$'
 let g:completor_xml_omni_trigger = '\<'
+let g:completor_cs_omni_trigger = '.*'
 " By default, completor.vim sets some options to completeopt; they are:
 "set completeopt-=longest
 "set completeopt+=menuone
@@ -1461,8 +1462,8 @@ augroup END
     if PLUGIN_DOTNET_COMPLETE
 au BufNewFile,BufRead *.xaml    setl omnifunc=xaml#complete
 if !PLUGIN_DOTNET_COMPLETE_XAML_ONLY
-    au BufNewFile,BufRead *.cs      setl omnifunc=cs#complet
-    au BufNewFile,BufRead *.cs      setl bexpr=cs#balloon()
+    au BufNewFile,BufRead *.cs      setl omnifunc=dotnet#complete
+    au BufNewFile,BufRead *.cs      setl bexpr=dotnet#balloon()
     au BufNewFile,BufRead *.cs      setl ballooneval
 endif
     endif
@@ -1823,23 +1824,23 @@ nnoremap <leader>ff :<c-u>redir<space>@z<CR>
             \:<c-u>exe<space>'echo<space>"filetype<space>is<space>now<space>'
             \.SetFileType(expand('<cword>')).'"'<CR>
             \:<c-u>redir<space>END<CR>ciw<ESC>
-            \:<c-u>echo<space>@z<CR>
+            "\:<c-u>echo<space>@z<CR>
 inoremap <leader>ff <c-o>:redir<space>@z<CR>
             \<c-o>:exe<space>'echo<space>"filetype<space>is<space>now<space>'
             \.SetFileType(expand('<cword>')).'"'<CR>
             \<c-o>:redir<space>END<CR><c-o>ciw<ESC>
-            \<c-o>:echo<space>@z<CR>
+            "\<c-o>:echo<space>@z<CR>
 " Set filetype to vimwiki
 nnoremap <leader>fv :<c-u>redir<space>@z<CR>
             \:<c-u>exe<space>'echo<space>"filetype<space>is<space>now<space>'
             \.SetFileType('vimwiki').'"'<CR>
             \:<c-u>redir<space>END<CR>
-            \:<c-u>echo<space>@z<CR>
+            "\:<c-u>echo<space>@z<CR>
 inoremap <leader>fv <c-o>:redir<space>@z<CR>
             \<c-o>:exe<space>'echo<space>"filetype<space>is<space>now<space>'
             \.SetFileType('vimwiki').'"'<CR>
             \<c-o>:redir<space>END<CR>
-            \<c-o>:echo<space>@z<CR>
+            "\<c-o>:echo<space>@z<CR>
 "
 "***********************************************
 " NOTE: List of mappings that can't hurt to use!

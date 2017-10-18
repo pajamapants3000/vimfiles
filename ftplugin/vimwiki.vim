@@ -43,6 +43,7 @@ setlocal showcmd
 setlocal incsearch
 setlocal wrap
 setlocal spell
+setlocal indentexpr=
 setlocal foldenable
 setlocal foldmethod=marker
 setlocal foldlevel=99

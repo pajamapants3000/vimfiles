@@ -17,3 +17,5 @@ setlocal foldenable
 setlocal foldmethod=marker
 setlocal commentstring=\"\ %s
 
+colorscheme base16-monokai
+

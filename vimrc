@@ -14,7 +14,11 @@ set runtimepath=$VIMRUNTIME
 " NOTE: this vimrc should be sourced by another script that would typically
 " have already set this.
 if !exists('config_type')
-    let config_type = 'none'
+    if exists('def_config_type')
+        let config_type=def_config_type
+    else
+        let config_type = 'default'
+    endif
 endif
 " Set the initial user configuration to the location of this script
 let g:CloudConfig = resolve(expand('<sfile>:p:h'))

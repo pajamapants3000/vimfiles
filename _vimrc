@@ -42,36 +42,18 @@ endif
 " Otherwise, use USERPROFILE or HOME, depending on whether we are
 " in Windows (USERPROFILE), which are always set to the user's home
 " directory.
-" We wrap everything in a try so we can handle any errors or
-"+misconfigurations
 "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-if exists("path")
-    unlet path  " get rid of any potential values already set
-endif
-if exists('win32')
-    let s:home_directory=substitute($USERPROFILE, "\\", "/", "g")
-else
-    let s:home_directory=$HOME
-endif
-"***
-try
-"^^^
-    if empty($VIMFILES)
-        let $VIMFILES=s:home_directory . '/vimfiles'
-    endif
-    let path=substitute($VIMFILES, "\\", "/", "g")
-    if !exists("path")
-        throw "No vimfiles repository found!"
-    elseif empty(path)
-        throw "path is empty!"
-    endif
+let s:PlatformIndependentHome =
+        \ has('win32') ? substitute($USERPROFILE, "\\", "/", "g") : $HOME
+let s:PlatformIndependentVimFolder =
+        \ has('win32') ? 'vimfiles' : '.vim'
+let s:LocalConfig =
+      \ s:PlatformIndependentHome . '/' . s:PlatformIndependentVimFolder
 "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 " Source the appropriate vimrc
 "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    execute "source" path . "/" . "vimrc"
-"*******
-finally
-"^^^^^^^
+execute "source" s:LocalConfig . "/" . "vimrc"
+"^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 " Add configuration that can generalize to all systems
 "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 " set titlebar string to show config type
@@ -84,11 +66,9 @@ finally
 "    set titlestring+=' | '.config_type
 "    execute 'set titlestring=' . &titlestring . " | VIM"
 "    execute 'set titlestring=' . &titlestring . " | " . config_type
-
 "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 " Add desired modifications, specific to this computer
 "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    set guifont=Source_Code_Pro_Light:h11:cANSI:qDRAFT
-"******
-endtry
-"^^^^^^
+set guifont=Source_Code_Pro_Light:h11:cANSI:qDRAFT
+"^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+

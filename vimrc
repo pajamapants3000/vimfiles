@@ -268,8 +268,8 @@ if PLUGIN_VIM_SIGNIFY
     Plugin 'mhinz/vim-signify'
 endif
 " vim-gita - Looks like a VERY cool git handling plugin (says it's in alpha)
-if PLUGIN_VIM_GITA
-    Plugin 'lambdalisue/vim-gita'
+if PLUGIN_VIM_GINA
+    Plugin 'lambdalisue/vim-gina'
 endif
 " agit.vim - A powerful Git log viewer
 if PLUGIN_AGIT
@@ -665,6 +665,9 @@ endif
 if PLUGIN_SCRIBBLE
     Plugin 'nickng/vim-scribble'
 endif
+if PLUGIN_FITNESSE
+    Plugin 'vim-scripts/fitnesse.vim'
+endif
 "**********************"
 " Doing more with vim! "
 "^^^^^^^^^^^^^^^^^^^^^^"
@@ -779,6 +782,8 @@ let g:filetype_aliases['vbs']         = 'vbs'
 let g:filetype_aliases['vb']          = 'vb'
 let g:filetype_aliases['xaml']        = 'xaml'
 let g:filetype_aliases['sharp']       = 'cs'
+let g:filetype_aliases['razor']       = 'cshtml'
+let g:filetype_aliases['razorvb']       = 'vbhtml'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Functions
 "***********
@@ -841,6 +846,38 @@ function! SetFileType(alias)
     :execute 'do BufRead x.' . filetype
     return filetype
 endfunc
+"
+" MyDiff_Win: function to call to generate diffs in Windows
+" Taken from https://superuser.com/a/697914
+" TODO: still doesn't work
+function MyDiff_Win()
+   let opt = '-a --binary '
+   if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
+   if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
+   let arg1 = v:fname_in
+   if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
+   let arg2 = v:fname_new
+   if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
+   let arg3 = v:fname_out
+   if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
+   if $VIMRUNTIME =~ ' '
+     if &sh =~ '\<cmd'
+       if empty(&shellxquote)
+         let l:shxq_sav = ''
+         set shellxquote&
+       endif
+       let cmd = '"' . $VIMRUNTIME . '\diff"'
+     else
+       let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
+     endif
+   else
+     let cmd = $VIMRUNTIME . '\diff'
+   endif
+   silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3
+   if exists('l:shxq_sav')
+     let &shellxquote=l:shxq_sav
+   endif
+ endfunction
 "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 " UltiSnips Functions
 "^^^^^^^^^^^^^^^^^^^^^
@@ -1665,13 +1702,19 @@ let wiki.ext = '.wiki'
 let wiki.temp = 0
 let wiki.list_margin = -1
 let wiki.diary_rel_path = 'diary/'
+let wiki_fitnesse = {}
+let wiki_fitnesse.css_name = 'style.css'
+let wiki_fitnesse.path = 'C:/Fitnesse/FitnesseRoot'
+let wiki_fitnesse.syntax = 'fitnesse'
+let wiki_fitnesse.ext = '.wiki'
+
 " Add additional dictionaries to list for additional wikis
 "let wiki2 = {}
 "***> Wiki directory structure <***"
 " vimwiki/ cloned at ssh://hg@bitbucket.org/pajamapants3000/my_vimwiki
 "***> Global settings <***"
 let g:vimwiki_folding = 'expr'
-let g:vimwiki_list = [wiki]
+let g:vimwiki_list = [wiki, wiki_fitnesse]
 let g:vimwiki_hl_headers = 1
 let g:vimwiki_use_calendar = 1
 " Probably want to do this selectively; can do per file/buffer?
@@ -1845,6 +1888,13 @@ inoremap <leader>fv <c-o>:redir<space>@z<CR>
             \.SetFileType('vimwiki').'"'<CR>
             \<c-o>:redir<space>END<CR>
             "\<c-o>:echo<space>@z<CR>
+" Create Wiki Links
+nnoremap <leader>wll :<c-u>.,$s/^\(..*\)$/*<space>[[\1\/index<bar>\1]]/<cr>
+nnoremap <leader>wlo :<c-u>.,$s/^\(..*\)$/*<space>[[\1<bar>\1]]/<cr>
+nnoremap <leader>wl<leader>t
+            \ :<c-u>.,$s/\*<space>\[\[\(.*\)[^-a-zA-Z0-9./_]\(.*\)<bar>/*<space>[[\1_\2<bar>/<cr>
+nmap <leader>wl<leader>r
+            \ <c-o><leader>wl<leader>t
 "
 "***********************************************
 " NOTE: List of mappings that can't hurt to use!
@@ -1998,8 +2048,9 @@ if has('multi_byte')
     set encoding=utf-8
 endif
 "*********
-" Font and colorscheme require some system-specific settings
+" system-specific settings
 if has('win32')
+    set diffexpr=MyDiff_Win()
     "************************************
     " This version works on all non-LFS setups (so far; Fine as Windows setting.)
     set guifont=Source_Code_Pro_for_Powerline:h11:cANSI:qDRAFT

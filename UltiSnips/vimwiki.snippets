@@ -66,6 +66,9 @@ snippet {{{     "nested syntax block" b
 $0
 }}}
 endsnippet
+# After expanding a syntax block, use <leader>ff to change the filetype to that
+# language, providing any available plugins and completions for that language
+# When finished, use <leader>fv to return to vimwiki filetype.
 snippet {cpp    "C++ block" b
 {{{cpp
 cp$0p

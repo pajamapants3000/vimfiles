@@ -20,21 +20,29 @@ if !exists('config_type')
         let config_type = 'default'
     endif
 endif
-" Set the initial user configuration to the location of this script
+
+" Get important paths
+" CloudConfig is the location of this script, shared via git repository
+"+ ...probably a crappy name for what it is. I think it's from when the folder
+"+ used to be kept in a Cloud Drive folder.
 let g:CloudConfig = resolve(expand('<sfile>:p:h'))
-let &runtimepath .= ',' . g:CloudConfig
+" Get the vimfiles folder
 let g:PlatformIndependentHome =
         \ has('win32') ? substitute($USERPROFILE, "\\", "/", "g") : $HOME
 let g:PlatformIndependentVimFolder =
         \ has('win32') ? 'vimfiles' : '.vim'
-" Set local configuration path - mostly plugins
-" Source flags for this configuration
-execute 'source ' . g:CloudConfig . '/config_' . config_type . '.vimrc'
-" Now add the usual system-specific user configuration
 let g:LocalConfig =
       \ g:PlatformIndependentHome . '/' . g:PlatformIndependentVimFolder
+" Get the plugins folder
 let g:VundleFolder = g:LocalConfig . '/bundle'
+
+" Add runtime folders to the runtimepath
+" Add the usual system-specific user configuration
+" TODO: already set runtimepath to $VIMRUNTIME, so I know it's not blank;
+"+however, I shouldn't have to make that assumption
+let &runtimepath .= ',' . g:CloudConfig
 execute "set runtimepath+=" . g:LocalConfig
+
 " Now add the "/after" paths
 let &runtimepath .= ',' . g:CloudConfig . '/after'
 execute 'set runtimepath+='.
@@ -42,6 +50,8 @@ execute 'set runtimepath+='.
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vundle and plugins
 "********************
+" Source flags for this configuration
+execute 'source ' . g:CloudConfig . '/config_' . config_type . '.vimrc'
 " Must be set while Vundle is doing its thang - not necessarily desired config
 set nocompatible
 filetype off
